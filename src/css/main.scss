@@ -1,0 +1,16 @@
+@import './vars';
+@import './reset';
+@import './components/sidebar';
+@import './components/content';
+@import './components/week';
+@import './components/day';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

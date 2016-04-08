@@ -1,0 +1,4 @@
+.react-calendar__week {
+	height: $calendar-day-height;
+	width: calc(#{$calendar-day-width} * 7);
+}

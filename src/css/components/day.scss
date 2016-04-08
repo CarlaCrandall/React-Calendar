@@ -1,0 +1,8 @@
+.react-calendar__day {
+	display: inline-block;
+	width: $calendar-day-width;
+	height: $calendar-day-height;
+
+	// Temp
+	border: 1px solid #ddd;
+}
