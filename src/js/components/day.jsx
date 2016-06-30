@@ -18,9 +18,15 @@ class Day extends React.Component {
 	};
 
 	render() {
+		var className = 'react-calendar__day';
+
+		if (this.props.date === 0) {
+			className += ' inactive';
+		}
+
 		return (
-			<div className="react-calendar__day">
-				{this.props.date}
+			<div className={className}>
+				{this.props.date > 0 && this.props.date}
 			</div>
 		);
 	}
