@@ -10,14 +10,18 @@ import React from 'react';
 class Day extends React.Component {
 
 	static propTypes = {
+		date: React.PropTypes.string
 	};
 
 	static defaultProps = {
+		date: ''
 	};
 
 	render() {
 		return (
-			<div className="react-calendar__day"></div>
+			<div className="react-calendar__day">
+				{this.props.date}
+			</div>
 		);
 	}
 }

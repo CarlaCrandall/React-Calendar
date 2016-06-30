@@ -11,21 +11,28 @@ import Day from './day.jsx';
 class Week extends React.Component {
 
 	static propTypes = {
+		days: React.PropTypes.array
 	};
 
 	static defaultProps = {
+		days: []
 	};
+
+	renderDays() {
+		return this.props.days.map((day, i) => {
+			return (
+				<Day
+					key={i}
+					date={day}
+				/>
+			)
+		});
+	}
 
 	render() {
 		return (
 			<div className="react-calendar__week">
-				<Day />
-				<Day />
-				<Day />
-				<Day />
-				<Day />
-				<Day />
-				<Day />
+				{this.props.days.length && this.renderDays()}
 			</div>
 		);
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Week from './week.jsx';
+import Month from './month.jsx';
 
 /**
  * Calendar
@@ -11,15 +11,25 @@ import Week from './week.jsx';
 class Calendar extends React.Component {
 
 	static propTypes = {
+		currentYear: React.PropTypes.string,
+		currentMonthNum: React.PropTypes.string,
+		currentMonthName: React.PropTypes.string
 	};
 
 	static defaultProps = {
+		currentYear: '2016',
+		currentMonthNum: '01',
+		currentMonthName: 'January'
 	};
 
 	render() {
 		return (
 			<div className="react-calendar__calendar">
-				<Week />
+				<Month
+					year={this.props.currentYear}
+					num={this.props.currentMonthNum}
+					name={this.props.currentMonthName}
+				/>
 			</div>
 		);
 	}
