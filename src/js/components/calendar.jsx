@@ -11,24 +11,25 @@ import Month from './month.jsx';
 class Calendar extends React.Component {
 
 	static propTypes = {
-		currentYear: React.PropTypes.string,
-		currentMonthNum: React.PropTypes.string,
-		currentMonthName: React.PropTypes.string
+		year: React.PropTypes.number,
+		month: React.PropTypes.object
 	};
 
 	static defaultProps = {
-		currentYear: '2016',
-		currentMonthNum: '01',
-		currentMonthName: 'January'
+		year: 2017,
+		month: {
+			num: 1,
+			name: 'January'
+		}
 	};
 
 	render() {
 		return (
 			<div className="react-calendar__calendar">
 				<Month
-					year={this.props.currentYear}
-					num={this.props.currentMonthNum}
-					name={this.props.currentMonthName}
+					year={this.props.year}
+					num={this.props.month.num}
+					name={this.props.month.name}
 				/>
 			</div>
 		);

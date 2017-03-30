@@ -12,21 +12,24 @@ import moment from 'moment';
 class Month extends React.Component {
 
 	static propTypes = {
-		year: React.PropTypes.string,
-		num: React.PropTypes.string,
+		year: React.PropTypes.number,
+		num: React.PropTypes.number,
 		name: React.PropTypes.string
 	};
 
 	static defaultProps = {
-		year: '',
-		num: '',
+		year: 2017,
+		num: 1,
 		name: ''
 	};
 
 	constructor(props) {
 		super(props);
 
-		var date = moment(`${this.props.year}-${this.props.num}-01`),
+		// Add leading zero to month value
+		var monthNum = (props.num < 10) ? `0${props.num}` : props.num;
+
+		var date = moment(`${props.year}-${monthNum}-01`),
 			startDayOfMonth = date.day(),
 			daysInMonth = date.daysInMonth();
 
