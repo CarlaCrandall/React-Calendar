@@ -1,7 +1,11 @@
-import { combineReducers, createStore } from 'redux';
-import calendar from './calendar';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { apiMiddleware } from 'redux-api-middleware';
+import thunk from 'redux-thunk';
 
-const reducers = combineReducers({calendar});
-const store = createStore(reducers);
+import calendar from './calendar';
+import events from './events';
+
+const reducers = combineReducers({calendar, events});
+const store = createStore(reducers, applyMiddleware(apiMiddleware, thunk));
 
 export default store;

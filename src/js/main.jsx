@@ -9,8 +9,15 @@ import Calendar from './components/calendar.jsx';
 
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+
+		// Load events from Google Calendar API
+		this.props.fetchEvents();
+	}
+
 	render() {
-		let {calendar, ...actions} = this.props;
+		let {calendar, events, ...actions} = this.props;
 
 		return (
 			<div className="app">
@@ -21,7 +28,11 @@ class App extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({ calendar: state.calendar });
+const mapStateToProps = state => ({
+	calendar: state.calendar,
+	events: state.events
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 

@@ -5,6 +5,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var babelify = require('babelify');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
+var envify = require('envify');
 var buffer = require('vinyl-buffer');
 var chalk = require('chalk');
 var duration = require('gulp-duration');
@@ -15,6 +16,7 @@ var react = require('react');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
+var API_KEYS = require('./keys.json');
 
 var reload = browserSync.reload;
 
@@ -115,6 +117,7 @@ gulp.task('css', function() {
 
 gulp.task('js', function() {
   var bundler = browserify(config.js.srcFile)
+    .transform(envify, API_KEYS)
     .transform(babelify, { presets: ['es2015', 'react', 'stage-0'] });
   bundle(bundler)
 });
