@@ -26,6 +26,14 @@ class Month extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = this.getStateValues(props);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState(this.getStateValues(nextProps));
+	}
+
+	getStateValues(props) {
 		// Add leading zero to month value
 		var monthNum = (props.num < 10) ? `0${props.num}` : props.num;
 
@@ -33,7 +41,7 @@ class Month extends React.Component {
 			startDayOfMonth = date.day(),
 			daysInMonth = date.daysInMonth();
 
-		this.state = this.calculateWeeksOfMonth(startDayOfMonth, daysInMonth);
+		return this.calculateWeeksOfMonth(startDayOfMonth, daysInMonth);
 	}
 
 	calculateWeeksOfMonth(startDayOfMonth, daysInMonth) {
