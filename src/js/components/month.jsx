@@ -1,6 +1,8 @@
 import React from 'react';
-import Week from './week.jsx';
 import moment from 'moment';
+import monthNames from '../../config/month-names';
+import Week from './week.jsx';
+
 
 /**
  * Month
@@ -13,14 +15,12 @@ class Month extends React.Component {
 
 	static propTypes = {
 		year: React.PropTypes.number,
-		num: React.PropTypes.number,
-		name: React.PropTypes.string
+		month: React.PropTypes.number
 	};
 
 	static defaultProps = {
 		year: 2017,
-		num: 1,
-		name: ''
+		month: 0
 	};
 
 	constructor(props) {
@@ -35,7 +35,8 @@ class Month extends React.Component {
 
 	getStateValues(props) {
 		// Add leading zero to month value
-		var monthNum = (props.num < 10) ? `0${props.num}` : props.num;
+		var monthNum = props.month + 1;
+			monthNum = (monthNum < 10) ? `0${monthNum}` : monthNum;
 
 		var date = moment(`${props.year}-${monthNum}-01`),
 			startDayOfMonth = date.day(),
@@ -89,10 +90,20 @@ class Month extends React.Component {
 		});
 	}
 
+	renderHeader() {
+		return (
+			<header>
+				<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
+				<h1>{monthNames[this.props.month]} {this.props.year}</h1>
+				<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
+			</header>
+		);
+	}
+
 	render() {
 		return (
 			<div className="react-calendar__month">
-				<h1>{this.props.name}</h1>
+				{this.renderHeader()}
 				{this.state.weeks && this.renderWeeks()}
 			</div>
 		);

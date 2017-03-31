@@ -1,25 +1,24 @@
 import moment from 'moment';
-import monthNames from '../../config/month-names';
 
 const
 	date = moment(),
-	month = date.month(),
 	initialState = {
 		year: date.year(),
-		month: {
-			num: month + 1,
-			name: monthNames[month]
-		}
+		month: date.month()
 	};
 
 const calendar = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_MONTH':
+    case 'NEXT_MONTH':
 		return {
-			month: {
-				num: action.month + 1,
-				name: monthNames[action.month]
-			}
+			year: action.year,
+			month: action.month
+		};
+
+    case 'PREV_MONTH':
+		return {
+			year: action.year,
+			month: action.month
 		};
 
     default:

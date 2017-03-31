@@ -10,12 +10,12 @@ import Calendar from './components/calendar.jsx';
 
 class App extends React.Component {
 	render() {
-		let {calendar} = this.props;
+		let {calendar, ...actions} = this.props;
 
 		return (
 			<div className="app">
 				<Sidebar />
-				<Calendar {...calendar} />
+				<Calendar {...calendar} {...actions} />
 			</div>
 		)
 	}

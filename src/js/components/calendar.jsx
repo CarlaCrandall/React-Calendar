@@ -17,10 +17,7 @@ class Calendar extends React.Component {
 
 	static defaultProps = {
 		year: 2017,
-		month: {
-			num: 1,
-			name: 'January'
-		}
+		month: 0
 	};
 
 	render() {
@@ -28,8 +25,9 @@ class Calendar extends React.Component {
 			<div className="react-calendar__calendar">
 				<Month
 					year={this.props.year}
-					num={this.props.month.num}
-					name={this.props.month.name}
+					month={this.props.month}
+					nextMonth={this.props.nextMonth}
+					prevMonth={this.props.prevMonth}
 				/>
 			</div>
 		);
