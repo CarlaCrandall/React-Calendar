@@ -30,11 +30,7 @@ export default class Month extends React.Component {
 	}
 
 	getStateValues(props) {
-		// Add leading zero to month value
-		var monthNum = props.month + 1;
-			monthNum = (monthNum < 10) ? `0${monthNum}` : monthNum;
-
-		var date = moment(`${props.year}-${monthNum}-01`),
+		var date = moment(`${props.year}-${props.month + 1}-01`, 'YYYY-M-DD'),
 			startDayOfMonth = date.day(),
 			daysInMonth = date.daysInMonth();
 
