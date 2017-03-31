@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import monthNames from '../../config/month-names';
 import Week from './week.jsx';
 
 
@@ -11,16 +10,11 @@ import Week from './week.jsx';
  * Example: <Month />
  */
 
-class Month extends React.Component {
+export default class Month extends React.Component {
 
 	static propTypes = {
-		year: React.PropTypes.number,
-		month: React.PropTypes.number
-	};
-
-	static defaultProps = {
-		year: 2017,
-		month: 0
+		year: React.PropTypes.number.isRequired,
+		month: React.PropTypes.number.isRequired
 	};
 
 	constructor(props) {
@@ -90,24 +84,11 @@ class Month extends React.Component {
 		});
 	}
 
-	renderHeader() {
-		return (
-			<header>
-				<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
-				<h1>{monthNames[this.props.month]} {this.props.year}</h1>
-				<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
-			</header>
-		);
-	}
-
 	render() {
 		return (
 			<div className="react-calendar__month">
-				{this.renderHeader()}
 				{this.state.weeks && this.renderWeeks()}
 			</div>
 		);
 	}
 }
-
-module.exports = Month;

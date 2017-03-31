@@ -8,7 +8,7 @@ import Day from './day.jsx';
  * Example: <Week />
  */
 
-class Week extends React.Component {
+export default class Week extends React.Component {
 
 	static propTypes = {
 		days: React.PropTypes.array
@@ -37,5 +37,3 @@ class Week extends React.Component {
 		);
 	}
 }
-
-module.exports = Week;

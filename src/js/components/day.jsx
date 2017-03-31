@@ -7,14 +7,10 @@ import React from 'react';
  * Example: <Day />
  */
 
-class Day extends React.Component {
+export default class Day extends React.Component {
 
 	static propTypes = {
-		date: React.PropTypes.string
-	};
-
-	static defaultProps = {
-		date: ''
+		date: React.PropTypes.number.isRequired
 	};
 
 	render() {
@@ -31,5 +27,3 @@ class Day extends React.Component {
 		);
 	}
 }
-
-module.exports = Day;

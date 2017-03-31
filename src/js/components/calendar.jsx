@@ -8,16 +8,11 @@ import Month from './month.jsx';
  * Example: <Calendar />
  */
 
-class Calendar extends React.Component {
+export default class Calendar extends React.Component {
 
 	static propTypes = {
-		year: React.PropTypes.number,
-		month: React.PropTypes.object
-	};
-
-	static defaultProps = {
-		year: 2017,
-		month: 0
+		year: React.PropTypes.number.isRequired,
+		month: React.PropTypes.number.isRequired
 	};
 
 	render() {
@@ -33,5 +28,3 @@ class Calendar extends React.Component {
 		);
 	}
 }
-
-module.exports = Calendar;
