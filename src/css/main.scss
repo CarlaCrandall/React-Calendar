@@ -1,14 +1,17 @@
-@import './vars';
 @import './reset';
+@import './font-awesome/font-awesome';
+@import './fonts';
+@import './vars';
 
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 @import './components';

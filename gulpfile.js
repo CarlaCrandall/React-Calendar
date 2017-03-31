@@ -42,9 +42,9 @@ var config = {
     buildPath: './build/'
   },
   fonts: {
-    srcPath: './src/fonts/*.scss',
+    srcPath: './src/fonts/**/*',
     watchPath: './src/fonts/**/*',
-    buildPath: './build/'
+    buildPath: './build/fonts/'
   },
   config: {
     watchPath: './src/config/**/*'

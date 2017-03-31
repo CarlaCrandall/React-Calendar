@@ -4,14 +4,8 @@
 	width: $calendar-day-width;
 	height: $calendar-day-height;
 	text-align: center;
-
-	// Temp
-	border: 1px solid #ddd;
-
-	&--inactive {
-		border: 1px solid rgba(0,0,0,0);
-		color: rgba(0,0,0,0);
-	}
+	font-size: $font-size-medium;
+	color: $default-text-color;
 
 	&__text {
 		position: relative;

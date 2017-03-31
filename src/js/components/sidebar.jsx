@@ -20,10 +20,16 @@ export default class Sidebar extends React.Component {
 	renderHeader() {
 		return (
 			<header>
-				<h1>{monthNames[this.props.month]} {this.props.year}</h1>
+				<h1 className="react-calendar__sidebar__header-text">{monthNames[this.props.month]} {this.props.year}</h1>
 				<div className="react-calendar__sidebar__header-buttons">
-					<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
-					<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
+					<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>
+						<i className="fa fa-chevron-left"></i>
+						<span className="sr-only">Previous Month</span>
+					</button>
+					<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>
+						<i className="fa fa-chevron-right"></i>
+						<span className="sr-only">Next Month</span>
+					</button>
 				</div>
 			</header>
 		);

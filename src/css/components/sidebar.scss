@@ -4,10 +4,30 @@
 	left: 0;
 	width: 33%;
 	height: 100%;
-	background: #ccc;
+	padding: 36px 24px;
+	background: $sidebar-background;
+	color: $white;
 
-	h1,
+	&__header-text,
 	&__header-buttons {
 		display: inline-block;
+	}
+
+	&__header-text {
+		font-weight: $font-weight-light;
+		font-size: $font-size-large;
+	}
+
+	&__header-buttons {
+		float: right;
+
+		button {
+			background: transparent;
+			border: 0;
+			font-size: $font-size-small;
+			line-height: $font-size-large;
+			color: $white;
+			cursor: pointer;
+		}
 	}
 }
