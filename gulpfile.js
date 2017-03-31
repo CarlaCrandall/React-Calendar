@@ -45,6 +45,9 @@ var config = {
     srcPath: './src/fonts/*.scss',
     watchPath: './src/fonts/**/*',
     buildPath: './build/'
+  },
+  config: {
+    watchPath: './src/config/**/*'
   }
 };
 
@@ -126,6 +129,7 @@ gulp.task('serve', function() {
 
 gulp.task('watch', function() {
   gulp.watch(config.js.watchPath, ["js"]);
+  gulp.watch(config.config.watchPath, ["js"]);
   gulp.watch(config.css.watchPath, ["css"]);
   gulp.watch(config.html.watchPath, ["html"]);
   gulp.watch(config.fonts.watchPath, ["fonts"])
