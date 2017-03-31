@@ -20,9 +20,11 @@ export default class Sidebar extends React.Component {
 	renderHeader() {
 		return (
 			<header>
-				<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
 				<h1>{monthNames[this.props.month]} {this.props.year}</h1>
-				<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
+				<div className="react-calendar__sidebar__header-buttons">
+					<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
+					<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
+				</div>
 			</header>
 		);
 	}

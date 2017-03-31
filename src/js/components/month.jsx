@@ -71,14 +71,17 @@ export default class Month extends React.Component {
 		};
 	}
 
+	renderHeader() {
+		return (
+			<Week isHeading={true} days={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}/>
+		);
+	}
+
 	renderWeeks() {
 		return this.state.weeks.map((week, i) => {
-			if (i + 1 <= this.state.numWeeks) {
+			if (i < this.state.numWeeks) {
 				return (
-					<Week
-						key={i}
-						days={week}
-					/>
+					<Week key={i} days={week} />
 				)
 			}
 		});
@@ -87,6 +90,7 @@ export default class Month extends React.Component {
 	render() {
 		return (
 			<div className="react-calendar__month">
+				{this.renderHeader()}
 				{this.state.weeks && this.renderWeeks()}
 			</div>
 		);

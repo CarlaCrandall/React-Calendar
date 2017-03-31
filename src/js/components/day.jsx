@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 /**
  * Day
@@ -10,19 +11,23 @@ import React from 'react';
 export default class Day extends React.Component {
 
 	static propTypes = {
-		date: React.PropTypes.number.isRequired
+		day: React.PropTypes.oneOfType([
+			React.PropTypes.number,
+			React.PropTypes.string
+		]).isRequired
 	};
 
 	render() {
-		var className = 'react-calendar__day';
-
-		if (this.props.date === 0) {
-			className += ' inactive';
-		}
+		var className = classnames({
+			'react-calendar__day': true,
+			'react-calendar__day--inactive': this.props.day === 0
+		});
 
 		return (
 			<div className={className}>
-				{this.props.date > 0 && this.props.date}
+				<div className="react-calendar__day__text">
+					{this.props.day !== 0 && this.props.day}
+				</div>
 			</div>
 		);
 	}

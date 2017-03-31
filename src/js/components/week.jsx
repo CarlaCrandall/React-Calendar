@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import Day from './day.jsx';
 
 /**
@@ -11,27 +12,26 @@ import Day from './day.jsx';
 export default class Week extends React.Component {
 
 	static propTypes = {
-		days: React.PropTypes.array
+		isHeading: React.PropTypes.bool,
+		days: React.PropTypes.array.isRequired
 	};
 
 	static defaultProps = {
-		days: []
+		isHeading: false
 	};
 
 	renderDays() {
-		return this.props.days.map((day, i) => {
-			return (
-				<Day
-					key={i}
-					date={day}
-				/>
-			)
-		});
+		return this.props.days.map((day, i) => <Day key={i} day={day} />);
 	}
 
 	render() {
+		let className = classnames({
+			'react-calendar__week': true,
+			'react-calendar__week--heading': this.props.isHeading
+		});
+
 		return (
-			<div className="react-calendar__week">
+			<div className={className}>
 				{this.props.days.length && this.renderDays()}
 			</div>
 		);

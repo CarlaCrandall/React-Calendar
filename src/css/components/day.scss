@@ -3,12 +3,19 @@
 	float: left;
 	width: $calendar-day-width;
 	height: $calendar-day-height;
+	text-align: center;
 
 	// Temp
 	border: 1px solid #ddd;
 
-	&.inactive {
+	&--inactive {
 		border: 1px solid rgba(0,0,0,0);
 		color: rgba(0,0,0,0);
+	}
+
+	&__text {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 }
