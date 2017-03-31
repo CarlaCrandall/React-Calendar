@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './reducers';
+import * as actions from './actions';
+import store from './reducers';
 import Sidebar from './components/sidebar.jsx';
 import Calendar from './components/calendar.jsx';
 
-let store = createStore(reducers);
 
-var App = React.createClass({
+class App extends React.Component {
 	render() {
 		let {calendar} = this.props;
 
@@ -19,17 +19,15 @@ var App = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
-let mapStateToProps = state => ({
-	calendar: state.calendar
-});
-
-const ConnectedRootComponent = connect(mapStateToProps)(App);
+const mapStateToProps = state => ({ calendar: state.calendar });
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<ConnectedRootComponent />
+		<ConnectedApp />
 	</Provider>,
 	document.querySelector('#app')
 );

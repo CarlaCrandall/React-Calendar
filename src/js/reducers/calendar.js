@@ -16,7 +16,10 @@ const calendar = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_MONTH':
 		return {
-			month: action.month
+			month: {
+				num: action.month + 1,
+				name: monthNames[action.month]
+			}
 		};
 
     default:
