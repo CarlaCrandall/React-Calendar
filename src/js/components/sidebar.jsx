@@ -1,4 +1,5 @@
 import React from 'react';
+import monthNames from '../../config/month-names';
 
 /**
  * Sidebar
@@ -7,19 +8,30 @@ import React from 'react';
  * Example: <Sidebar />
  */
 
-class Sidebar extends React.Component {
+export default class Sidebar extends React.Component {
 
 	static propTypes = {
+		year: React.PropTypes.number.isRequired,
+		month: React.PropTypes.number.isRequired,
+		prevMonth: React.PropTypes.func.isRequired,
+		nextMonth: React.PropTypes.func.isRequired
 	};
 
-	static defaultProps = {
-	};
+	renderHeader() {
+		return (
+			<header>
+				<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>&laquo; Prev</button>
+				<h1>{monthNames[this.props.month]} {this.props.year}</h1>
+				<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>&raquo; Next</button>
+			</header>
+		);
+	}
 
 	render() {
 		return (
-			<div className="react-calendar__sidebar"></div>
+			<div className="react-calendar__sidebar">
+				{this.renderHeader()}
+			</div>
 		);
 	}
 }
-
-module.exports = Sidebar;
