@@ -1,25 +1,34 @@
 import moment from 'moment';
 
 const
-	date = moment(),
+	currentDate = moment(),
 	initialState = {
-		year: date.year(),
-		month: date.month()
+		year: currentDate.year(),
+		month: currentDate.month(),
+		date: currentDate.date()
 	};
 
 const calendar = (state = initialState, action) => {
   switch (action.type) {
     case 'NEXT_MONTH':
 		return {
+			...state,
 			year: action.year,
 			month: action.month
 		};
 
     case 'PREV_MONTH':
 		return {
+			...state,
 			year: action.year,
 			month: action.month
 		};
+
+	case 'SELECT_DATE':
+		return {
+			...state,
+			date: action.date
+		}
 
     default:
     	return state;

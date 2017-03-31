@@ -33,3 +33,11 @@ export const prevMonth = (currentMonth, currentYear) => {
 		year: year
 	};
 };
+
+
+export const selectDate = (date) => {
+	return {
+		type: 'SELECT_DATE',
+		date: date
+	};
+}

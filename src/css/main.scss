@@ -14,4 +14,11 @@ html {
 	box-sizing: inherit;
 }
 
+button {
+	background: transparent;
+	border: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
 @import './components';

@@ -12,18 +12,15 @@ export default class Calendar extends React.Component {
 
 	static propTypes = {
 		year: React.PropTypes.number.isRequired,
-		month: React.PropTypes.number.isRequired
+		month: React.PropTypes.number.isRequired,
+		date: React.PropTypes.number.isRequired,
+		selectDate: React.PropTypes.func.isRequired
 	};
 
 	render() {
 		return (
 			<div className="react-calendar__calendar">
-				<Month
-					year={this.props.year}
-					month={this.props.month}
-					nextMonth={this.props.nextMonth}
-					prevMonth={this.props.prevMonth}
-				/>
+				<Month {...this.props} />
 			</div>
 		);
 	}

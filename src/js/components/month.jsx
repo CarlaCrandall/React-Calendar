@@ -14,7 +14,9 @@ export default class Month extends React.Component {
 
 	static propTypes = {
 		year: React.PropTypes.number.isRequired,
-		month: React.PropTypes.number.isRequired
+		month: React.PropTypes.number.isRequired,
+		date: React.PropTypes.number.isRequired,
+		selectDate: React.PropTypes.func.isRequired
 	};
 
 	constructor(props) {
@@ -72,8 +74,10 @@ export default class Month extends React.Component {
 	}
 
 	renderHeader() {
+		let dayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 		return (
-			<Week isHeading={true} days={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}/>
+			<Week isHeading={true} days={dayHeadings} date={this.props.date} />
 		);
 	}
 
@@ -81,7 +85,7 @@ export default class Month extends React.Component {
 		return this.state.weeks.map((week, i) => {
 			if (i < this.state.numWeeks) {
 				return (
-					<Week key={i} days={week} />
+					<Week key={i} days={week} date={this.props.date} selectDate={this.props.selectDate} />
 				)
 			}
 		});

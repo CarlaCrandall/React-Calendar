@@ -12,4 +12,15 @@
 		top: 50%;
 		transform: translateY(-50%);
 	}
+
+	&__button {
+		width: 42px;
+		height: 42px;
+	}
+
+	&--selected &__button {
+		background: $accent-color;
+		border-radius: 50%;
+		color: $white;
+	}
 }

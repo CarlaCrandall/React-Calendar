@@ -5,7 +5,7 @@
 	width: 33%;
 	height: 100%;
 	padding: 36px 24px;
-	background: $sidebar-background;
+	background: $accent-color;
 	color: $white;
 
 	&__header-text,
@@ -22,8 +22,6 @@
 		float: right;
 
 		button {
-			background: transparent;
-			border: 0;
 			font-size: $font-size-small;
 			line-height: $font-size-large;
 			color: $white;
