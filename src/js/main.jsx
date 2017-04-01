@@ -5,8 +5,7 @@ import { Provider, connect } from 'react-redux';
 import moment from 'moment';
 import * as actions from './actions';
 import store from './stores';
-import Sidebar from './components/sidebar.jsx';
-import Calendar from './components/calendar.jsx';
+import { Sidebar, Calendar } from './components';
 
 
 class App extends React.Component {

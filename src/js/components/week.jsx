@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import Day from './day.jsx';
+import { Day } from './';
 
 /**
  * Week

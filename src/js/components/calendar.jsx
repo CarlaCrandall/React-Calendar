@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Week from './week.jsx';
+import { Week } from './';
 
 
 /**

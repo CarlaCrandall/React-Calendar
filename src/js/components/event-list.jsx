@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from './event.jsx';
+import { Event } from './';
 import monthNames from '../../config/month-names';
 
 /**
