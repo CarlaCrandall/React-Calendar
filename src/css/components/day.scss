@@ -4,18 +4,16 @@
 	width: $calendar-day-width;
 	height: $calendar-day-height;
 	text-align: center;
-	font-size: $font-size-medium;
+	font-size: $font-size-large;
 	color: $default-text-color;
 
 	&__text {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+		@include vertical-center;
 	}
 
 	&__button {
-		width: 42px;
-		height: 42px;
+		width: $calendar-day-btn-width;
+		height: $calendar-day-btn-height;
 	}
 
 	&--selected &__button {

@@ -1,6 +1,6 @@
 .week {
-	height: $calendar-day-height;
-	width: calc(#{$calendar-day-width} * 7);
+	width: $calendar-week-width;
+	height: $calendar-week-height;
 	font-weight: $font-weight-light;
 
 	&--heading {

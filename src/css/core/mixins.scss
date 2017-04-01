@@ -1,0 +1,17 @@
+// Vertical Center
+@mixin vertical-center {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// Create CSS Circle
+@mixin create-circle($size, $background) {
+	content: '';
+	position: absolute;
+	left: -($size / 2);
+	width: $size;
+	height: $size;
+	background: $background;
+	border-radius: 50%;
+}

@@ -7,7 +7,7 @@
 	overflow-y: auto;
 
 	&__grid {
-		width: 525px;
+		width: $calendar-week-width;
 		margin: 100px auto;
 	}
 }

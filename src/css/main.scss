@@ -1,6 +1,7 @@
-@import './reset';
 @import './font-awesome/font-awesome';
-@import './fonts';
+@import './core/reset';
+@import './core/fonts';
+@import './core/mixins';
 @import './vars';
 
 html {

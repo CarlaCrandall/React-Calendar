@@ -1,35 +1,29 @@
 .event {
 	position: relative;
-	padding: 24px 0 36px 24px;
+	padding: $pad-large 0 $pad-xlarge $pad-large;
 	border-left: 1px solid $white;
 
 	&__time {
-		margin-bottom: 12px;
+		margin-bottom: $pad-medium;
 		font-weight: $font-weight-semibold;
-		font-size: 12px;
+		font-size: $font-size-small;
 
 		&:before {
-			content: '';
-			position: absolute;
-			left: -6px;
-			width: 10px;
-			height: 10px;
-			background: $accent-color;
-			border-radius: 50%;
+			@include create-circle(10px, $accent-color);
 			border: 1px solid $white;
 		}
 	}
 
 	&__name {
 		font-weight: $font-weight-light;
-		font-size: $font-size-medium;
+		font-size: $font-size-large;
 	}
 
 	&__location {
-		margin-top: 12px;
+		margin-top: $pad-medium;
 		font-weight: $font-weight-light;
-		font-size: 12px;
+		font-size: $font-size-small;
 	}
 
-	&__icon { padding-right: 6px; }
+	&__icon { padding-right: $pad-small; }
 }

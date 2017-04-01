@@ -1,27 +1,21 @@
 .event-list {
 	&__heading {
 		display: inline-block;
-		margin-top: 24px;
-		padding: 12px 24px;
+		margin-top: $pad-large;
+		padding: $pad-medium $pad-large;
 		background: $white;
 		font-weight: $font-weight-light;
-		font-size: $font-size-small;
+		font-size: $font-size-medium;
 		color: $accent-color;
-		border-radius: 24px;
+		border-radius: $pad-large;
 	}
 
 	&__events-container {
 		position: relative;
-		margin-left: 24px;
+		margin-left: $pad-large;
 
 		&:after {
-			content: '';
-			position: absolute;
-			left: -4px;
-			width: 8px;
-			height: 8px;
-			background: $white;
-			border-radius: 50%;
+			@include create-circle(8px, $white);
 		}
 	}
 }
