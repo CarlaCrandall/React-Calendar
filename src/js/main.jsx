@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
+import moment from 'moment';
 import * as actions from './actions';
 import store from './reducers';
 import Sidebar from './components/sidebar.jsx';
@@ -17,12 +18,15 @@ class App extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let nextDate = nextProps.calendar.date,
-			thisDate = this.props.calendar.date;
+		let nextCalendar = nextProps.calendar,
+			thisCalendar = this.props.calendar;
+
+		let nextDate = moment(`${nextCalendar.year}-${nextCalendar.month}-${nextCalendar.date}`, 'YYYY-M-D'),
+			thisDate = moment(`${thisCalendar.year}-${thisCalendar.month}-${thisCalendar.date}`, 'YYYY-M-D');
 
 		// Date has changed, fetch events
-		if (nextDate !== thisDate) {
-			this.props.fetchEvents(nextProps.calendar);
+		if (!nextDate.isSame(thisDate)) {
+			this.props.fetchEvents(nextCalendar);
 		}
 	}
 

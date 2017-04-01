@@ -1,4 +1,6 @@
 import React from 'react';
+import Event from './event.jsx';
+import monthNames from '../../config/month-names';
 
 /**
  * EventList
@@ -10,21 +12,27 @@ import React from 'react';
 export default class EventList extends React.Component {
 
 	static propTypes = {
+		year: React.PropTypes.number.isRequired,
+		month: React.PropTypes.number.isRequired,
+		date: React.PropTypes.number.isRequired,
 		items: React.PropTypes.array
 	};
 
-	renderEvent(event, index) {
+	renderListItem(item, index) {
 		return (
-			<div key={index} className="react-calendar__event-list__event">
-				<h3>{event.summary}</h3>
-			</div>
-		);
+			<li key={index}>
+				<Event data={item} />
+			</li>
+		)
 	}
 
 	render() {
 		return (
 			<div className="react-calendar__event-list">
-				{this.props.items.map((event, index) => this.renderEvent(event, index))}
+				<h2 className="react-calendar__event-list__heading">Events for {monthNames[this.props.month]} {this.props.date}, {this.props.year}</h2>
+				<ul className="react-calendar__event-list__events">
+					{this.props.items.map((item, index) => this.renderListItem(item, index))}
+				</ul>
 			</div>
 		);
 	}
