@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import moment from 'moment';
+import * as Utilities from './utils';
 import * as actions from './actions';
 import store from './stores';
 import { Sidebar, Calendar } from './components';
@@ -18,13 +19,9 @@ class App extends React.Component {
 		this.props.fetchEvents(this.props.calendar);
 	}
 
-	getDate(calendar) {
-		return moment(`${calendar.year}-${calendar.month + 1}-${calendar.date}`, 'YYYY-M-D');
-	}
-
 	componentWillReceiveProps(nextProps) {
-		let nextDate = this.getDate(nextProps.calendar),
-			thisDate = this.getDate(this.props.calendar);
+		let nextDate = Utilities.getDate(nextProps.calendar),
+			thisDate = Utilities.getDate(this.props.calendar);
 
 		// Date has changed, fetch events
 		if (!nextDate.isSame(thisDate)) {
