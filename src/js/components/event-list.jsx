@@ -1,6 +1,6 @@
 import React from 'react';
 import { Event } from './';
-import monthNames from '../../config/month-names';
+import MONTH_NAMES from '../../config/month-names';
 
 /**
  * EventList
@@ -29,7 +29,7 @@ export default class EventList extends React.Component {
 	render() {
 		return (
 			<div className="event-list">
-				<h2 className="event-list__heading">Events for {monthNames[this.props.month]} {this.props.date}, {this.props.year}</h2>
+				<h2 className="event-list__heading">Events for {MONTH_NAMES[this.props.month]} {this.props.date}, {this.props.year}</h2>
 				<ul className="event-list__events-container">
 					{this.props.items.map((item, index) => this.renderListItem(item, index))}
 				</ul>

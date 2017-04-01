@@ -1,6 +1,6 @@
 import React from 'react';
 import { EventList } from './';
-import monthNames from '../../config/month-names';
+import MONTH_NAMES from '../../config/month-names';
 
 /**
  * Sidebar
@@ -32,7 +32,7 @@ export default class Sidebar extends React.Component {
 	renderHeader() {
 		return (
 			<header>
-				<h1 className="sidebar__heading">{monthNames[this.props.month]} {this.props.year}</h1>
+				<h1 className="sidebar__heading">{MONTH_NAMES[this.props.month]} {this.props.year}</h1>
 				<div className="sidebar__button-container">
 					{this.renderButton(this.props.prevMonth, 'fa-chevron-left', 'Previous Month')}
 					{this.renderButton(this.props.nextMonth, 'fa-chevron-right', 'Next Month')}
