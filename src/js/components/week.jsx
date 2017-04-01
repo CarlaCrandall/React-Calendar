@@ -37,8 +37,8 @@ export default class Week extends React.Component {
 
 	render() {
 		let className = classnames({
-			'react-calendar__week': true,
-			'react-calendar__week--heading': this.props.isHeading
+			'week': true,
+			'week--heading': this.props.isHeading
 		});
 
 		return (

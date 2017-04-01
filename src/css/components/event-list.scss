@@ -1,4 +1,4 @@
-.react-calendar__event-list {
+.event-list {
 	&__heading {
 		display: inline-block;
 		margin-top: 24px;
@@ -10,7 +10,7 @@
 		border-radius: 24px;
 	}
 
-	&__events {
+	&__events-container {
 		position: relative;
 		margin-left: 24px;
 

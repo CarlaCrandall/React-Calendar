@@ -37,8 +37,8 @@ export default class Event extends React.Component {
 
 	renderLocation() {
 		return (
-			<div className="react-calendar__event__location">
-				<i className="fa fa-map-marker"></i>
+			<div className="event__location">
+				<i className="event__icon fa fa-map-marker"></i>
 				{this.props.data.location}
 			</div>
 		);
@@ -46,9 +46,9 @@ export default class Event extends React.Component {
 
 	render() {
 		return (
-			<div className="react-calendar__event">
-				<div className="react-calendar__event__time">{this.state.timeRange}</div>
-				<h3 className="react-calendar__event__name">{this.props.data.summary}</h3>
+			<div className="event">
+				<div className="event__time">{this.state.timeRange}</div>
+				<h3 className="event__name">{this.props.data.summary}</h3>
 				{this.props.data.location && this.renderLocation()}
 			</div>
 		);

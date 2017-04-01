@@ -1,4 +1,4 @@
-.react-calendar__sidebar {
+.sidebar {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -9,25 +9,25 @@
 	background: $accent-color;
 	color: $white;
 
-	&__header-text,
-	&__header-buttons {
+	&__heading,
+	&__button-container {
 		display: inline-block;
 	}
 
-	&__header-text {
+	&__heading {
 		font-weight: $font-weight-light;
 		font-size: $font-size-large;
 	}
 
-	&__header-buttons {
+	&__button-container {
 		float: right;
+	}
 
-		button {
-			font-size: $font-size-small;
-			line-height: $font-size-large;
-			color: $white;
-			cursor: pointer;
-		}
+	&__button {
+		font-size: $font-size-small;
+		line-height: $font-size-large;
+		color: $white;
+		cursor: pointer;
 	}
 
 	&__content {

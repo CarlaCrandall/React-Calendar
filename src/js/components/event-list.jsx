@@ -28,9 +28,9 @@ export default class EventList extends React.Component {
 
 	render() {
 		return (
-			<div className="react-calendar__event-list">
-				<h2 className="react-calendar__event-list__heading">Events for {monthNames[this.props.month]} {this.props.date}, {this.props.year}</h2>
-				<ul className="react-calendar__event-list__events">
+			<div className="event-list">
+				<h2 className="event-list__heading">Events for {monthNames[this.props.month]} {this.props.date}, {this.props.year}</h2>
+				<ul className="event-list__events-container">
 					{this.props.items.map((item, index) => this.renderListItem(item, index))}
 				</ul>
 			</div>

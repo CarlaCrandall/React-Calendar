@@ -24,7 +24,7 @@ export default class Day extends React.Component {
 
 	renderButton(day) {
 		return (
-			<button className="react-calendar__day__button" onClick={() => this.props.selectDate(day)}>{day}</button>
+			<button className="day__button" onClick={() => this.props.selectDate(day)}>{day}</button>
 		);
 	}
 
@@ -37,13 +37,13 @@ export default class Day extends React.Component {
 	render() {
 		let isHidden = this.props.day === 0,
 			className = classnames({
-				'react-calendar__day': true,
-				'react-calendar__day--selected': this.props.isSelected
+				'day': true,
+				'day--selected': this.props.isSelected
 			});
 
 		return (
 			<div className={className}>
-				<div className="react-calendar__day__text">
+				<div className="day__text">
 					{!isHidden && this.props.isHeading && this.renderHeadingText(this.props.day)}
 					{!isHidden && !this.props.isHeading && this.renderButton(this.props.day)}
 				</div>

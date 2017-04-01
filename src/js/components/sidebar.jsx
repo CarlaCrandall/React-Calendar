@@ -20,19 +20,22 @@ export default class Sidebar extends React.Component {
 		nextMonth: React.PropTypes.func.isRequired
 	};
 
+	renderButton(onClick, icon, label) {
+		return (
+			<button className="sidebar__button" onClick={() => onClick(this.props.month, this.props.year)}>
+				<i className={`fa ${icon}`}></i>
+				<span className="sr-only">{label}</span>
+			</button>
+		);
+	}
+
 	renderHeader() {
 		return (
 			<header>
-				<h1 className="react-calendar__sidebar__header-text">{monthNames[this.props.month]} {this.props.year}</h1>
-				<div className="react-calendar__sidebar__header-buttons">
-					<button onClick={() => this.props.prevMonth(this.props.month, this.props.year)}>
-						<i className="fa fa-chevron-left"></i>
-						<span className="sr-only">Previous Month</span>
-					</button>
-					<button onClick={() => this.props.nextMonth(this.props.month, this.props.year)}>
-						<i className="fa fa-chevron-right"></i>
-						<span className="sr-only">Next Month</span>
-					</button>
+				<h1 className="sidebar__heading">{monthNames[this.props.month]} {this.props.year}</h1>
+				<div className="sidebar__button-container">
+					{this.renderButton(this.props.prevMonth, 'fa-chevron-left', 'Previous Month')}
+					{this.renderButton(this.props.nextMonth, 'fa-chevron-right', 'Next Month')}
 				</div>
 			</header>
 		);
@@ -40,15 +43,15 @@ export default class Sidebar extends React.Component {
 
 	renderMessage(message) {
 		return (
-			<div className="react-calendar__sidebar__message">{message}</div>
+			<div className="sidebar__message">{message}</div>
 		);
 	}
 
 	render() {
 		return (
-			<div className="react-calendar__sidebar">
+			<div className="sidebar">
 				{this.renderHeader()}
-				<div className="react-calendar__sidebar__content">
+				<div className="sidebar__content">
 					{this.props.error && this.renderMessage("Sorry, an error has occurred.")}
 					{this.props.loading && this.renderMessage("EVENTS LOADING")}
 					{!this.props.loading && this.props.items.length === 0 && this.renderMessage("There are no events for the selected date.")}
