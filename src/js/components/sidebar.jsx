@@ -1,4 +1,5 @@
 import React from 'react';
+import EventList from './event-list.jsx';
 import monthNames from '../../config/month-names';
 
 /**
@@ -13,8 +14,13 @@ export default class Sidebar extends React.Component {
 	static propTypes = {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
+		items: React.PropTypes.any,
 		prevMonth: React.PropTypes.func.isRequired,
 		nextMonth: React.PropTypes.func.isRequired
+	};
+
+	static defaultProps = {
+		items: null
 	};
 
 	renderHeader() {
@@ -39,6 +45,7 @@ export default class Sidebar extends React.Component {
 		return (
 			<div className="react-calendar__sidebar">
 				{this.renderHeader()}
+				{this.props.items && <EventList items={this.props.items} />}
 			</div>
 		);
 	}

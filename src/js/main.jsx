@@ -31,7 +31,7 @@ class App extends React.Component {
 
 		return (
 			<div className="app">
-				<Sidebar {...calendar} {...actions} />
+				<Sidebar {...calendar} {...events} {...actions} />
 				<Calendar {...calendar} {...actions} />
 			</div>
 		)
