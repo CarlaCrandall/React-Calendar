@@ -13,7 +13,17 @@ class App extends React.Component {
 		super(props);
 
 		// Load events from Google Calendar API
-		this.props.fetchEvents();
+		this.props.fetchEvents(props.calendar);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		let nextDate = nextProps.calendar.date,
+			thisDate = this.props.calendar.date;
+
+		// Date has changed, fetch events
+		if (nextDate !== thisDate) {
+			this.props.fetchEvents(nextProps.calendar);
+		}
 	}
 
 	render() {
