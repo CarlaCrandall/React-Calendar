@@ -14,13 +14,9 @@ export default class Sidebar extends React.Component {
 	static propTypes = {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
-		items: React.PropTypes.any,
+		items: React.PropTypes.array.isRequired,
 		prevMonth: React.PropTypes.func.isRequired,
 		nextMonth: React.PropTypes.func.isRequired
-	};
-
-	static defaultProps = {
-		items: null
 	};
 
 	renderHeader() {
@@ -41,11 +37,22 @@ export default class Sidebar extends React.Component {
 		);
 	}
 
+	renderMessage(message) {
+		return (
+			<div className="react-calendar__sidebar__message">{message}</div>
+		);
+	}
+
 	render() {
 		return (
 			<div className="react-calendar__sidebar">
 				{this.renderHeader()}
-				{this.props.items && <EventList items={this.props.items} />}
+				<div className="react-calendar__sidebar__content">
+					{this.props.error && this.renderMessage("Sorry, an error has occurred.")}
+					{this.props.loading && this.renderMessage("EVENTS LOADING")}
+					{!this.props.loading && this.props.items.length === 0 && this.renderMessage("There are no events for the selected date.")}
+					{!this.props.loading && this.props.items.length > 0 && <EventList items={this.props.items} />}
+				</div>
 			</div>
 		);
 	}
