@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import moment from 'moment';
 import * as actions from './actions';
-import store from './reducers';
+import store from './stores';
 import Sidebar from './components/sidebar.jsx';
 import Calendar from './components/calendar.jsx';
 
@@ -12,21 +12,24 @@ import Calendar from './components/calendar.jsx';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+	}
 
+	componentWillMount() {
 		// Load events from Google Calendar API
-		this.props.fetchEvents(props.calendar);
+		this.props.fetchEvents(this.props.calendar);
+	}
+
+	getDate(calendar) {
+		return moment(`${calendar.year}-${calendar.month + 1}-${calendar.date}`, 'YYYY-M-D');
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let nextCalendar = nextProps.calendar,
-			thisCalendar = this.props.calendar;
-
-		let nextDate = moment(`${nextCalendar.year}-${nextCalendar.month}-${nextCalendar.date}`, 'YYYY-M-D'),
-			thisDate = moment(`${thisCalendar.year}-${thisCalendar.month}-${thisCalendar.date}`, 'YYYY-M-D');
+		let nextDate = this.getDate(nextProps.calendar),
+			thisDate = this.getDate(this.props.calendar);
 
 		// Date has changed, fetch events
 		if (!nextDate.isSame(thisDate)) {
-			this.props.fetchEvents(nextCalendar);
+			this.props.fetchEvents(nextProps.calendar);
 		}
 	}
 
