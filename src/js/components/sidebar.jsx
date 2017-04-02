@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { EventList } from './';
 import MONTH_NAMES from '../../config/month-names';
 
@@ -56,21 +57,34 @@ export default class Sidebar extends React.Component {
 		);
 	}
 
-	renderMessage(message) {
-		return (
-			<div className="sidebar__message">{message}</div>
-		);
-	}
-
 	render() {
 		return (
 			<div className="sidebar">
 				{this.renderHeader()}
-				<div className="sidebar__content">
-					{this.props.error && this.renderMessage("Sorry, an error has occurred.")}
-					{this.props.loading && this.renderMessage("EVENTS LOADING")}
-					{!this.props.loading && !this.props.error && <EventList events={this.state.events} {...this.props} />}
-				</div>
+				<ReactCSSTransitionGroup
+					transitionName={{
+						enter: 'sidebar__content--fadein',
+						enterActive: 'sidebar__content--fadein--active',
+						leave: 'sidebar__content--fadeout',
+						leaveActive: 'sidebar__content--fadeout--active',
+						appear: 'sidebar__content--fadein',
+    					appearActive: 'sidebar__content--fadein--active'
+					}}
+					transitionAppear={true}
+      				transitionAppearTimeout={10}
+					transitionEnterTimeout={150}
+					transitionLeaveTimeout={10}
+					component="div"
+				>
+					<div
+						key={`sidebar_${this.props.year}${this.props.month}${this.props.date}`}
+						className="sidebar__content"
+					>
+						{this.props.error && <div className="sidebar__message">Sorry, an error has occurred.</div>}
+						{!this.props.loading && !this.props.error && <EventList events={this.state.events} {...this.props} />}
+					</div>
+				</ReactCSSTransitionGroup>
+
 			</div>
 		);
 	}

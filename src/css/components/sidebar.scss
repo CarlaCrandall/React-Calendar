@@ -19,7 +19,9 @@
 		font-size: $font-size-xlarge;
 	}
 
-	&__button-container { float: right; }
+	&__button-container {
+		float: right;
+	}
 
 	&__button {
 		font-size: $font-size-medium;
@@ -28,11 +30,34 @@
 		cursor: pointer;
 	}
 
-	&__content { margin: $pad-large 0; }
+	&__content {
+		margin: $pad-large 0 $pad-xxlarge;
+		transition: opacity 200ms ease;
+	}
 
 	&__message {
 		margin-top: $pad-xxlarge;
 		font-weight: $font-weight-light;
 		font-size: $font-size-medium;
 	}
+
+
+	//////////////////////////////////////////////////////////////////////
+	// FADE IN / OUT TRANSITION
+	//////////////////////////////////////////////////////////////////////
+	&__content--fadein,
+	&__content--fadeout {
+		position: absolute;
+	}
+
+	&__content--fadein--active,
+	&__content--fadeout {
+		opacity: 1;
+	}
+
+	&__content--fadein,
+	&__content--fadeout--active {
+		opacity: 0;
+	}
+
 }
