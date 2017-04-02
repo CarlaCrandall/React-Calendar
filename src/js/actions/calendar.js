@@ -12,7 +12,8 @@ export const nextMonth = (currentMonth, currentYear) => {
 	return {
 		type: 'NEXT_MONTH',
 		month: month,
-		year: year
+		year: year,
+		date: 1
 	};
 };
 
@@ -30,7 +31,8 @@ export const prevMonth = (currentMonth, currentYear) => {
 	return {
 		type: 'PREV_MONTH',
 		month: month,
-		year: year
+		year: year,
+		date: 1
 	};
 };
 

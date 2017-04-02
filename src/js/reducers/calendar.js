@@ -14,14 +14,16 @@ const calendar = (state = initialState, action) => {
 		return {
 			...state,
 			year: action.year,
-			month: action.month
+			month: action.month,
+			date: action.date
 		};
 
     case 'PREV_MONTH':
 		return {
 			...state,
 			year: action.year,
-			month: action.month
+			month: action.month,
+			date: action.date
 		};
 
 	case 'SELECT_DATE':
