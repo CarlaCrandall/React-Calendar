@@ -6,7 +6,7 @@
 	height: 100%;
 	overflow-y: auto;
 	padding: $pad-xlarge $pad-large;
-	background: $primary-accent-color;
+	background: $sidebar-background-color;
 	color: $white;
 
 	&__heading,
@@ -17,6 +17,7 @@
 	&__heading {
 		font-weight: $font-weight-light;
 		font-size: $font-size-xlarge;
+		color: $white;
 	}
 
 	&__button-container {

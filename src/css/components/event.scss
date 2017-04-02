@@ -1,22 +1,24 @@
 .event {
 	position: relative;
 	padding: $pad-large 0 $pad-xlarge $pad-large;
-	border-left: 1px solid $white;
+	border-left: 1px solid $secondary-accent-color;
 
 	&__time {
 		margin-bottom: $pad-medium;
 		font-weight: $font-weight-semibold;
 		font-size: $font-size-small;
+		color: $white;
 
 		&:before {
-			@include create-circle(10px, $primary-accent-color);
-			border: 1px solid $white;
+			@include create-circle(8px, $sidebar-background-color);
+			border: 1px solid $secondary-accent-color;
 		}
 	}
 
 	&__name {
 		font-weight: $font-weight-light;
 		font-size: $font-size-large;
+		color: $primary-accent-color;
 	}
 
 	&__location {
