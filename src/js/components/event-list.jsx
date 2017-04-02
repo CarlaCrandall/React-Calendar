@@ -15,24 +15,39 @@ export default class EventList extends React.Component {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
 		date: React.PropTypes.number.isRequired,
-		items: React.PropTypes.array
+		events: React.PropTypes.array
 	};
 
-	renderListItem(item, index) {
+	renderHeading() {
+		let dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`,
+			heading = (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`;
+
+		return (
+			<h2 className="event-list__heading">{heading}</h2>
+		);
+	}
+
+	renderListItem(event, index) {
 		return (
 			<li key={index}>
-				<Event data={item} />
+				<Event data={event} />
 			</li>
 		)
+	}
+
+	renderList() {
+		return (
+			<ul className="event-list__events-container">
+				{this.props.events.map((event, index) => this.renderListItem(event, index))}
+			</ul>
+		);
 	}
 
 	render() {
 		return (
 			<div className="event-list">
-				<h2 className="event-list__heading">Events for {MONTH_NAMES[this.props.month]} {this.props.date}, {this.props.year}</h2>
-				<ul className="event-list__events-container">
-					{this.props.items.map((item, index) => this.renderListItem(item, index))}
-				</ul>
+				{this.renderHeading()}
+				{this.props.events && this.renderList()}
 			</div>
 		);
 	}

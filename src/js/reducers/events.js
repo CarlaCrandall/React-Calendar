@@ -1,5 +1,7 @@
+import moment from 'moment';
+
 const initialState = {
-	items: [],
+	eventsByDate: {},
 	loading: false,
 	error: false
 };
@@ -14,9 +16,34 @@ const events = (state = initialState, action) => {
 		};
 
 	case 'EVENTS_RECEIVE':
+		let events = action.payload.items,
+			dateObjects = {};
+
+		// Separate all events by date
+	    events.forEach(event => {
+	        let start = moment(event.start.date || event.start.dateTime),
+	        	end = moment(event.end.date || event.end.dateTime);
+
+	        // End date for all day and mutli-day events is the next day
+	        // If all day or multi-day event, update the end date
+	        if (event.end.date) {
+	        	end.subtract(1, 'days');
+	        }
+
+	        let startNum = start.date(),
+	        	endNum = end.date();
+
+	        // Push event into each relevant date array
+	        for (let i = startNum; i <= endNum; ++i) {
+	        	let key = `day_${i}`;
+	            dateObjects[key] = dateObjects[key] || [];
+	            dateObjects[key].push(event);
+	        }
+	    });
+
 		return {
 			...state,
-			items: action.payload.items,
+			eventsByDate: dateObjects,
 			loading: false
 		};
 

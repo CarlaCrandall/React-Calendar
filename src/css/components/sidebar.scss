@@ -29,4 +29,10 @@
 	}
 
 	&__content { margin: $pad-large 0; }
+
+	&__message {
+		margin-top: $pad-xxlarge;
+		font-weight: $font-weight-light;
+		font-size: $font-size-medium;
+	}
 }

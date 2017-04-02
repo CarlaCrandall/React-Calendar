@@ -3,13 +3,14 @@ import moment from 'moment';
 import * as Utilities from '../utils';
 
 export const fetchEvents = (calendar) => {
-	let selectedDate = Utilities.getDate(calendar),
-		nextDate = selectedDate.clone().add(1, 'days');
+	// Get events for current month
+	let startDate = moment(`${calendar.year}-${calendar.month + 1}-1`, 'YYYY-M-D'),
+		endDate = startDate.clone().endOf('month');
 
 	let calendarId = '85bekdqob37um8m0mdm6l1t1tg@group.calendar.google.com',
 		apiKey = process.env.GOOGLE_API_KEY,
 		baseUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
-		queryString = `?key=${apiKey}&timeMin=${selectedDate.format()}&timeMax=${nextDate.format()}&singleEvents=true&orderBy=startTime`;
+		queryString = `?key=${apiKey}&timeMin=${startDate.format()}&timeMax=${endDate.format()}&singleEvents=true&orderBy=startTime`;
 
 	return {
 		[CALL_API]: {

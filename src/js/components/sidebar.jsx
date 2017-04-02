@@ -15,10 +15,25 @@ export default class Sidebar extends React.Component {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
 		date: React.PropTypes.number.isRequired,
-		items: React.PropTypes.array.isRequired,
+		eventsByDate: React.PropTypes.object.isRequired,
 		prevMonth: React.PropTypes.func.isRequired,
 		nextMonth: React.PropTypes.func.isRequired
 	};
+
+	constructor(props) {
+		super(props);
+		this.state = this.getStateValues(props);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState(this.getStateValues(nextProps));
+	}
+
+	getStateValues(props) {
+		return {
+			events: props.eventsByDate[`day_${props.date}`] || null
+		};
+	}
 
 	renderButton(onClick, icon, label) {
 		return (
@@ -54,8 +69,7 @@ export default class Sidebar extends React.Component {
 				<div className="sidebar__content">
 					{this.props.error && this.renderMessage("Sorry, an error has occurred.")}
 					{this.props.loading && this.renderMessage("EVENTS LOADING")}
-					{!this.props.loading && this.props.items.length === 0 && this.renderMessage("There are no events for the selected date.")}
-					{!this.props.loading && this.props.items.length > 0 && <EventList {...this.props} />}
+					{!this.props.loading && !this.props.error && <EventList events={this.state.events} {...this.props} />}
 				</div>
 			</div>
 		);
