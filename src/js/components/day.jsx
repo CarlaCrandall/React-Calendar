@@ -12,6 +12,7 @@ export default class Day extends React.Component {
 
 	static propTypes = {
 		day: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]).isRequired,
+		events: React.PropTypes.array,
 		isHeading: React.PropTypes.bool,
 		isSelected: React.PropTypes.bool,
 		selectDate: React.PropTypes.func.isRequired
@@ -38,7 +39,8 @@ export default class Day extends React.Component {
 		let isHidden = this.props.day === 0,
 			className = classnames({
 				'day': true,
-				'day--selected': this.props.isSelected
+				'day--selected': this.props.isSelected,
+				'day--has-events': this.props.events
 			});
 
 		return (

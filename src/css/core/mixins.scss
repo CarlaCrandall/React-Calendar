@@ -5,6 +5,13 @@
 	transform: translateY(-50%);
 }
 
+// Horizontal Center
+@mixin horizontal-center {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 // Create CSS Circle
 @mixin create-circle($size, $background) {
 	content: '';

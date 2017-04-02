@@ -16,6 +16,7 @@ export default class Calendar extends React.Component {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
 		date: React.PropTypes.number.isRequired,
+		eventsByDate: React.PropTypes.object.isRequired,
 		selectDate: React.PropTypes.func.isRequired
 	};
 
@@ -81,7 +82,13 @@ export default class Calendar extends React.Component {
 		return this.state.weeks.map((week, i) => {
 			if (i < this.state.numWeeks) {
 				return (
-					<Week key={i} days={week} date={this.props.date} selectDate={this.props.selectDate} />
+					<Week
+						key={i}
+						days={week}
+						date={this.props.date}
+						eventsByDate={this.props.eventsByDate}
+						selectDate={this.props.selectDate}
+					/>
 				)
 			}
 		});

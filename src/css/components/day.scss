@@ -21,4 +21,15 @@
 		border-radius: 50%;
 		color: $white;
 	}
+
+	&--has-events &__button {
+		position: relative;
+
+		&:after {
+			@include create-circle($pad-small, $accent-color);
+			@include horizontal-center;
+			position: absolute;
+			bottom: -($pad-medium);
+		}
+	}
 }
