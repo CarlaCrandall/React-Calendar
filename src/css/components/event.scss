@@ -9,7 +9,7 @@
 		font-size: $font-size-small;
 
 		&:before {
-			@include create-circle(10px, $accent-color);
+			@include create-circle(10px, $primary-accent-color);
 			border: 1px solid $white;
 		}
 	}
