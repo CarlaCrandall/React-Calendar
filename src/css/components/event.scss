@@ -27,5 +27,8 @@
 		font-size: $font-size-small;
 	}
 
-	&__icon { padding-right: $pad-small; }
+	&__icon {
+		padding-right: $pad-small;
+		color: $secondary-accent-color;
+	}
 }
