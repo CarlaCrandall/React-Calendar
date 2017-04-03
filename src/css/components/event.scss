@@ -4,7 +4,7 @@
 	border-left: 1px solid $secondary-accent-color;
 
 	&__time {
-		margin-bottom: $pad-medium;
+		margin-bottom: $pad-small;
 		font-weight: $font-weight-semibold;
 		font-size: $font-size-small;
 		color: $white;
@@ -18,17 +18,24 @@
 	&__name {
 		font-weight: $font-weight-light;
 		font-size: $font-size-large;
+		line-height: $line-height-large;
 		color: $primary-accent-color;
 	}
 
 	&__location {
-		margin-top: $pad-medium;
+		position: relative;
+		margin-top: $pad-small;
+		padding-left: $pad-small;
 		font-weight: $font-weight-light;
 		font-size: $font-size-small;
-	}
+		line-height: $line-height-small;
 
-	&__icon {
-		padding-right: $pad-small;
-		color: $secondary-accent-color;
+		&:before {
+			@extend .fa;
+			@extend .fa-map-marker;
+			position: absolute;
+			left: 0;
+			color: $secondary-accent-color;
+		}
 	}
 }

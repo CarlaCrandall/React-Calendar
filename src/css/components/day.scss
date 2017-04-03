@@ -1,19 +1,32 @@
 .day {
 	display: block;
 	float: left;
-	width: $calendar-day-width;
-	height: $calendar-day-height;
+	width: $sm--calendar-day-width;
+	height: $sm--calendar-day-height;
+	font-size: $font-size-medium;
 	text-align: center;
-	font-size: $font-size-large;
 	color: $default-text-color;
+
+	// Styles for MD+ breakpoints
+	@include breakpoint(md) {
+		width: $lg--calendar-day-width;
+		height: $lg--calendar-day-height;
+		font-size: $font-size-large;
+	}
 
 	&__text {
 		@include vertical-center;
 	}
 
 	&__button {
-		width: $calendar-day-btn-width;
-		height: $calendar-day-btn-height;
+		width: $sm--calendar-day-btn-width;
+		height: $sm--calendar-day-btn-height;
+
+		// Styles for MD+ breakpoints
+		@include breakpoint(md) {
+			width: $lg--calendar-day-btn-width;
+			height: $lg--calendar-day-btn-height;
+		}
 	}
 
 	&--selected &__button {
@@ -26,10 +39,10 @@
 		position: relative;
 
 		&:after {
-			@include create-circle($pad-small, $secondary-accent-color);
+			@include create-circle(6px, $secondary-accent-color);
 			@include horizontal-center;
 			position: absolute;
-			bottom: -($pad-medium);
+			bottom: -($pad-small);
 		}
 	}
 }

@@ -1,13 +1,35 @@
 .calendar {
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 66%;
-	height: 100%;
-	overflow-y: auto;
+	width: 100%;
+	background: $sidebar-background-color;
+
+	// Styles for SM+ breakpoints
+	@include breakpoint(sm) {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 60%;
+		height: 100%;
+		overflow-y: auto;
+		background: $white;
+	}
+
+	// Styles for LG breakpoint
+	@include breakpoint(lg) { width: 66%; }
 
 	&__grid {
-		width: $calendar-week-width;
-		margin: 100px auto;
+		width: $sm--calendar-week-width;
+		margin: 0 auto;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			margin: $pad-medium auto;
+		}
+
+		// Styles for MD+ breakpoints
+		@include breakpoint(md) {
+			@include vertical-center;
+			width: $lg--calendar-week-width;
+			margin: 0 auto;
+		}
 	}
 }

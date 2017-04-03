@@ -1,7 +1,12 @@
 .week {
-	width: $calendar-week-width;
-	height: $calendar-week-height;
-	font-weight: $font-weight-light;
+	width: $sm--calendar-week-width;
+	height: $sm--calendar-week-height;
+
+	// Styles for MD+ breakpoints
+	@include breakpoint(md) {
+		width: $lg--calendar-week-width;
+		height: $lg--calendar-week-height;
+	}
 
 	&--heading {
 		font-weight: $font-weight-bold;

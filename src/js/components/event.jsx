@@ -38,7 +38,6 @@ export default class Event extends React.Component {
 	renderLocation() {
 		return (
 			<div className="event__location">
-				<i className="event__icon fa fa-map-marker"></i>
 				{this.props.data.location}
 			</div>
 		);

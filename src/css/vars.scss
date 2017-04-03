@@ -1,15 +1,23 @@
-// Dimensions
-$calendar-day-width: 75px;
-$calendar-day-height: 75px;
-$calendar-day-btn-width: 46px;
-$calendar-day-btn-height: 46px;
-$calendar-week-width: calc(#{$calendar-day-width} * 7);
-$calendar-week-height: $calendar-day-height;
+// XS - SM Dimensions
+$sm--calendar-day-width: 60px;
+$sm--calendar-day-height: 60px;
+$sm--calendar-day-btn-width: 30px;
+$sm--calendar-day-btn-height: 30px;
+$sm--calendar-week-width: calc(#{$sm--calendar-day-width} * 7);
+$sm--calendar-week-height: $sm--calendar-day-height;
+
+// MD - LG Dimensions
+$lg--calendar-day-width: 75px;
+$lg--calendar-day-height: 75px;
+$lg--calendar-day-btn-width: 46px;
+$lg--calendar-day-btn-height: 46px;
+$lg--calendar-week-width: calc(#{$lg--calendar-day-width} * 7);
+$lg--calendar-week-height: $lg--calendar-day-height;
 
 
 // Block Padding & Margin Sizes
-$pad-small: 6px;
-$pad-medium: 12px;
+$pad-small: 12px;
+$pad-medium: 16px;
 $pad-large: 24px;
 $pad-xlarge: 36px;
 $pad-xxlarge: 58px;
@@ -27,6 +35,13 @@ $font-size-small: 12px;
 $font-size-medium: 16px;
 $font-size-large: 24px;
 $font-size-xlarge: 36px;
+
+
+// Line Heights
+$line-height-small: 16px;
+$line-height-medium: 20px;
+$line-height-large: 30px;
+$line-height-xlarge: 36px;
 
 
 // Colors

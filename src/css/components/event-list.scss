@@ -2,8 +2,9 @@
 	&__heading {
 		display: inline-block;
 		margin-top: $pad-large;
-		padding: $pad-medium $pad-large;
+		padding: $pad-small $pad-large;
 		font-size: $font-size-medium;
+		line-height: $line-height-medium;
 		color: $default-text-color;
 		background: $secondary-accent-color;
 		border-radius: $pad-large;
