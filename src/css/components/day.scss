@@ -37,7 +37,9 @@
 	&__button {
 		width: $sm--calendar-day-btn-width;
 		height: $sm--calendar-day-btn-height;
+		border-radius: 50%;
 		color: $white;
+		transition: all 150ms ease;
 
 		// Styles for SM+ breakpoints
 		@include breakpoint(sm) {
@@ -49,11 +51,14 @@
 			width: $lg--calendar-day-btn-width;
 			height: $lg--calendar-day-btn-height;
 		}
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	&--selected &__button {
 		background: $primary-accent-color;
-		border-radius: 50%;
 		color: $white;
 	}
 
@@ -66,5 +71,10 @@
 			position: absolute;
 			bottom: -($pad-small);
 		}
+	}
+
+	.calendar__grid:focus &--focused &__button {
+		background: $gray;
+		color: $white;
 	}
 }

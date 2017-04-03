@@ -12,7 +12,7 @@ export default class Week extends React.Component {
 
 	static propTypes = {
 		days: React.PropTypes.array.isRequired,
-		date: React.PropTypes.number.isRequired,
+		date: React.PropTypes.number,
 		eventsByDate: React.PropTypes.object,
 		isHeading: React.PropTypes.bool,
 		selectDate: React.PropTypes.func
@@ -29,6 +29,7 @@ export default class Week extends React.Component {
 			<Day
 				key={index}
 				day={day}
+				focusedDate={this.props.focusedDate}
 				events={this.props.eventsByDate[`day_${day}`]}
 				isHeading={this.props.isHeading}
 				isSelected={day === this.props.date}

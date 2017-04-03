@@ -15,7 +15,7 @@ export default class Sidebar extends React.Component {
 	static propTypes = {
 		year: React.PropTypes.number.isRequired,
 		month: React.PropTypes.number.isRequired,
-		date: React.PropTypes.number.isRequired,
+		date: React.PropTypes.number,
 		eventsByDate: React.PropTypes.object.isRequired,
 		prevMonth: React.PropTypes.func.isRequired,
 		nextMonth: React.PropTypes.func.isRequired
@@ -57,34 +57,39 @@ export default class Sidebar extends React.Component {
 		);
 	}
 
+	renderContent() {
+		return (
+			<ReactCSSTransitionGroup
+				transitionName={{
+					enter: 'sidebar__content--fadein',
+					enterActive: 'sidebar__content--fadein--active',
+					leave: 'sidebar__content--fadeout',
+					leaveActive: 'sidebar__content--fadeout--active',
+					appear: 'sidebar__content--fadein',
+					appearActive: 'sidebar__content--fadein--active'
+				}}
+				transitionAppear={true}
+  				transitionAppearTimeout={10}
+				transitionEnterTimeout={150}
+				transitionLeaveTimeout={10}
+				component="div"
+			>
+				<div
+					key={`sidebar_${this.props.year}${this.props.month}${this.props.date}`}
+					className="sidebar__content"
+				>
+					{this.props.error && <div className="sidebar__message">Sorry, an error has occurred.</div>}
+					{!this.props.loading && !this.props.error && <EventList events={this.state.events} {...this.props} />}
+				</div>
+			</ReactCSSTransitionGroup>
+		);
+	}
+
 	render() {
 		return (
 			<div className="sidebar">
 				{this.renderHeader()}
-				<ReactCSSTransitionGroup
-					transitionName={{
-						enter: 'sidebar__content--fadein',
-						enterActive: 'sidebar__content--fadein--active',
-						leave: 'sidebar__content--fadeout',
-						leaveActive: 'sidebar__content--fadeout--active',
-						appear: 'sidebar__content--fadein',
-    					appearActive: 'sidebar__content--fadein--active'
-					}}
-					transitionAppear={true}
-      				transitionAppearTimeout={10}
-					transitionEnterTimeout={150}
-					transitionLeaveTimeout={10}
-					component="div"
-				>
-					<div
-						key={`sidebar_${this.props.year}${this.props.month}${this.props.date}`}
-						className="sidebar__content"
-					>
-						{this.props.error && <div className="sidebar__message">Sorry, an error has occurred.</div>}
-						{!this.props.loading && !this.props.error && <EventList events={this.state.events} {...this.props} />}
-					</div>
-				</ReactCSSTransitionGroup>
-
+				{this.props.date && this.renderContent()}
 			</div>
 		);
 	}

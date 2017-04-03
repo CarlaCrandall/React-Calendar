@@ -5,7 +5,8 @@ const
 	initialState = {
 		year: currentDate.year(),
 		month: currentDate.month(),
-		date: currentDate.date()
+		date: currentDate.date(),
+		focusedDate: currentDate.date()
 	};
 
 const calendar = (state = initialState, action) => {
@@ -15,7 +16,8 @@ const calendar = (state = initialState, action) => {
 			...state,
 			year: action.year,
 			month: action.month,
-			date: action.date
+			date: action.date,
+			focusedDate: action.focusedDate
 		};
 
     case 'PREV_MONTH':
@@ -23,13 +25,21 @@ const calendar = (state = initialState, action) => {
 			...state,
 			year: action.year,
 			month: action.month,
-			date: action.date
+			date: action.date,
+			focusedDate: action.focusedDate
 		};
 
 	case 'SELECT_DATE':
 		return {
 			...state,
-			date: action.date
+			date: action.date,
+			focusedDate: action.date
+		}
+
+	case 'FOCUS_DATE':
+		return {
+			...state,
+			focusedDate: action.date
 		}
 
     default:

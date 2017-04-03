@@ -25,7 +25,13 @@ export default class Day extends React.Component {
 
 	renderButton(day) {
 		return (
-			<button className="day__button" onClick={() => this.props.selectDate(day)}>{day}</button>
+			<button
+				className="day__button"
+				tabIndex="-1"
+				onClick={() => this.props.selectDate(day)}
+			>
+				{day}
+			</button>
 		);
 	}
 
@@ -41,6 +47,7 @@ export default class Day extends React.Component {
 				'day': true,
 				'day--heading': this.props.isHeading,
 				'day--selected': this.props.isSelected,
+				'day--focused': this.props.day === this.props.focusedDate,
 				'day--has-events': this.props.events
 			});
 
