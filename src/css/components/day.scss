@@ -9,6 +9,7 @@
 
 	// Styles for SM+ breakpoints
 	@include breakpoint(sm) {
+		font-size: $font-size-medium;
 		color: $default-text-color;
 	}
 
@@ -17,6 +18,16 @@
 		width: $lg--calendar-day-width;
 		height: $lg--calendar-day-height;
 		font-size: $font-size-large;
+	}
+
+	&--heading {
+		font-weight: $font-weight-bold;
+		font-size: $font-size-small;
+		text-transform: uppercase;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) { font-size: $font-size-medium; }
+		@include breakpoint(md) { font-size: $font-size-large; }
 	}
 
 	&__text {

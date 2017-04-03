@@ -36,13 +36,8 @@
 
 	&__heading {
 		font-weight: $font-weight-light;
-		font-size: $font-size-xlarge;
+		font-size: $font-size-large;
 		color: $white;
-
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			font-size: $font-size-large;
-		}
 
 		// Styles for MD+ breakpoints
 		@include breakpoint(md) {
@@ -61,14 +56,9 @@
 	}
 
 	&__button {
-		line-height: $font-size-xlarge;
+		line-height: $font-size-large;
 		color: $white;
 		cursor: pointer;
-
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			line-height: $font-size-large;
-		}
 
 		// Styles for MD+ breakpoints
 		@include breakpoint(md) {

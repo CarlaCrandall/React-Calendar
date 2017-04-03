@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { Day } from './';
 
 /**
@@ -39,13 +38,8 @@ export default class Week extends React.Component {
 	}
 
 	render() {
-		let className = classnames({
-			'week': true,
-			'week--heading': this.props.isHeading
-		});
-
 		return (
-			<div className={className}>
+			<div className="week">
 				{this.props.days.length && this.props.days.map((day, i) => this.renderDay(day, i))}
 			</div>
 		);

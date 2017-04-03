@@ -39,6 +39,7 @@ export default class Day extends React.Component {
 		let isHidden = this.props.day === 0,
 			className = classnames({
 				'day': true,
+				'day--heading': this.props.isHeading,
 				'day--selected': this.props.isSelected,
 				'day--has-events': this.props.events
 			});
