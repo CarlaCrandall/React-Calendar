@@ -47,7 +47,7 @@ export default class Sidebar extends React.Component {
 
 	renderHeader() {
 		return (
-			<header>
+			<header className="sidebar__heading-container">
 				<h1 className="sidebar__heading">{MONTH_NAMES[this.props.month]} {this.props.year}</h1>
 				<div className="sidebar__button-container">
 					{this.renderButton(this.props.prevMonth, 'fa-chevron-left', 'Previous Month')}

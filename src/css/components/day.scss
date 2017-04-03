@@ -5,7 +5,12 @@
 	height: $sm--calendar-day-height;
 	font-size: $font-size-medium;
 	text-align: center;
-	color: $default-text-color;
+	color: $white;
+
+	// Styles for SM+ breakpoints
+	@include breakpoint(sm) {
+		color: $default-text-color;
+	}
 
 	// Styles for MD+ breakpoints
 	@include breakpoint(md) {
@@ -21,6 +26,12 @@
 	&__button {
 		width: $sm--calendar-day-btn-width;
 		height: $sm--calendar-day-btn-height;
+		color: $white;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			color: $default-text-color;
+		}
 
 		// Styles for MD+ breakpoints
 		@include breakpoint(md) {

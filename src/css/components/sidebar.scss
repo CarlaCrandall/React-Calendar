@@ -17,6 +17,18 @@
 	// Styles for LG breakpoint
 	@include breakpoint(lg) { width: 33%; }
 
+	&__heading-container {
+		position: absolute;
+		top: $pad-xlarge;
+		width: calc(100% - 48px);
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			position: static;
+			width: 100%;
+		}
+	}
+
 	&__heading,
 	&__button-container {
 		display: inline-block;
@@ -24,8 +36,13 @@
 
 	&__heading {
 		font-weight: $font-weight-light;
-		font-size: $font-size-large;
+		font-size: $font-size-xlarge;
 		color: $white;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			font-size: $font-size-large;
+		}
 
 		// Styles for MD+ breakpoints
 		@include breakpoint(md) {
@@ -34,13 +51,24 @@
 	}
 
 	&__button-container {
-		float: right;
+		position: absolute;
+		right: 0;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			right: $pad-large;
+		}
 	}
 
 	&__button {
-		line-height: $font-size-large;
+		line-height: $font-size-xlarge;
 		color: $white;
 		cursor: pointer;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			line-height: $font-size-large;
+		}
 
 		// Styles for MD+ breakpoints
 		@include breakpoint(md) {
@@ -49,8 +77,12 @@
 	}
 
 	&__content {
-		margin: $pad-large 0 $pad-xxlarge;
 		transition: opacity 200ms ease;
+
+		// Styles for SM+ breakpoints
+		@include breakpoint(sm) {
+			margin: $pad-large 0 $pad-xxlarge;
+		}
 	}
 
 	&__message {

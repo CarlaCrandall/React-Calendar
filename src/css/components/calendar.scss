@@ -19,10 +19,12 @@
 	&__grid {
 		width: $sm--calendar-week-width;
 		margin: 0 auto;
+		padding-top: 100px;
 
 		// Styles for SM+ breakpoints
 		@include breakpoint(sm) {
 			margin: $pad-medium auto;
+			padding: 0;
 		}
 
 		// Styles for MD+ breakpoints
