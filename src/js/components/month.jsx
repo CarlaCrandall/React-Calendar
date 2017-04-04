@@ -32,6 +32,13 @@ export default class Month extends React.Component {
 		this.setState(this.getStateValues(nextProps));
 	}
 
+	componentDidUpdate() {
+		// Timeout needed for Safari in OSX
+		setTimeout(() => {
+			this.props.onUpdate();
+		});
+	}
+
 	getStateValues(props) {
 		var date = moment(`${props.year}-${props.month + 1}-01`, 'YYYY-M-DD'),
 			startDayOfMonth = date.day(),

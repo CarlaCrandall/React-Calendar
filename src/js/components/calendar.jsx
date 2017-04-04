@@ -32,7 +32,9 @@ export default class Calendar extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.refHandler = this.refHandler.bind(this);
 		this.calendarGrid = null;
+
 		this.state = this.getStateValues(props);
 	}
 
@@ -71,6 +73,10 @@ export default class Calendar extends React.Component {
 	//////////////////////////////////////////////////////////////////////
 	// EVENT HANDLERS
 	//////////////////////////////////////////////////////////////////////
+
+	refHandler(domElement) {
+		this.calendarGrid = domElement;
+	}
 
 	handleArrowKey(keyCode) {
 		let focusedDateObj = this.state.focusedDateObj.clone();
@@ -111,7 +117,6 @@ export default class Calendar extends React.Component {
 	}
 
 	onKeyDown(event) {
-
 		// On enter or spacebar, select the focusedDate
 		if (event.keyCode === 13 || event.keyCode === 32) {
 			event.preventDefault();
@@ -124,26 +129,30 @@ export default class Calendar extends React.Component {
 		}
 	}
 
+	updateActiveDescendant() {
+		// aria-activedescendant tells screen readers which date is currently "focused"
+		// Has to be called from Month's componentDidUpdate to ensure the required elements have rendered
+		// Active descendant is equal to the ID of the focusedDate element
+		this.calendarGrid.setAttribute('aria-activedescendant', `calendar__day__${this.props.focusedDate}`);
+	}
+
+
 	//////////////////////////////////////////////////////////////////////
 	// RENDER FUNCTIONS
 	//////////////////////////////////////////////////////////////////////
 
 	render() {
-		// Active descendant is equal to the ID of the focusedDate element
-		let focusedButton = `calendar__day__${this.props.focusedDate}`;
-
 		return (
 			<div className="calendar">
 				<div
 					className="calendar__grid"
 					tabIndex="0"
 					role="menu"
-					aria-activedescendant={focusedButton}
-					ref={(comp) => { this.calendarGrid = comp; }}
+					ref={this.refHandler}
 					onClick={() => this.onClick()}
 					onKeyDown={(event) => this.onKeyDown(event)}
 				>
-					<Month {...this.props} />
+					<Month {...this.props} onUpdate={() => this.updateActiveDescendant()} />
 				</div>
 			</div>
 		);

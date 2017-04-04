@@ -32,9 +32,11 @@ export default class Day extends React.Component {
 		screenreaderText += (this.props.isSelected) ? ' Currently selected date' : '';
 		screenreaderText += (this.props.events.length === 1) ? ` 1 event is scheduled on this date` : ` ${this.props.events.length} events are scheduled on this date`;
 
+		// ID used by Calendar component for screenreader accessibility
 		return (
 			<button
 				className="day__button"
+				id={`calendar__day__${this.props.date}`}
 				tabIndex="-1"
 				aria-label={screenreaderText}
 				onClick={() => this.props.selectDate(this.props.date)}
@@ -60,14 +62,9 @@ export default class Day extends React.Component {
 				'day--has-events': this.props.events.length > 0
 			});
 
-		// ID used by Calendar component for screenreader accessibility
 		return (
 			<div className={className}>
-				<div
-					className="day__text"
-					id={`calendar__day__${this.props.date}`}
-					role="menuitem"
-				>
+				<div className="day__text">
 					{!isHidden && this.props.isHeading && this.renderHeadingText()}
 					{!isHidden && !this.props.isHeading && this.renderButton()}
 				</div>
