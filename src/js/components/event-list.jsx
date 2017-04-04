@@ -11,44 +11,49 @@ import MONTH_NAMES from '../../config/month-names';
 
 export default class EventList extends React.Component {
 
-	static propTypes = {
-		year: React.PropTypes.number.isRequired,
-		month: React.PropTypes.number.isRequired,
-		date: React.PropTypes.number.isRequired,
-		events: React.PropTypes.array
-	};
+    static propTypes = {
+        year: React.PropTypes.number.isRequired,
+        month: React.PropTypes.number.isRequired,
+        date: React.PropTypes.number.isRequired,
+        events: React.PropTypes.array
+    };
 
-	renderHeading() {
-		let dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`,
-			heading = (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`;
+    static defaultProps = {
+        events: null
+    };
 
-		return (
-			<h2 className="event-list__heading">{heading}</h2>
-		);
-	}
+    renderHeading() {
+        const
+            dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`,
+            heading = (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`;
 
-	renderListItem(event, index) {
-		return (
-			<li key={index}>
-				<Event data={event} />
-			</li>
-		)
-	}
+        return (
+            <h2 className="event-list__heading">{heading}</h2>
+        );
+    }
 
-	renderList() {
-		return (
-			<ul className="event-list__events-container">
-				{this.props.events.map((event, index) => this.renderListItem(event, index))}
-			</ul>
-		);
-	}
+    renderListItem(event, index) {
+        return (
+            <li key={index}>
+                <Event data={event} />
+            </li>
+        );
+    }
 
-	render() {
-		return (
-			<div className="event-list">
-				{this.renderHeading()}
-				{this.props.events && this.renderList()}
-			</div>
-		);
-	}
+    renderList() {
+        return (
+            <ul className="event-list__events-container">
+                {this.props.events.map((event, index) => this.renderListItem(event, index))}
+            </ul>
+        );
+    }
+
+    render() {
+        return (
+            <div className="event-list">
+                {this.renderHeading()}
+                {this.props.events && this.renderList()}
+            </div>
+        );
+    }
 }

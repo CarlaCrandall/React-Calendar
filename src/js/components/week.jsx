@@ -10,45 +10,50 @@ import { Day } from './';
 
 export default class Week extends React.Component {
 
-	static propTypes = {
-		identifier: React.PropTypes.string,
-		days: React.PropTypes.array.isRequired,
-		year: React.PropTypes.number,
-		month: React.PropTypes.number,
-		date: React.PropTypes.number,
-		eventsByDate: React.PropTypes.object,
-		isHeading: React.PropTypes.bool,
-		selectDate: React.PropTypes.func
-	};
+    static propTypes = {
+        identifier: React.PropTypes.string,
+        days: React.PropTypes.array.isRequired,
+        year: React.PropTypes.number,
+        month: React.PropTypes.number,
+        date: React.PropTypes.number,
+        focusedDate: React.PropTypes.number,
+        eventsByDate: React.PropTypes.object,
+        isHeading: React.PropTypes.bool,
+        selectDate: React.PropTypes.func
+    };
 
-	static defaultProps = {
-		identifier: '',
-		eventsByDate: {},
-		isHeading: false,
-		selectDate: () => false
-	};
+    static defaultProps = {
+        identifier: '',
+        year: null,
+        month: null,
+        date: null,
+        focusedDate: null,
+        eventsByDate: {},
+        isHeading: false,
+        selectDate: () => false
+    };
 
-	renderDay(day, index) {
-		return (
-			<Day
-				key={index}
-				year={this.props.year}
-				month={this.props.month}
-				date={day}
-				focusedDate={this.props.focusedDate}
-				events={this.props.eventsByDate[`day_${day}`]}
-				isHeading={this.props.isHeading}
-				isSelected={day === this.props.date}
-				selectDate={this.props.selectDate}
-			/>
-		);
-	}
+    renderDay(day, index) {
+        return (
+            <Day
+                key={index}
+                year={this.props.year}
+                month={this.props.month}
+                date={day}
+                focusedDate={this.props.focusedDate}
+                events={this.props.eventsByDate[`day_${day}`]}
+                isHeading={this.props.isHeading}
+                isSelected={day === this.props.date}
+                selectDate={this.props.selectDate}
+            />
+        );
+    }
 
-	render() {
-		return (
-			<div key={this.props.identifier} className="week">
-				{this.props.days.length && this.props.days.map((day, i) => this.renderDay(day, i))}
-			</div>
-		);
-	}
+    render() {
+        return (
+            <div key={this.props.identifier} className="week">
+                {this.props.days.length && this.props.days.map((day, i) => this.renderDay(day, i))}
+            </div>
+        );
+    }
 }
