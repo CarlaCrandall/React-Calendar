@@ -11,6 +11,7 @@ import { Day } from './';
 export default class Week extends React.Component {
 
 	static propTypes = {
+		identifier: React.PropTypes.string,
 		days: React.PropTypes.array.isRequired,
 		year: React.PropTypes.number,
 		month: React.PropTypes.number,
@@ -21,6 +22,7 @@ export default class Week extends React.Component {
 	};
 
 	static defaultProps = {
+		identifier: '',
 		eventsByDate: {},
 		isHeading: false,
 		selectDate: () => false
@@ -44,7 +46,7 @@ export default class Week extends React.Component {
 
 	render() {
 		return (
-			<div className="week">
+			<div key={this.props.identifier} className="week">
 				{this.props.days.length && this.props.days.map((day, i) => this.renderDay(day, i))}
 			</div>
 		);

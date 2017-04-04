@@ -81,11 +81,15 @@ export default class Month extends React.Component {
 	}
 
 	renderWeeks() {
-		return this.state.weeks.map((week, i) => {
-			if (i < this.state.numWeeks) {
+		return this.state.weeks.map((week, index) => {
+			if (index < this.state.numWeeks) {
+				// Identifier required to fix voiceover bug in Firefox
+				let key = `${this.props.month}_${index}`;
+
 				return (
 					<Week
-						key={i}
+						key={key}
+						identifier={key}
 						days={week}
 						year={this.props.year}
 						month={this.props.month}
