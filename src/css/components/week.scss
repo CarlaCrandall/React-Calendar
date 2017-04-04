@@ -1,10 +1,10 @@
 .week {
-	width: $sm--calendar-week-width;
-	height: $sm--calendar-week-height;
+    width: $sm--calendar-week-width;
+    height: $sm--calendar-week-height;
 
-	// Styles for MD+ breakpoints
-	@include breakpoint(md) {
-		width: $lg--calendar-week-width;
-		height: $lg--calendar-week-height;
-	}
+    // Styles for MD+ breakpoints
+    @include breakpoint(md) {
+        width: $lg--calendar-week-width;
+        height: $lg--calendar-week-height;
+    }
 }

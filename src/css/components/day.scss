@@ -1,80 +1,80 @@
 .day {
-	display: block;
-	float: left;
-	width: $sm--calendar-day-width;
-	height: $sm--calendar-day-height;
-	font-size: $font-size-medium;
-	text-align: center;
-	color: $white;
+    display: block;
+    float: left;
+    width: $sm--calendar-day-width;
+    height: $sm--calendar-day-height;
+    text-align: center;
+    color: $white;
+    font-size: $font-size-medium;
 
-	// Styles for SM+ breakpoints
-	@include breakpoint(sm) {
-		font-size: $font-size-medium;
-		color: $default-text-color;
-	}
+    // Styles for SM+ breakpoints
+    @include breakpoint(sm) {
+        color: $default-text-color;
+        font-size: $font-size-medium;
+    }
 
-	// Styles for MD+ breakpoints
-	@include breakpoint(md) {
-		width: $lg--calendar-day-width;
-		height: $lg--calendar-day-height;
-		font-size: $font-size-large;
-	}
+    // Styles for MD+ breakpoints
+    @include breakpoint(md) {
+        width: $lg--calendar-day-width;
+        height: $lg--calendar-day-height;
+        font-size: $font-size-large;
+    }
 
-	&--heading {
-		font-weight: $font-weight-bold;
-		font-size: $font-size-small;
-		text-transform: uppercase;
+    &--heading {
+        text-transform: uppercase;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) { font-size: $font-size-medium; }
-		@include breakpoint(md) { font-size: $font-size-large; }
-	}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) { font-size: $font-size-medium; }
+        @include breakpoint(md) { font-size: $font-size-large; }
+    }
 
-	&__text {
-		@include vertical-center;
-	}
+    &__text {
+        @include vertical-center;
+    }
 
-	&__button {
-		width: $sm--calendar-day-btn-width;
-		height: $sm--calendar-day-btn-height;
-		border-radius: 50%;
-		color: $white;
-		transition: all 150ms ease;
+    &__button {
+        transition: all 150ms ease;
+        border-radius: 50%;
+        width: $sm--calendar-day-btn-width;
+        height: $sm--calendar-day-btn-height;
+        color: $white;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			color: $default-text-color;
-		}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            color: $default-text-color;
+        }
 
-		// Styles for MD+ breakpoints
-		@include breakpoint(md) {
-			width: $lg--calendar-day-btn-width;
-			height: $lg--calendar-day-btn-height;
-		}
+        // Styles for MD+ breakpoints
+        @include breakpoint(md) {
+            width: $lg--calendar-day-btn-width;
+            height: $lg--calendar-day-btn-height;
+        }
 
-		&:focus {
-			outline: none;
-		}
-	}
+        &:focus {
+            outline: none;
+        }
+    }
 
-	&--selected &__button {
-		background: $primary-accent-color;
-		color: $white;
-	}
+    &--selected &__button {
+        background: $primary-accent-color;
+        color: $white;
+    }
 
-	&--has-events &__button {
-		position: relative;
+    &--has-events &__button {
+        position: relative;
 
-		&:after {
-			@include create-circle(6px, $secondary-accent-color);
-			@include horizontal-center;
-			position: absolute;
-			bottom: -($pad-small);
-		}
-	}
+        &:after {
+            @include create-circle(6px, $secondary-accent-color);
+            @include horizontal-center;
+            position: absolute;
+            bottom: -($pad-small);
+        }
+    }
 
-	.calendar__grid:focus &--focused &__button {
-		background: $gray;
-		color: $white;
-	}
+    .calendar__grid:focus &--focused &__button {
+        background: $gray;
+        color: $white;
+    }
 }

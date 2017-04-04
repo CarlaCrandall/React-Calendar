@@ -1,25 +1,25 @@
 .event-list {
-	&__heading {
-		display: inline-block;
-		padding: $pad-small $pad-large;
-		font-size: $font-size-medium;
-		line-height: $line-height-medium;
-		color: $default-text-color;
-		background: $secondary-accent-color;
-		border-radius: $pad-large;
+    &__heading {
+        display: inline-block;
+        border-radius: $pad-large;
+        background: $secondary-accent-color;
+        padding: $pad-small $pad-large;
+        line-height: $line-height-medium;
+        color: $default-text-color;
+        font-size: $font-size-medium;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			margin-top: $pad-large;
-		}
-	}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            margin-top: $pad-large;
+        }
+    }
 
-	&__events-container {
-		position: relative;
-		margin-left: $pad-large;
+    &__events-container {
+        position: relative;
+        margin-left: $pad-large;
 
-		&:after {
-			@include create-circle(8px, $secondary-accent-color);
-		}
-	}
+        &:after {
+            @include create-circle(8px, $secondary-accent-color);
+        }
+    }
 }

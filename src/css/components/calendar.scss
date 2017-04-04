@@ -1,41 +1,41 @@
 .calendar {
-	width: 100%;
-	background: $sidebar-background-color;
+    background: $sidebar-background-color;
+    width: 100%;
 
-	// Styles for SM+ breakpoints
-	@include breakpoint(sm) {
-		position: fixed;
-		top: 0;
-		right: 0;
-		width: 60%;
-		height: 100%;
-		overflow-y: auto;
-		background: $white;
-	}
+    // Styles for SM+ breakpoints
+    @include breakpoint(sm) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: $white;
+        width: 60%;
+        height: 100%;
+        overflow-y: auto;
+    }
 
 	// Styles for LG breakpoint
-	@include breakpoint(lg) { width: 66%; }
+    @include breakpoint(lg) { width: 66%; }
 
-	&__grid {
-		width: $sm--calendar-week-width;
-		margin: 0 auto;
-		padding: 100px $pad-large 0;
+    &__grid {
+        margin: 0 auto;
+        padding: 100px $pad-large 0;
+        width: $sm--calendar-week-width;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			margin: $pad-medium auto;
-			padding: 0 $pad-large;
-		}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            margin: $pad-medium auto;
+            padding: 0 $pad-large;
+        }
 
-		// Styles for MD+ breakpoints
-		@include breakpoint(md) {
-			width: $lg--calendar-week-width;
-			margin: 100px auto;
-			padding: 0;
-		}
+        // Styles for MD+ breakpoints
+        @include breakpoint(md) {
+            margin: 100px auto;
+            padding: 0;
+            width: $lg--calendar-week-width;
+        }
 
-		&:focus {
-			outline: none;
-		}
-	}
+        &:focus {
+            outline: none;
+        }
+    }
 }

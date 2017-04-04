@@ -1,103 +1,102 @@
 .sidebar {
-	width: 100%;
-	padding: $pad-xlarge $pad-large;
-	background: $sidebar-background-color;
-	color: $white;
+    background: $sidebar-background-color;
+    padding: $pad-xlarge $pad-large;
+    width: 100%;
+    color: $white;
 
-	// Styles for SM+ breakpoints
-	@include breakpoint(sm) {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 40%;
-		height: 100%;
-		overflow-y: auto;
-	}
+    // Styles for SM+ breakpoints
+    @include breakpoint(sm) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        overflow-y: auto;
+    }
 
-	// Styles for LG breakpoint
-	@include breakpoint(lg) { width: 33%; }
+    // Styles for LG breakpoint
+    @include breakpoint(lg) { width: 33%; }
 
-	&__heading-container {
-		position: absolute;
-		top: $pad-xlarge;
-		width: calc(100% - 48px);
+    &__heading-container {
+        position: absolute;
+        top: $pad-xlarge;
+        width: calc(100% - 48px);
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			position: static;
-			width: 100%;
-		}
-	}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            position: static;
+            width: 100%;
+        }
+    }
 
-	&__heading,
-	&__button-container {
-		display: inline-block;
-	}
+    &__heading,
+    &__button-container {
+        display: inline-block;
+    }
 
-	&__heading {
-		font-weight: $font-weight-light;
-		font-size: $font-size-large;
-		color: $white;
+    &__heading {
+        color: $white;
+        font-size: $font-size-large;
+        font-weight: $font-weight-light;
 
-		// Styles for MD+ breakpoints
-		@include breakpoint(md) {
-			font-size: $font-size-xlarge;
-		}
-	}
+        // Styles for MD+ breakpoints
+        @include breakpoint(md) {
+            font-size: $font-size-xlarge;
+        }
+    }
 
-	&__button-container {
-		position: absolute;
-		right: 0;
+    &__button-container {
+        position: absolute;
+        right: 0;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			right: $pad-large;
-		}
-	}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            right: $pad-large;
+        }
+    }
 
-	&__button {
-		line-height: $font-size-large;
-		color: $white;
-		cursor: pointer;
+    &__button {
+        cursor: pointer;
+        line-height: $font-size-large;
+        color: $white;
 
-		// Styles for MD+ breakpoints
-		@include breakpoint(md) {
-			line-height: $font-size-xlarge;
-		}
-	}
+        // Styles for MD+ breakpoints
+        @include breakpoint(md) {
+            line-height: $font-size-xlarge;
+        }
+    }
 
-	&__content {
-		transition: opacity 200ms ease;
+    &__content {
+        transition: opacity 200ms ease;
 
-		// Styles for SM+ breakpoints
-		@include breakpoint(sm) {
-			margin: $pad-large 0 $pad-xxlarge;
-		}
-	}
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            margin: $pad-large 0 $pad-xxlarge;
+        }
+    }
 
-	&__message {
-		margin-top: $pad-xxlarge;
-		font-weight: $font-weight-light;
-		font-size: $font-size-medium;
-	}
+    &__message {
+        margin-top: $pad-xxlarge;
+        font-size: $font-size-medium;
+        font-weight: $font-weight-light;
+    }
 
 
 	//////////////////////////////////////////////////////////////////////
 	// FADE IN / OUT TRANSITION
 	//////////////////////////////////////////////////////////////////////
-	&__content--fadein,
-	&__content--fadeout {
-		position: absolute;
-	}
+    &__content--fadein,
+    &__content--fadeout {
+        position: absolute;
+    }
 
-	&__content--fadein--active,
-	&__content--fadeout {
-		opacity: 1;
-	}
+    &__content--fadein--active,
+    &__content--fadeout {
+        opacity: 1;
+    }
 
-	&__content--fadein,
-	&__content--fadeout--active {
-		opacity: 0;
-	}
-
+    &__content--fadein,
+    &__content--fadeout--active {
+        opacity: 0;
+    }
 }

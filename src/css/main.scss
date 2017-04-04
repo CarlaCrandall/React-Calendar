@@ -5,34 +5,34 @@
 @import './vars';
 
 html {
-	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-	background: $sidebar-background-color;
+    background: $sidebar-background-color;
 
-	// Styles for SM+ breakpoints
-	@include breakpoint(sm) {
-		background: $white;
-	}
+    // Styles for SM+ breakpoints
+    @include breakpoint(sm) {
+        background: $white;
+    }
 }
 
 *,
-*:before,
-*:after {
-	box-sizing: inherit;
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 button {
-	background: transparent;
-	border: 0;
-	font: inherit;
-	cursor: pointer;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
 }
 
 .react-calendar {
-	position: relative;
+    position: relative;
 }
 
 @import './components';

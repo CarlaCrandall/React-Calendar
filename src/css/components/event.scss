@@ -1,41 +1,41 @@
 .event {
-	position: relative;
-	padding: $pad-large 0 $pad-xlarge $pad-large;
-	border-left: 1px solid $secondary-accent-color;
+    position: relative;
+    border-left: 1px solid $secondary-accent-color;
+    padding: $pad-large 0 $pad-xlarge $pad-large;
 
-	&__time {
-		margin-bottom: $pad-small;
-		font-weight: $font-weight-semibold;
-		font-size: $font-size-small;
-		color: $white;
+    &__time {
+        margin-bottom: $pad-small;
+        color: $white;
+        font-size: $font-size-small;
+        font-weight: $font-weight-semibold;
 
-		&:before {
-			@include create-circle(8px, $sidebar-background-color);
-			border: 1px solid $secondary-accent-color;
-		}
-	}
+        &:before {
+            @include create-circle(8px, $sidebar-background-color);
+            border: 1px solid $secondary-accent-color;
+        }
+    }
 
-	&__name {
-		font-weight: $font-weight-light;
-		font-size: $font-size-large;
-		line-height: $line-height-large;
-		color: $primary-accent-color;
-	}
+    &__name {
+        line-height: $line-height-large;
+        color: $primary-accent-color;
+        font-size: $font-size-large;
+        font-weight: $font-weight-light;
+    }
 
-	&__location {
-		position: relative;
-		margin-top: $pad-small;
-		padding-left: $pad-small;
-		font-weight: $font-weight-light;
-		font-size: $font-size-small;
-		line-height: $line-height-small;
+    &__location {
+        position: relative;
+        margin-top: $pad-small;
+        padding-left: $pad-small;
+        line-height: $line-height-small;
+        font-size: $font-size-small;
+        font-weight: $font-weight-light;
 
-		&:before {
-			@extend .fa;
-			@extend .fa-map-marker;
-			position: absolute;
-			left: 0;
-			color: $secondary-accent-color;
-		}
-	}
+        &:before {
+            @extend .fa;
+            @extend .fa-map-marker;
+            position: absolute;
+            left: 0;
+            color: $secondary-accent-color;
+        }
+    }
 }
