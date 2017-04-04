@@ -76,7 +76,7 @@ export default class Month extends React.Component {
 		let dayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		return (
-			<Week isHeading={true} days={dayHeadings} date={this.props.date} />
+			<Week isHeading={true} days={dayHeadings} />
 		);
 	}
 
@@ -87,6 +87,8 @@ export default class Month extends React.Component {
 					<Week
 						key={i}
 						days={week}
+						year={this.props.year}
+						month={this.props.month}
 						date={this.props.date}
 						focusedDate={this.props.focusedDate}
 						eventsByDate={this.props.eventsByDate}

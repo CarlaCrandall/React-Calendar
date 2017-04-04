@@ -129,11 +129,16 @@ export default class Calendar extends React.Component {
 	//////////////////////////////////////////////////////////////////////
 
 	render() {
+		// Active descendant is equal to the ID of the focusedDate element
+		let focusedButton = `calendar__day__${this.props.focusedDate}`;
+
 		return (
 			<div className="calendar">
 				<div
 					className="calendar__grid"
 					tabIndex="0"
+					role="menu"
+					aria-activedescendant={focusedButton}
 					ref={(comp) => { this.calendarGrid = comp; }}
 					onClick={() => this.onClick()}
 					onKeyDown={(event) => this.onKeyDown(event)}
