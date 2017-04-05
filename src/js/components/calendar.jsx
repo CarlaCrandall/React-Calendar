@@ -51,33 +51,21 @@ export default class Calendar extends React.Component {
     }
 
     onKeyDown(event) {
+        // On arrow keys, update the selected date
         if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
-            // On arrow keys, update the selected date
             event.preventDefault();
             this.handleArrowKey(event.keyCode);
         }
-    }
-
-
-    // ///////////////////////////////////////////////////////////////////
-    // CUSTOM FUNCTIONS
-    // ///////////////////////////////////////////////////////////////////
-
-    refHandler(domElement) {
-        this.calendarGrid = domElement;
-    }
-
-    checkIfCurrentMonth(dateObj) {
-        const selectedMonth = dateObj.month();
-
-        // If currently selected date isn't in the current month, update the calendar
-        if (selectedMonth < this.props.month) {
-            this.props.prevMonth(this.props.month, this.props.year, dateObj.date());
-        }
-        else if (selectedMonth > this.props.month) {
-            this.props.nextMonth(this.props.month, this.props.year, dateObj.date());
+        // On page up/down, update the current month
+        else if ([33, 34].indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+            this.handlePageKey(event.keyCode);
         }
     }
+
+    // ///////////////////////////////////////////////////////////////////
+    // KEYBOARD FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     handleArrowKey(keyCode) {
         const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
@@ -108,6 +96,38 @@ export default class Calendar extends React.Component {
 
         // Update the value of the selected date in the store
         this.props.selectDate(dateObj.date());
+    }
+
+    handlePageKey(keyCode) {
+        // If page up, go to next month
+        if (keyCode === 33) {
+            this.props.nextMonth(this.props.month, this.props.year, this.props.date);
+        }
+        // If page down, go to previous month
+        else {
+            this.props.prevMonth(this.props.month, this.props.year, this.props.date);
+        }
+    }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
+    refHandler(domElement) {
+        this.calendarGrid = domElement;
+    }
+
+    checkIfCurrentMonth(dateObj) {
+        const selectedMonth = dateObj.month();
+
+        // If currently selected date isn't in the current month, update the calendar
+        if (selectedMonth < this.props.month) {
+            this.props.prevMonth(this.props.month, this.props.year, dateObj.date());
+        }
+        else if (selectedMonth > this.props.month) {
+            this.props.nextMonth(this.props.month, this.props.year, dateObj.date());
+        }
     }
 
     updateActiveDescendant() {
