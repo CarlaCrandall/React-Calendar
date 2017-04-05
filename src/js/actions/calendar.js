@@ -5,7 +5,8 @@ export const nextMonth = (currentMonth, currentYear, selectedDate = 1) => {
     if (currentMonth === 11) {
         month = 0;
         year = currentYear + 1;
-    } else {
+    }
+    else {
         month = currentMonth + 1;
         year = currentYear;
     }
@@ -25,7 +26,8 @@ export const prevMonth = (currentMonth, currentYear, selectedDate = 1) => {
     if (currentMonth === 0) {
         month = 11;
         year = currentYear - 1;
-    } else {
+    }
+    else {
         month = currentMonth - 1;
         year = currentYear;
     }

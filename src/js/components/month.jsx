@@ -82,7 +82,8 @@ export default class Month extends React.Component {
         // Update numWeeks for special cases
         if (i === 28) {
             numWeeks = 4;
-        } else if (i < 36) {
+        }
+        else if (i < 36) {
             numWeeks = 5;
         }
 

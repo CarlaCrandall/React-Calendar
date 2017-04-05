@@ -73,7 +73,8 @@ export default class Calendar extends React.Component {
         // If currently selected date isn't in the current month, update the calendar
         if (selectedMonth < this.props.month) {
             this.props.prevMonth(this.props.month, this.props.year, dateObj.date());
-        } else if (selectedMonth > this.props.month) {
+        }
+        else if (selectedMonth > this.props.month) {
             this.props.nextMonth(this.props.month, this.props.year, dateObj.date());
         }
     }
