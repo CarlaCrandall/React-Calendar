@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import KEYBOARD_CODES from '../../config/keyboard-codes';
 import { Month } from './';
 
 
@@ -38,6 +39,14 @@ export default class Calendar extends React.Component {
         this.calendarGrid = null;
     }
 
+    componentDidMount() {
+        window.addEventListener('keydown', event => this.onWindowKeyDown(event));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', event => this.onWindowKeyDown(event));
+    }
+
 
     // ///////////////////////////////////////////////////////////////////
     // EVENT HANDLERS
@@ -50,16 +59,26 @@ export default class Calendar extends React.Component {
         this.calendarGrid.focus();
     }
 
+    onWindowKeyDown(event) {
+        const isSidebar = event.target.classList.contains('sidebar__screenreader');
+
+        // Allow keyboard shortcuts to function when focused on sidebar
+        if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.key) > -1) {
+            this.calendarGrid.focus();
+            this.onKeyDown(event);
+        }
+    }
+
     onKeyDown(event) {
         // On arrow keys, update the selected date
-        if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+        if (KEYBOARD_CODES.ARROW_KEYS.indexOf(event.key) > -1) {
             event.preventDefault();
-            this.handleArrowKey(event.keyCode);
+            this.handleArrowKey(event.key);
         }
         // On page up/down, update the current month
-        else if ([33, 34].indexOf(event.keyCode) > -1) {
+        else if (KEYBOARD_CODES.PAGE_KEYS.indexOf(event.key) > -1) {
             event.preventDefault();
-            this.handlePageKey(event.keyCode);
+            this.handlePageKey(event.key);
         }
     }
 
@@ -67,27 +86,24 @@ export default class Calendar extends React.Component {
     // KEYBOARD FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
-    handleArrowKey(keyCode) {
+    handleArrowKey(key) {
         const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
 
-        switch (keyCode) {
-            // left arrow
-            case 37: {
+        switch (key) {
+            case 'ArrowLeft': {
                 dateObj.subtract(1, 'days');
                 break;
             }
-            // right arrow
-            case 39: {
+            case 'ArrowRight': {
                 dateObj.add(1, 'days');
                 break;
             }
-            // up arrow
-            case 38: {
+            case 'ArrowUp': {
                 dateObj.subtract(7, 'days');
                 break;
             }
             // down arrow
-            case 40: {
+            case 'ArrowDown': {
                 dateObj.add(7, 'days');
                 break;
             }
@@ -103,9 +119,9 @@ export default class Calendar extends React.Component {
         this.props.selectDate(dateObj.date());
     }
 
-    handlePageKey(keyCode) {
+    handlePageKey(key) {
         // If page up, go to next month
-        if (keyCode === 33) {
+        if (key === 'PageUp') {
             this.props.nextMonth(this.props.month, this.props.year, this.props.date);
         }
         // If page down, go to previous month

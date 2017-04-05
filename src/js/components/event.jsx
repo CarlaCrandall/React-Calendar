@@ -58,7 +58,7 @@ export default class Event extends React.Component {
 
         return (
             <div className="event">
-                <div className="sr-only" tabIndex="0">{screenReaderText}</div>
+                <div className="sidebar__screenreader" tabIndex="0">{screenReaderText}</div>
                 <div className="event__content" role="presentation" aria-hidden="true">
                     <div className="event__time">{timeRangeText}</div>
                     <h3 className="event__name">{this.props.data.summary}</h3>

@@ -51,7 +51,7 @@ export default class EventList extends React.Component {
     render() {
         return (
             <div className="event-list">
-                <div className="sr-only" tabIndex="0">{this.state.headingText}</div>
+                <div className="sidebar__screenreader" tabIndex="0">{this.state.headingText}</div>
                 <h2 className="event-list__heading" role="presentation" aria-hidden="true">{this.state.headingText}</h2>
                 {this.props.events && this.renderList()}
             </div>

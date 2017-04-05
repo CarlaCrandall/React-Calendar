@@ -25,10 +25,11 @@
         }
     }
 
-    .sr-only {
+    .sidebar__screenreader {
+        @extend .sr-only;
         top: 24px;
         width: 100%;
     }
 
-    .sr-only:focus + &__heading { outline: 1px dotted $primary-accent-color; }
+    .sidebar__screenreader:focus + &__heading { outline: 1px dotted $primary-accent-color; }
 }
