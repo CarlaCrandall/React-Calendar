@@ -1,4 +1,6 @@
 .event-list {
+    position: relative;
+
     &__heading {
         display: inline-block;
         border-radius: $pad-large;
@@ -22,4 +24,11 @@
             @include create-circle(8px, $secondary-accent-color);
         }
     }
+
+    .sr-only {
+        top: 24px;
+        width: 100%;
+    }
+
+    .sr-only:focus + &__heading { outline: 1px dotted $primary-accent-color; }
 }

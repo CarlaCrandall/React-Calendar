@@ -22,14 +22,14 @@ export default class EventList extends React.Component {
         events: null
     };
 
-    renderHeading() {
-        const
-            dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`,
-            heading = (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`;
+    constructor(props) {
+        super(props);
 
-        return (
-            <h2 className="event-list__heading">{heading}</h2>
-        );
+        const dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`;
+
+        this.state = {
+            headingText: (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`
+        };
     }
 
     renderListItem(event, index) {
@@ -51,7 +51,8 @@ export default class EventList extends React.Component {
     render() {
         return (
             <div className="event-list">
-                {this.renderHeading()}
+                <div className="sr-only" tabIndex="0">{this.state.headingText}</div>
+                <h2 className="event-list__heading" role="presentation" aria-hidden="true">{this.state.headingText}</h2>
                 {this.props.events && this.renderList()}
             </div>
         );

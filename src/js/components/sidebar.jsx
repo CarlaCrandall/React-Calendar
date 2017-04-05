@@ -30,7 +30,7 @@ export default class Sidebar extends React.Component {
 
     renderButton(onClick, icon, label) {
         return (
-            <button className="sidebar__button" onClick={() => onClick(this.props.month, this.props.year)}>
+            <button className="sidebar__button" tabIndex="-1" onClick={() => onClick(this.props.month, this.props.year)}>
                 <i className={`fa ${icon}`} />
                 <span className="sr-only">{label}</span>
             </button>

@@ -17,10 +17,10 @@ export default class Event extends React.Component {
     constructor(props) {
         super(props);
 
-        const isScheduledEvent = this.isScheduledEvent(props.data.start, props.data.end);
-
         this.state = {
-            timeRange: (isScheduledEvent) ? this.getTimeRange(props.data.start, props.data.end) : 'All Day'
+            eventDate: moment(props.data.start.date || props.data.start.dateTime).format('dddd, MMMM D, YYYY'),
+            isScheduledEvent: this.isScheduledEvent(props.data.start, props.data.end),
+            timeRange: this.getTimeRange(props.data.start, props.data.end)
         };
     }
 
@@ -29,7 +29,16 @@ export default class Event extends React.Component {
             startTime = moment(start.dateTime).format('h:mm A'),
             endTime = moment(end.dateTime).format('h:mm A');
 
-        return `${startTime} - ${endTime}`;
+        return { startTime, endTime };
+    }
+
+    getScreenReaderText(eventData, timeRange) {
+        // Build event text for screen reader
+        let screenReaderText = (this.state.isScheduledEvent) ? ` ${timeRange.startTime} to ${timeRange.endTime}` : 'All day';
+        screenReaderText += ` ${eventData.summary}`;
+        screenReaderText += (eventData.location) ? ` location ${eventData.location}` : '';
+
+        return screenReaderText;
     }
 
     isScheduledEvent(start, end) {
@@ -38,22 +47,23 @@ export default class Event extends React.Component {
 
     renderLocation() {
         return (
-            <div className="event__location" aria-hidden="true">
-                {this.props.data.location}
-            </div>
+            <div className="event__location">{this.props.data.location}</div>
         );
     }
 
     render() {
-        // Build event text for screenreader
-        let screenReaderText = `${this.props.data.summary} ${this.state.timeRange}`;
-        screenReaderText += (this.props.data.location) ? ` at ${this.props.data.location}` : '';
+        const
+            timeRangeText = (this.state.isScheduledEvent) ? `${this.state.timeRange.startTime} - ${this.state.timeRange.endTime}` : 'All Day',
+            screenReaderText = this.getScreenReaderText(this.props.data, this.state.timeRange);
 
         return (
             <div className="event">
-                <div className="event__time" aria-hidden="true">{this.state.timeRange}</div>
-                <h3 className="event__name" aria-label={screenReaderText}>{this.props.data.summary}</h3>
-                {this.props.data.location && this.renderLocation()}
+                <div className="sr-only" tabIndex="0">{screenReaderText}</div>
+                <div className="event__content" role="presentation" aria-hidden="true">
+                    <div className="event__time">{timeRangeText}</div>
+                    <h3 className="event__name">{this.props.data.summary}</h3>
+                    {this.props.data.location && this.renderLocation()}
+                </div>
             </div>
         );
     }
