@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import classnames from 'classnames';
 import { EventList } from './';
 import MONTH_NAMES from '../../config/month-names';
 
@@ -28,10 +29,14 @@ export default class Sidebar extends React.Component {
     };
 
 
-    renderButton(onClick, icon, label) {
+    renderButton(onClick, btnClass, label) {
+        const className = classnames({
+            sidebar__button: true,
+            [`sidebar__button--${btnClass}`]: true
+        });
+
         return (
-            <button className="sidebar__button" tabIndex="-1" onClick={() => onClick(this.props.month, this.props.year, this.props.date)}>
-                <i className={`fa ${icon}`} />
+            <button className={className} tabIndex="-1" onClick={() => onClick(this.props.month, this.props.year, this.props.date)}>
                 <span className="sr-only">{label}</span>
             </button>
         );
@@ -42,8 +47,8 @@ export default class Sidebar extends React.Component {
             <header className="sidebar__heading-container">
                 <h1 className="sidebar__heading">{MONTH_NAMES[this.props.month]} {this.props.year}</h1>
                 <div className="sidebar__button-container">
-                    {this.renderButton(this.props.prevMonth, 'fa-chevron-left', 'Previous Month')}
-                    {this.renderButton(this.props.nextMonth, 'fa-chevron-right', 'Next Month')}
+                    {this.renderButton(this.props.prevMonth, 'previous', 'Previous Month')}
+                    {this.renderButton(this.props.nextMonth, 'next', 'Next Month')}
                 </div>
             </header>
         );

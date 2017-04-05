@@ -64,6 +64,16 @@
         @include breakpoint(md) {
             line-height: $font-size-xlarge;
         }
+
+        &--previous,
+        &--next {
+            @extend .fa;
+            @extend .fa-chevron-left;
+        }
+
+        &--next {
+            @extend .fa-chevron-right;
+        }
     }
 
     &__content {
