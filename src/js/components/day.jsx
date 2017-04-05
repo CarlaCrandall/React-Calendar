@@ -36,10 +36,11 @@ export default class Day extends React.Component {
 
     renderButton() {
         const date = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
-        let screenreaderText = `${date.format('D, dddd MMMM YYYY')}.`;
 
-        screenreaderText += (this.props.isSelected) ? ' Currently selected date' : '';
-        screenreaderText += (this.props.events.length === 1) ? ' 1 event is scheduled on this date' : ` ${this.props.events.length} events are scheduled on this date`;
+        // Build date text for screen reader
+        let screenReaderText = `${date.format('dddd, MMMM D, YYYY')}.`;
+        screenReaderText += (this.props.isSelected) ? ' Currently selected date' : '';
+        screenReaderText += (this.props.events.length === 1) ? ' 1 event' : ` ${this.props.events.length} events`;
 
         // ID used by Calendar component for screenreader accessibility
         return (
@@ -47,7 +48,8 @@ export default class Day extends React.Component {
                 className="day__button"
                 id={`calendar__day__${this.props.date}`}
                 tabIndex="-1"
-                aria-label={screenreaderText}
+                role="menuitem"
+                aria-label={screenReaderText}
                 onClick={() => this.props.selectDate(this.props.date)}
             >
                 {this.props.date}

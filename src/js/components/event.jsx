@@ -38,17 +38,21 @@ export default class Event extends React.Component {
 
     renderLocation() {
         return (
-            <div className="event__location">
+            <div className="event__location" aria-hidden="true">
                 {this.props.data.location}
             </div>
         );
     }
 
     render() {
+        // Build event text for screenreader
+        let screenReaderText = `${this.props.data.summary} ${this.state.timeRange}`;
+        screenReaderText += (this.props.data.location) ? ` at ${this.props.data.location}` : '';
+
         return (
             <div className="event">
-                <div className="event__time">{this.state.timeRange}</div>
-                <h3 className="event__name">{this.props.data.summary}</h3>
+                <div className="event__time" aria-hidden="true">{this.state.timeRange}</div>
+                <h3 className="event__name" aria-label={screenReaderText}>{this.props.data.summary}</h3>
                 {this.props.data.location && this.renderLocation()}
             </div>
         );

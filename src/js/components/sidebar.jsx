@@ -85,7 +85,9 @@ export default class Sidebar extends React.Component {
         return (
             <div className="sidebar">
                 {this.renderHeader()}
-                {this.props.date && this.renderContent()}
+                <div role="main" aria-live="polite" aria-relevant="additions">
+                    {this.props.date && this.renderContent()}
+                </div>
             </div>
         );
     }

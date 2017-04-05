@@ -35,7 +35,7 @@ class App extends React.Component {
         const { calendar, events, ...actionProps } = this.props;
 
         return (
-            <div className="react-calendar">
+            <div className="react-calendar" role="application">
                 <Calendar {...calendar} {...events} {...actionProps} />
                 <Sidebar {...calendar} {...events} {...actionProps} />
             </div>
