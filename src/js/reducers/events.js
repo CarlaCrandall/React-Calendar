@@ -17,7 +17,8 @@ const events = (state = initialState, action) => {
         }
 
         case 'EVENTS_RECEIVE': {
-            const monthEvents = action.payload.items,
+            const
+                monthEvents = action.payload.items,
                 dateObjects = {};
 
             // Separate all events by date
