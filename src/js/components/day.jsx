@@ -18,7 +18,6 @@ export default class Day extends React.Component {
             React.PropTypes.number,
             React.PropTypes.string
         ]).isRequired,
-        focusedDate: React.PropTypes.number,
         events: React.PropTypes.array,
         isHeading: React.PropTypes.bool,
         isSelected: React.PropTypes.bool,
@@ -28,7 +27,6 @@ export default class Day extends React.Component {
     static defaultProps = {
         year: null,
         month: null,
-        focusedDate: null,
         events: [],
         isHeading: false,
         isSelected: false
@@ -39,7 +37,6 @@ export default class Day extends React.Component {
 
         // Build date text for screen reader
         let screenReaderText = `${date.format('dddd, MMMM D, YYYY')}.`;
-        screenReaderText += (this.props.isSelected) ? ' Currently selected date' : '';
         screenReaderText += (this.props.events.length === 1) ? ' 1 event' : ` ${this.props.events.length} events`;
 
         // ID used by Calendar component for screenreader accessibility
@@ -70,7 +67,6 @@ export default class Day extends React.Component {
                 day: true,
                 'day--heading': this.props.isHeading,
                 'day--selected': this.props.isSelected,
-                'day--focused': this.props.date === this.props.focusedDate,
                 'day--has-events': this.props.events.length > 0
             });
 

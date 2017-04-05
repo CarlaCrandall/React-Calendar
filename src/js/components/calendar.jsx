@@ -16,10 +16,8 @@ export default class Calendar extends React.Component {
         year: React.PropTypes.number.isRequired,
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
-        focusedDate: React.PropTypes.number.isRequired,
         eventsByDate: React.PropTypes.object.isRequired,
         selectDate: React.PropTypes.func.isRequired,
-        focusDate: React.PropTypes.func.isRequired,
         nextMonth: React.PropTypes.func.isRequired,
         prevMonth: React.PropTypes.func.isRequired
     };
@@ -38,12 +36,6 @@ export default class Calendar extends React.Component {
 
         this.refHandler = this.refHandler.bind(this);
         this.calendarGrid = null;
-
-        this.state = this.getStateValues(props);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState(this.getStateValues(nextProps));
     }
 
 
@@ -59,12 +51,8 @@ export default class Calendar extends React.Component {
     }
 
     onKeyDown(event) {
-        if (event.keyCode === 13 || event.keyCode === 32) {
-            // On enter or spacebar, select the focusedDate
-            event.preventDefault();
-            this.props.selectDate(this.props.focusedDate);
-        } else if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
-            // On arrow keys, update the focusedDate
+        if ([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+            // On arrow keys, update the selected date
             event.preventDefault();
             this.handleArrowKey(event.keyCode);
         }
@@ -72,70 +60,59 @@ export default class Calendar extends React.Component {
 
 
     // ///////////////////////////////////////////////////////////////////
-    // HELPER FUNCTIONS
+    // CUSTOM FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
-
-    getStateValues(props) {
-        // For keyboard functionality we need to fake the currently focused date...
-        // Actual keyboard focus is on the calendar grid div
-        // When the user presses the arrow keys we update the value of the focusedDate and apply styles
-        return {
-            focusedDateObj: moment(`${props.year}-${props.month + 1}-${props.focusedDate}`, 'YYYY-M-D')
-        };
-    }
 
     refHandler(domElement) {
         this.calendarGrid = domElement;
     }
 
-    checkIfCurrentMonth(focusedDateObj) {
-        const focusedMonth = focusedDateObj.month();
+    checkIfCurrentMonth(dateObj) {
+        const selectedMonth = dateObj.month();
 
-        if (focusedMonth < this.props.month) {
-            // If currently focused date is in the previous month, update the calendar
-            this.props.prevMonth(this.props.month, this.props.year, focusedDateObj.date());
-        } else if (focusedMonth > this.props.month) {
-            // If currently focused date is in the next month, update the calendar
-            this.props.nextMonth(this.props.month, this.props.year, focusedDateObj.date());
+        // If currently selected date isn't in the current month, update the calendar
+        if (selectedMonth < this.props.month) {
+            this.props.prevMonth(this.props.month, this.props.year, dateObj.date());
+        } else if (selectedMonth > this.props.month) {
+            this.props.nextMonth(this.props.month, this.props.year, dateObj.date());
         }
     }
 
     handleArrowKey(keyCode) {
-        const focusedDateObj = this.state.focusedDateObj.clone();
+        const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
 
         switch (keyCode) {
             // left arrow
             case 37:
-                focusedDateObj.subtract(1, 'days');
+                dateObj.subtract(1, 'days');
                 break;
             // right arrow
             case 39:
-                focusedDateObj.add(1, 'days');
+                dateObj.add(1, 'days');
                 break;
             // up arrow
             case 38:
-                focusedDateObj.subtract(7, 'days');
+                dateObj.subtract(7, 'days');
                 break;
             // down arrow
             case 40:
-                focusedDateObj.add(7, 'days');
+                dateObj.add(7, 'days');
                 break;
             default:
                 break;
         }
 
         // Move calendar to next or previous month, if necessary
-        this.checkIfCurrentMonth(focusedDateObj);
+        this.checkIfCurrentMonth(dateObj);
 
-        // Update the value of the focusedDate in the store
-        this.props.focusDate(focusedDateObj.date());
+        // Update the value of the selected date in the store
+        this.props.selectDate(dateObj.date());
     }
 
     updateActiveDescendant() {
-        // aria-activedescendant tells screen readers which date is currently "focused"
+        // aria-activedescendant tells screen readers which date is currently selected
         // Has to be called from Month's componentDidUpdate to ensure the required elements have rendered
-        // Active descendant is equal to the ID of the focusedDate element
-        this.calendarGrid.setAttribute('aria-activedescendant', `calendar__day__${this.props.focusedDate}`);
+        this.calendarGrid.setAttribute('aria-activedescendant', `calendar__day__${this.props.date}`);
     }
 
 
@@ -158,7 +135,6 @@ export default class Calendar extends React.Component {
                         year={this.props.year}
                         month={this.props.month}
                         date={this.props.date}
-                        focusedDate={this.props.focusedDate}
                         eventsByDate={this.props.eventsByDate}
                         selectDate={this.props.selectDate}
                         onUpdate={() => this.updateActiveDescendant()}

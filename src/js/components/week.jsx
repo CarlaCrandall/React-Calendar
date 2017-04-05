@@ -16,7 +16,6 @@ export default class Week extends React.Component {
         year: React.PropTypes.number,
         month: React.PropTypes.number,
         date: React.PropTypes.number,
-        focusedDate: React.PropTypes.number,
         eventsByDate: React.PropTypes.object,
         isHeading: React.PropTypes.bool,
         selectDate: React.PropTypes.func
@@ -27,7 +26,6 @@ export default class Week extends React.Component {
         year: null,
         month: null,
         date: null,
-        focusedDate: null,
         eventsByDate: {},
         isHeading: false,
         selectDate: () => false
@@ -40,7 +38,6 @@ export default class Week extends React.Component {
                 year={this.props.year}
                 month={this.props.month}
                 date={day}
-                focusedDate={this.props.focusedDate}
                 events={this.props.eventsByDate[`day_${day}`]}
                 isHeading={this.props.isHeading}
                 isSelected={day === this.props.date}

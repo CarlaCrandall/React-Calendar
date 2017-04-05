@@ -35,7 +35,7 @@
         }
 
         &:focus {
-            outline: none;
+            outline: 1px dotted $sidebar-background-color;
         }
     }
 }

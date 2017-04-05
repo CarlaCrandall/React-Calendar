@@ -72,9 +72,4 @@
             bottom: -($pad-small);
         }
     }
-
-    .calendar__grid:focus &--focused &__button {
-        background: $gray;
-        color: $white;
-    }
 }

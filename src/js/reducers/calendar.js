@@ -39,13 +39,6 @@ const calendar = (state = initialState, action) => {
             };
         }
 
-        case 'FOCUS_DATE': {
-            return {
-                ...state,
-                focusedDate: action.date
-            };
-        }
-
         default: {
             return state;
         }

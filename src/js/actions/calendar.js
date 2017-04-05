@@ -1,4 +1,4 @@
-export const nextMonth = (currentMonth, currentYear, focusedDate = 1) => {
+export const nextMonth = (currentMonth, currentYear, selectedDate = 1) => {
     let month,
         year;
 
@@ -12,14 +12,13 @@ export const nextMonth = (currentMonth, currentYear, focusedDate = 1) => {
 
     return {
         type: 'NEXT_MONTH',
-        date: null,
+        date: selectedDate,
         month,
-        year,
-        focusedDate
+        year
     };
 };
 
-export const prevMonth = (currentMonth, currentYear, focusedDate = 1) => {
+export const prevMonth = (currentMonth, currentYear, selectedDate = 1) => {
     let month,
         year;
 
@@ -33,20 +32,14 @@ export const prevMonth = (currentMonth, currentYear, focusedDate = 1) => {
 
     return {
         type: 'PREV_MONTH',
-        date: null,
+        date: selectedDate,
         month,
-        year,
-        focusedDate
+        year
     };
 };
 
 
 export const selectDate = date => ({
     type: 'SELECT_DATE',
-    date
-});
-
-export const focusDate = date => ({
-    type: 'FOCUS_DATE',
     date
 });

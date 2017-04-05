@@ -16,7 +16,6 @@ export default class Month extends React.Component {
         year: React.PropTypes.number.isRequired,
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
-        focusedDate: React.PropTypes.number.isRequired,
         eventsByDate: React.PropTypes.object.isRequired,
         selectDate: React.PropTypes.func.isRequired,
         onUpdate: React.PropTypes.func.isRequired
@@ -110,7 +109,6 @@ export default class Month extends React.Component {
                 year={this.props.year}
                 month={this.props.month}
                 date={this.props.date}
-                focusedDate={this.props.focusedDate}
                 eventsByDate={this.props.eventsByDate}
                 selectDate={this.props.selectDate}
             />
