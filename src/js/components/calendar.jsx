@@ -72,27 +72,32 @@ export default class Calendar extends React.Component {
 
         switch (keyCode) {
             // left arrow
-            case 37:
+            case 37: {
                 dateObj.subtract(1, 'days');
                 break;
+            }
             // right arrow
-            case 39:
+            case 39: {
                 dateObj.add(1, 'days');
                 break;
+            }
             // up arrow
-            case 38:
+            case 38: {
                 dateObj.subtract(7, 'days');
                 break;
+            }
             // down arrow
-            case 40:
+            case 40: {
                 dateObj.add(7, 'days');
                 break;
-            default:
+            }
+            default: {
                 break;
+            }
         }
 
         // Move calendar to next or previous month, if necessary
-        this.checkIfCurrentMonth(dateObj);
+        this.updateMonth(dateObj.month(), dateObj.date());
 
         // Update the value of the selected date in the store
         this.props.selectDate(dateObj.date());
@@ -118,15 +123,13 @@ export default class Calendar extends React.Component {
         this.calendarGrid = domElement;
     }
 
-    checkIfCurrentMonth(dateObj) {
-        const selectedMonth = dateObj.month();
-
+    updateMonth(selectedMonth, date) {
         // If currently selected date isn't in the current month, update the calendar
         if (selectedMonth < this.props.month) {
-            this.props.prevMonth(this.props.month, this.props.year, dateObj.date());
+            this.props.prevMonth(this.props.month, this.props.year, date);
         }
         else if (selectedMonth > this.props.month) {
-            this.props.nextMonth(this.props.month, this.props.year, dateObj.date());
+            this.props.nextMonth(this.props.month, this.props.year, date);
         }
     }
 
