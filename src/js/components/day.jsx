@@ -45,7 +45,6 @@ export default class Day extends React.Component {
                 className="day__button"
                 id={`calendar__day__${this.props.date}`}
                 tabIndex="-1"
-                role="menuitem"
                 aria-label={screenReaderText}
                 onClick={() => this.props.selectDate(this.props.date)}
             >

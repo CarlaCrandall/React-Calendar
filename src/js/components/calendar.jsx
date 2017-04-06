@@ -25,7 +25,7 @@ export default class Calendar extends React.Component {
 
     static defaultProps = {
         date: null
-    }
+    };
 
 
     // ///////////////////////////////////////////////////////////////////
@@ -64,8 +64,12 @@ export default class Calendar extends React.Component {
 
         // Allow keyboard shortcuts to function when focused on sidebar
         if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.keyCode) > -1) {
-            this.calendarGrid.focus();
             this.onKeyDown(event);
+
+            // Timeout needed to fix Safari Voiceover bug
+            setTimeout(() => {
+                this.calendarGrid.focus();
+            }, 50);
         }
     }
 
@@ -90,23 +94,23 @@ export default class Calendar extends React.Component {
         const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
 
         switch (key) {
-            // left arrow
-            case 37: {
+            // left arrow, previous day
+            case KEYBOARD_CODES.ARROW_KEYS[0]: {
                 dateObj.subtract(1, 'days');
                 break;
             }
-            // up arrow
-            case 38: {
+            // up arrow, previous week
+            case KEYBOARD_CODES.ARROW_KEYS[1]: {
                 dateObj.subtract(7, 'days');
                 break;
             }
-            // right arrow
-            case 39: {
+            // right arrow, next day
+            case KEYBOARD_CODES.ARROW_KEYS[2]: {
                 dateObj.add(1, 'days');
                 break;
             }
-            // down arrow
-            case 40: {
+            // down arrow, next week
+            case KEYBOARD_CODES.ARROW_KEYS[3]: {
                 dateObj.add(7, 'days');
                 break;
             }
@@ -124,7 +128,7 @@ export default class Calendar extends React.Component {
 
     handlePageKey(key) {
         // If page up, go to next month
-        if (key === 33) {
+        if (key === KEYBOARD_CODES.PAGE_KEYS[0]) {
             this.props.nextMonth(this.props.month, this.props.year, this.props.date);
         }
         // If page down, go to previous month
@@ -138,6 +142,8 @@ export default class Calendar extends React.Component {
     // CUSTOM FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
+    // Use bound ref callback to prevent this.calendarGrid from being set to null
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html
     refHandler(domElement) {
         this.calendarGrid = domElement;
     }
