@@ -185,8 +185,8 @@ export default class Calendar extends React.Component {
                         month={this.props.month}
                         date={this.props.date}
                         eventsByDate={this.props.eventsByDate}
-                        SELECT_DATE={this.props.SELECT_DATE}
                         onUpdate={() => this.updateActiveDescendant()}
+                        SELECT_DATE={this.props.SELECT_DATE}
                     />
                 </div>
             </div>

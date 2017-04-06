@@ -17,8 +17,8 @@ export default class Month extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         eventsByDate: React.PropTypes.object.isRequired,
-        SELECT_DATE: React.PropTypes.func.isRequired,
-        onUpdate: React.PropTypes.func.isRequired
+        onUpdate: React.PropTypes.func.isRequired,
+        SELECT_DATE: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
