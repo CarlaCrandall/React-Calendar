@@ -21,7 +21,7 @@ export default class Day extends React.Component {
         events: React.PropTypes.array,
         isHeading: React.PropTypes.bool,
         isSelected: React.PropTypes.bool,
-        selectDate: React.PropTypes.func.isRequired
+        SELECT_DATE: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -46,7 +46,7 @@ export default class Day extends React.Component {
                 id={`calendar__day__${this.props.date}`}
                 tabIndex="-1"
                 aria-label={screenReaderText}
-                onClick={() => this.props.selectDate(this.props.date)}
+                onClick={() => this.props.SELECT_DATE(this.props.date)}
             >
                 {this.props.date}
             </button>

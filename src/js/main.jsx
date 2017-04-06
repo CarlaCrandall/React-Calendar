@@ -14,12 +14,12 @@ class App extends React.Component {
     static propTypes = {
         calendar: React.PropTypes.object.isRequired,
         events: React.PropTypes.object.isRequired,
-        fetchEvents: React.PropTypes.func.isRequired
+        FETCH_EVENTS: React.PropTypes.func.isRequired
     };
 
     componentWillMount() {
         // Load events from Google Calendar API
-        this.props.fetchEvents(this.props.calendar);
+        this.props.FETCH_EVENTS(this.props.calendar);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -29,7 +29,7 @@ class App extends React.Component {
 
         // Month has changed, fetch events
         if (nextCalendar.month !== thisCalendar.month) {
-            this.props.fetchEvents(nextCalendar);
+            this.props.FETCH_EVENTS(nextCalendar);
         }
     }
 

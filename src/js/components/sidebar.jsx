@@ -20,8 +20,8 @@ export default class Sidebar extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         eventsByDate: React.PropTypes.object.isRequired,
-        prevMonth: React.PropTypes.func.isRequired,
-        nextMonth: React.PropTypes.func.isRequired
+        PREV_MONTH: React.PropTypes.func.isRequired,
+        NEXT_MONTH: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -47,8 +47,8 @@ export default class Sidebar extends React.Component {
             <header className="sidebar__heading-container">
                 <h1 className="sidebar__heading">{MONTH_NAMES[this.props.month]} {this.props.year}</h1>
                 <div className="sidebar__button-container">
-                    {this.renderButton(this.props.prevMonth, 'previous', 'Previous Month')}
-                    {this.renderButton(this.props.nextMonth, 'next', 'Next Month')}
+                    {this.renderButton(this.props.PREV_MONTH, 'previous', 'Previous Month')}
+                    {this.renderButton(this.props.NEXT_MONTH, 'next', 'Next Month')}
                 </div>
             </header>
         );

@@ -18,9 +18,9 @@ export default class Calendar extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         eventsByDate: React.PropTypes.object.isRequired,
-        selectDate: React.PropTypes.func.isRequired,
-        nextMonth: React.PropTypes.func.isRequired,
-        prevMonth: React.PropTypes.func.isRequired
+        SELECT_DATE: React.PropTypes.func.isRequired,
+        NEXT_MONTH: React.PropTypes.func.isRequired,
+        PREV_MONTH: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -123,17 +123,17 @@ export default class Calendar extends React.Component {
         this.updateMonth(dateObj.month(), dateObj.date());
 
         // Update the value of the selected date in the store
-        this.props.selectDate(dateObj.date());
+        this.props.SELECT_DATE(dateObj.date());
     }
 
     handlePageKey(key) {
         // If page up, go to next month
         if (key === KEYBOARD_CODES.PAGE_KEYS[0]) {
-            this.props.nextMonth(this.props.month, this.props.year, this.props.date);
+            this.props.NEXT_MONTH(this.props.month, this.props.year, this.props.date);
         }
         // If page down, go to previous month
         else {
-            this.props.prevMonth(this.props.month, this.props.year, this.props.date);
+            this.props.PREV_MONTH(this.props.month, this.props.year, this.props.date);
         }
     }
 
@@ -143,7 +143,7 @@ export default class Calendar extends React.Component {
     // ///////////////////////////////////////////////////////////////////
 
     // Use bound ref callback to prevent this.calendarGrid from being set to null
-    // https://facebook.github.io/react/docs/refs-and-the-dom.html
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
     refHandler(domElement) {
         this.calendarGrid = domElement;
     }
@@ -151,10 +151,10 @@ export default class Calendar extends React.Component {
     updateMonth(selectedMonth, date) {
         // If currently selected date isn't in the current month, update the calendar
         if (selectedMonth < this.props.month) {
-            this.props.prevMonth(this.props.month, this.props.year, date);
+            this.props.PREV_MONTH(this.props.month, this.props.year, date);
         }
         else if (selectedMonth > this.props.month) {
-            this.props.nextMonth(this.props.month, this.props.year, date);
+            this.props.NEXT_MONTH(this.props.month, this.props.year, date);
         }
     }
 
@@ -185,7 +185,7 @@ export default class Calendar extends React.Component {
                         month={this.props.month}
                         date={this.props.date}
                         eventsByDate={this.props.eventsByDate}
-                        selectDate={this.props.selectDate}
+                        SELECT_DATE={this.props.SELECT_DATE}
                         onUpdate={() => this.updateActiveDescendant()}
                     />
                 </div>

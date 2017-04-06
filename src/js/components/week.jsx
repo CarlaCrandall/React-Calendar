@@ -18,7 +18,7 @@ export default class Week extends React.Component {
         date: React.PropTypes.number,
         eventsByDate: React.PropTypes.object,
         isHeading: React.PropTypes.bool,
-        selectDate: React.PropTypes.func
+        SELECT_DATE: React.PropTypes.func
     };
 
     static defaultProps = {
@@ -28,7 +28,7 @@ export default class Week extends React.Component {
         date: null,
         eventsByDate: {},
         isHeading: false,
-        selectDate: () => false
+        SELECT_DATE: () => false
     };
 
     renderDay(day, index) {
@@ -41,7 +41,7 @@ export default class Week extends React.Component {
                 events={this.props.eventsByDate[`day_${day}`]}
                 isHeading={this.props.isHeading}
                 isSelected={day === this.props.date}
-                selectDate={this.props.selectDate}
+                SELECT_DATE={this.props.SELECT_DATE}
             />
         );
     }

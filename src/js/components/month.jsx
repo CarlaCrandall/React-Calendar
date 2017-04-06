@@ -17,7 +17,7 @@ export default class Month extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         eventsByDate: React.PropTypes.object.isRequired,
-        selectDate: React.PropTypes.func.isRequired,
+        SELECT_DATE: React.PropTypes.func.isRequired,
         onUpdate: React.PropTypes.func.isRequired
     };
 
@@ -111,7 +111,7 @@ export default class Month extends React.Component {
                 month={this.props.month}
                 date={this.props.date}
                 eventsByDate={this.props.eventsByDate}
-                selectDate={this.props.selectDate}
+                SELECT_DATE={this.props.SELECT_DATE}
             />
         );
     }
