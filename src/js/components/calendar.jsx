@@ -175,7 +175,7 @@ export default class Calendar extends React.Component {
                 <div
                     className="calendar__grid"
                     tabIndex="0"
-                    role="menu"
+                    role="group"
                     ref={this.refHandler}
                     onClick={() => this.onClick()}
                     onKeyDown={event => this.onKeyDown(event)}
