@@ -39,6 +39,7 @@
         border-radius: 50%;
         width: $sm--calendar-day-btn-width;
         height: $sm--calendar-day-btn-height;
+        overflow: visible;
         color: $white;
 
         // Styles for SM+ breakpoints
