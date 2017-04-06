@@ -36,7 +36,7 @@ export default class Month extends React.Component {
     }
 
     componentDidUpdate() {
-        // Timeout needed for Safari in OSX
+        // Timeout needed to fix Safari Voiceover bug
         setTimeout(() => {
             this.props.onUpdate();
         });
