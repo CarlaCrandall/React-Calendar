@@ -95,14 +95,14 @@ export default class Calendar extends React.Component {
                 dateObj.subtract(1, 'days');
                 break;
             }
-            // right arrow
-            case 39: {
-                dateObj.add(1, 'days');
-                break;
-            }
             // up arrow
             case 38: {
                 dateObj.subtract(7, 'days');
+                break;
+            }
+            // right arrow
+            case 39: {
+                dateObj.add(1, 'days');
                 break;
             }
             // down arrow
