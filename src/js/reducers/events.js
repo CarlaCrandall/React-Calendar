@@ -11,6 +11,7 @@ const events = (state = initialState, action) => {
         case 'EVENTS_REQUEST': {
             return {
                 ...state,
+                eventsByDate: {},
                 loading: true,
                 error: false
             };
