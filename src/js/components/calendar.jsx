@@ -63,7 +63,7 @@ export default class Calendar extends React.Component {
         const isSidebar = event.target.classList.contains('sidebar__screenreader');
 
         // Allow keyboard shortcuts to function when focused on sidebar
-        if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.key) > -1) {
+        if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.keyCode) > -1) {
             this.calendarGrid.focus();
             this.onKeyDown(event);
         }
@@ -71,14 +71,14 @@ export default class Calendar extends React.Component {
 
     onKeyDown(event) {
         // On arrow keys, update the selected date
-        if (KEYBOARD_CODES.ARROW_KEYS.indexOf(event.key) > -1) {
+        if (KEYBOARD_CODES.ARROW_KEYS.indexOf(event.keyCode) > -1) {
             event.preventDefault();
-            this.handleArrowKey(event.key);
+            this.handleArrowKey(event.keyCode);
         }
         // On page up/down, update the current month
-        else if (KEYBOARD_CODES.PAGE_KEYS.indexOf(event.key) > -1) {
+        else if (KEYBOARD_CODES.PAGE_KEYS.indexOf(event.keyCode) > -1) {
             event.preventDefault();
-            this.handlePageKey(event.key);
+            this.handlePageKey(event.keyCode);
         }
     }
 
@@ -90,20 +90,23 @@ export default class Calendar extends React.Component {
         const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
 
         switch (key) {
-            case 'ArrowLeft': {
+            // left arrow
+            case 37: {
                 dateObj.subtract(1, 'days');
                 break;
             }
-            case 'ArrowRight': {
+            // right arrow
+            case 39: {
                 dateObj.add(1, 'days');
                 break;
             }
-            case 'ArrowUp': {
+            // up arrow
+            case 38: {
                 dateObj.subtract(7, 'days');
                 break;
             }
             // down arrow
-            case 'ArrowDown': {
+            case 40: {
                 dateObj.add(7, 'days');
                 break;
             }
@@ -121,7 +124,7 @@ export default class Calendar extends React.Component {
 
     handlePageKey(key) {
         // If page up, go to next month
-        if (key === 'PageUp') {
+        if (key === 33) {
             this.props.nextMonth(this.props.month, this.props.year, this.props.date);
         }
         // If page down, go to previous month

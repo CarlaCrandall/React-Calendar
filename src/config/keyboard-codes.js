@@ -1,5 +1,5 @@
-const ARROW_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-const PAGE_KEYS = ['PageUp', 'PageDown'];
+const ARROW_KEYS = [37, 38, 39, 40];
+const PAGE_KEYS = [33, 34];
 
 export default {
     ARROW_KEYS,
