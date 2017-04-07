@@ -48,10 +48,23 @@ export default class EventList extends React.Component {
         );
     }
 
+    renderScreenReaderContent() {
+        // aria-label is needed to fix Firefox NVDA bug
+        return (
+            <div
+                className="sidebar__screenreader"
+                tabIndex="0"
+                aria-label={this.state.headingText}
+            >
+                {this.state.headingText}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="event-list">
-                <div className="sidebar__screenreader" tabIndex="0">{this.state.headingText}</div>
+                {this.renderScreenReaderContent()}
                 <h2 className="event-list__heading" role="presentation" aria-hidden="true">{this.state.headingText}</h2>
                 {this.props.events && this.renderList()}
             </div>
