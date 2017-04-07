@@ -16,6 +16,7 @@ export default class Month extends React.Component {
         year: React.PropTypes.number.isRequired,
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
+        loading: React.PropTypes.bool.isRequired,
         eventsByDate: React.PropTypes.object.isRequired,
         onUpdate: React.PropTypes.func.isRequired,
         SELECT_DATE: React.PropTypes.func.isRequired
@@ -36,10 +37,7 @@ export default class Month extends React.Component {
     }
 
     componentDidUpdate() {
-        // Timeout needed to fix Safari Voiceover bug
-        setTimeout(() => {
-            this.props.onUpdate();
-        });
+        this.props.onUpdate();
     }
 
     getStateValues(props) {
@@ -127,11 +125,18 @@ export default class Month extends React.Component {
     }
 
     render() {
+        // Wait for API call to complete before we render calendar
+        if (!this.props.loading) {
+            return (
+                <div className="month">
+                    {this.renderHeader()}
+                    {this.state.weeks && this.renderWeeks()}
+                </div>
+            );
+        }
+
         return (
-            <div className="month">
-                {this.renderHeader()}
-                {this.state.weeks && this.renderWeeks()}
-            </div>
+            <div id="loading__message" className="sr-only">Loading</div>
         );
     }
 }

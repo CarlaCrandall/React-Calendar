@@ -17,6 +17,7 @@ export default class Calendar extends React.Component {
         year: React.PropTypes.number.isRequired,
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
+        loading: React.PropTypes.bool.isRequired,
         eventsByDate: React.PropTypes.object.isRequired,
         SELECT_DATE: React.PropTypes.func.isRequired,
         NEXT_MONTH: React.PropTypes.func.isRequired,
@@ -65,11 +66,6 @@ export default class Calendar extends React.Component {
         // Allow keyboard shortcuts to function when focused on sidebar
         if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.keyCode) > -1) {
             this.onKeyDown(event);
-
-            // Timeout needed to fix Safari Voiceover bug
-            setTimeout(() => {
-                this.calendarGrid.focus();
-            }, 50);
         }
     }
 
@@ -161,7 +157,13 @@ export default class Calendar extends React.Component {
     updateActiveDescendant() {
         // aria-activedescendant tells screen readers which date is currently selected
         // Has to be called from Month's componentDidUpdate to ensure the required elements have rendered
-        this.calendarGrid.setAttribute('aria-activedescendant', `calendar__day__${this.props.date}`);
+        const activeId = (this.props.loading) ? 'loading__message' : `calendar__day__${this.props.date}`;
+
+        // Timeout and focus() needed to fix Safari Voiceover bug
+        setTimeout(() => {
+            this.calendarGrid.setAttribute('aria-activedescendant', activeId);
+            this.calendarGrid.focus();
+        }, 100);
     }
 
 
@@ -184,6 +186,7 @@ export default class Calendar extends React.Component {
                         year={this.props.year}
                         month={this.props.month}
                         date={this.props.date}
+                        loading={this.props.loading}
                         eventsByDate={this.props.eventsByDate}
                         onUpdate={() => this.updateActiveDescendant()}
                         SELECT_DATE={this.props.SELECT_DATE}
