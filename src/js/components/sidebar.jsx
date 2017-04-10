@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { EventList } from './';
@@ -73,7 +73,7 @@ export default class Sidebar extends React.Component {
         const readyToRender = !this.props.loading && !this.props.error && this.props.eventsByDate;
 
         return (
-            <ReactCSSTransitionGroup
+            <CSSTransitionGroup
                 transitionName={{
                     enter: 'sidebar__content--fadein',
                     enterActive: 'sidebar__content--fadein--active',
@@ -95,7 +95,7 @@ export default class Sidebar extends React.Component {
                     {this.props.error && <div className="sidebar__message">Sorry, an error has occurred.</div>}
                     {readyToRender && <EventList events={this.props.eventsByDate[`day_${this.props.date}`]} {...this.props} />}
                 </div>
-            </ReactCSSTransitionGroup>
+            </CSSTransitionGroup>
         );
     }
 
