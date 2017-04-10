@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import * as actions from './actions';
 import store from './stores';
-import { Sidebar, Calendar } from './components';
+import { Sidebar, Calendar, DatePicker } from './components';
 
 
 class App extends React.Component {
@@ -17,6 +17,20 @@ class App extends React.Component {
         events: PropTypes.object.isRequired,
         FETCH_EVENTS: PropTypes.func.isRequired
     };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            supportsDateInput: this.checkForDateInput()
+        };
+    }
+
+    checkForDateInput() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'date');
+        return input.type !== 'text';
+    }
 
     componentWillMount() {
         // Load events from Google Calendar API
@@ -29,7 +43,7 @@ class App extends React.Component {
             thisCalendar = this.props.calendar;
 
         // Month has changed, fetch events
-        if (nextCalendar.month !== thisCalendar.month) {
+        if (nextCalendar.month !== thisCalendar.month || nextCalendar.year !== thisCalendar.year) {
             this.props.FETCH_EVENTS(nextCalendar);
         }
     }
@@ -39,8 +53,19 @@ class App extends React.Component {
 
         return (
             <div className="react-calendar">
-                <Calendar {...calendar} {...events} {...actionProps} />
-                <Sidebar {...calendar} {...events} {...actionProps} />
+                <Calendar
+                    supportsDateInput={this.state.supportsDateInput}
+                    {...calendar}
+                    {...events}
+                    {...actionProps}
+                />
+                {this.state.supportsDateInput && <DatePicker {...calendar} {...events} {...actionProps} />}
+                <Sidebar
+                    supportsDateInput={this.state.supportsDateInput}
+                    {...calendar}
+                    {...events}
+                    {...actionProps}
+                />
             </div>
         );
     }

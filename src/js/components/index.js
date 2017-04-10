@@ -1,5 +1,6 @@
 export Calendar from './calendar.jsx';
 export Day from './day.jsx';
+export DatePicker from './date-picker.jsx';
 export EventList from './event-list.jsx';
 export Event from './event.jsx';
 export Month from './month.jsx';

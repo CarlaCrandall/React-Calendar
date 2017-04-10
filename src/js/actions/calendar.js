@@ -45,3 +45,10 @@ export const SELECT_DATE = date => ({
     type: 'SELECT_DATE',
     date
 });
+
+export const SELECT_FULL_DATE = (year, month, date) => ({
+    type: 'SELECT_FULL_DATE',
+    year,
+    month,
+    date
+});

@@ -35,6 +35,15 @@ const calendar = (state = initialState, action) => {
             };
         }
 
+        case 'SELECT_FULL_DATE': {
+            return {
+                ...state,
+                year: action.year,
+                month: action.month,
+                date: action.date
+            };
+        }
+
         default: {
             return state;
         }
