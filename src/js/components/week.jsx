@@ -48,7 +48,7 @@ export default class Week extends React.Component {
 
     render() {
         return (
-            <div key={this.props.identifier} className="week">
+            <div key={this.props.identifier} className="week" role="row">
                 {this.props.days.length && this.props.days.map((day, i) => this.renderDay(day, i))}
             </div>
         );

@@ -35,8 +35,8 @@ export default class Event extends React.Component {
     getScreenReaderText(eventData, timeRange) {
         // Build event text for screen reader
         let screenReaderText = (this.state.isScheduledEvent) ? ` ${timeRange.startTime} to ${timeRange.endTime}` : 'All day';
-        screenReaderText += ` ${eventData.summary}`;
-        screenReaderText += (eventData.location) ? ` location ${eventData.location}` : '';
+        screenReaderText += `, ${eventData.summary}`;
+        screenReaderText += (eventData.location) ? `, location ${eventData.location}` : '';
 
         return screenReaderText;
     }

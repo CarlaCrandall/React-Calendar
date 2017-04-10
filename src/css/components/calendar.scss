@@ -34,7 +34,7 @@
             width: $lg--calendar-week-width;
         }
 
-        &:focus {
+        &--focused {
             outline: 1px dotted $sidebar-background-color;
         }
     }

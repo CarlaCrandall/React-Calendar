@@ -32,20 +32,47 @@ export default class Day extends React.Component {
         isSelected: false
     };
 
+    constructor(props) {
+        super(props);
+
+        this.refHandler = this.refHandler.bind(this);
+        this.dayButton = null;
+    }
+
+    componentDidMount() {
+        if (this.props.isSelected) {
+            this.dayButton.focus();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        // When new date is selected, focus on button
+        // To make sure screen readers announce updated content
+        if (this.props.isSelected && this.props.isSelected !== prevProps.isSelected) {
+            // Timeout needed to fix Safari Voiceover bug
+            setTimeout(() => this.dayButton.focus(), 50);
+        }
+    }
+
+    // Use bound ref callback to prevent dayButton from being set to null
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
+    refHandler(domElement) {
+        this.dayButton = domElement;
+    }
+
     renderButton() {
-        const date = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
+        const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
 
         // Build date text for screen reader
-        let screenReaderText = `${date.format('dddd, MMMM D, YYYY')}.`;
+        let screenReaderText = `${dateObj.format('dddd, MMMM D, YYYY')},`;
         screenReaderText += (this.props.events.length === 1) ? ' 1 event' : ` ${this.props.events.length} events`;
 
-        // ID used by Calendar component for screenreader accessibility
         return (
             <button
                 className="day__button"
-                id={`calendar__day__${this.props.date}`}
-                tabIndex="-1"
+                tabIndex={this.props.isSelected ? '0' : '-1'}
                 aria-label={screenReaderText}
+                ref={this.refHandler}
                 onClick={() => this.props.SELECT_DATE(this.props.date)}
             >
                 {this.props.date}
@@ -70,7 +97,7 @@ export default class Day extends React.Component {
             });
 
         return (
-            <div className={className}>
+            <div className={className} role="gridcell" aria-label="Selected date">
                 <div className="day__text">
                     {!isHidden && this.props.isHeading && this.renderHeadingText()}
                     {!isHidden && !this.props.isHeading && this.renderButton()}

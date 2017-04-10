@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 const initialState = {
-    eventsByDate: {},
+    eventsByDate: null,
     loading: false,
     error: false
 };
@@ -11,7 +11,7 @@ const events = (state = initialState, action) => {
         case 'EVENTS_REQUEST': {
             return {
                 ...state,
-                eventsByDate: {},
+                eventsByDate: null,
                 loading: true,
                 error: false
             };

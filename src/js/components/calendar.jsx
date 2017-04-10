@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import moment from 'moment';
 import KEYBOARD_CODES from '../../config/keyboard-codes';
 import { Month } from './';
@@ -18,14 +19,15 @@ export default class Calendar extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         loading: React.PropTypes.bool.isRequired,
-        eventsByDate: React.PropTypes.object.isRequired,
+        eventsByDate: React.PropTypes.object,
         SELECT_DATE: React.PropTypes.func.isRequired,
         NEXT_MONTH: React.PropTypes.func.isRequired,
         PREV_MONTH: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        date: null
+        date: null,
+        eventsByDate: null
     };
 
 
@@ -36,8 +38,9 @@ export default class Calendar extends React.Component {
     constructor(props) {
         super(props);
 
-        this.refHandler = this.refHandler.bind(this);
-        this.calendarGrid = null;
+        this.state = {
+            hasFocus: true
+        };
     }
 
     componentDidMount() {
@@ -52,13 +55,6 @@ export default class Calendar extends React.Component {
     // ///////////////////////////////////////////////////////////////////
     // EVENT HANDLERS
     // ///////////////////////////////////////////////////////////////////
-
-    onClick() {
-        // Chrome Fix
-        // When user clicks on child button, apply keyboard focus to grid
-        // Allows user to switch between mouse and keyboard functionality
-        this.calendarGrid.focus();
-    }
 
     onWindowKeyDown(event) {
         const isSidebar = event.target.classList.contains('sidebar__screenreader');
@@ -81,6 +77,7 @@ export default class Calendar extends React.Component {
             this.handlePageKey(event.keyCode);
         }
     }
+
 
     // ///////////////////////////////////////////////////////////////////
     // KEYBOARD FUNCTIONS
@@ -138,12 +135,6 @@ export default class Calendar extends React.Component {
     // CUSTOM FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
-    // Use bound ref callback to prevent this.calendarGrid from being set to null
-    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
-    refHandler(domElement) {
-        this.calendarGrid = domElement;
-    }
-
     updateMonth(selectedMonth, date) {
         // If currently selected date isn't in the current month, update the calendar
         if (selectedMonth < this.props.month) {
@@ -154,16 +145,11 @@ export default class Calendar extends React.Component {
         }
     }
 
-    updateActiveDescendant() {
-        // aria-activedescendant tells screen readers which date is currently selected
-        // Has to be called from Month's componentDidUpdate to ensure the required elements have rendered
-        const activeId = (this.props.loading) ? 'loading__message' : `calendar__day__${this.props.date}`;
-
-        // Timeout and focus() needed to fix Safari Voiceover bug
-        setTimeout(() => {
-            this.calendarGrid.setAttribute('aria-activedescendant', activeId);
-            this.calendarGrid.focus();
-        }, 100);
+    toggleFocus(event) {
+        // Toggle focus styles when children of the Calendar have keyboard focus
+        this.setState({
+            hasFocus: (event.type === 'focus') ? true : false
+        });
     }
 
 
@@ -172,14 +158,18 @@ export default class Calendar extends React.Component {
     // ///////////////////////////////////////////////////////////////////
 
     render() {
+        const className = classnames({
+            calendar__grid: true,
+            'calendar__grid--focused': this.state.hasFocus
+        });
+
+        // Negative tabIndex needed to fix Firefox bug
         return (
-            <div className="calendar">
+            <div className="calendar" tabIndex="-1">
                 <div
-                    className="calendar__grid"
-                    tabIndex="0"
-                    role="group"
-                    ref={this.refHandler}
-                    onClick={() => this.onClick()}
+                    className={className}
+                    onFocus={event => this.toggleFocus(event)}
+                    onBlur={event => this.toggleFocus(event)}
                     onKeyDown={event => this.onKeyDown(event)}
                 >
                     <Month
@@ -188,7 +178,6 @@ export default class Calendar extends React.Component {
                         date={this.props.date}
                         loading={this.props.loading}
                         eventsByDate={this.props.eventsByDate}
-                        onUpdate={() => this.updateActiveDescendant()}
                         SELECT_DATE={this.props.SELECT_DATE}
                     />
                 </div>

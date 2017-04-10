@@ -19,13 +19,14 @@ export default class Sidebar extends React.Component {
         year: React.PropTypes.number.isRequired,
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
-        eventsByDate: React.PropTypes.object.isRequired,
+        eventsByDate: React.PropTypes.object,
         PREV_MONTH: React.PropTypes.func.isRequired,
         NEXT_MONTH: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        date: null
+        date: null,
+        eventsByDate: null
     };
 
 
@@ -36,16 +37,29 @@ export default class Sidebar extends React.Component {
         });
 
         return (
-            <button className={className} tabIndex="-1" onClick={() => onClick(this.props.month, this.props.year, this.props.date)}>
+            <button
+                className={className}
+                tabIndex="-1"
+                onClick={() => onClick(this.props.month, this.props.year, this.props.date)}
+            >
                 <span className="sr-only">{label}</span>
             </button>
         );
     }
 
     renderHeader() {
+        const headingText = `${MONTH_NAMES[this.props.month]} ${this.props.year}`;
+
+        // id is required for aria-labedledby in Calendar component
         return (
             <header className="sidebar__heading-container">
-                <h1 className="sidebar__heading">{MONTH_NAMES[this.props.month]} {this.props.year}</h1>
+                <h1
+                    id="calendar__heading"
+                    className="sidebar__heading"
+                    aria-label={`Calendar for ${headingText}`}
+                >
+                    {headingText}
+                </h1>
                 <div className="sidebar__button-container">
                     {this.renderButton(this.props.PREV_MONTH, 'previous', 'Previous Month')}
                     {this.renderButton(this.props.NEXT_MONTH, 'next', 'Next Month')}
@@ -55,9 +69,7 @@ export default class Sidebar extends React.Component {
     }
 
     renderContent() {
-        const
-            readyToRender = !this.props.loading && !this.props.error,
-            eventsForDate = this.props.eventsByDate[`day_${this.props.date}`];
+        const readyToRender = !this.props.loading && !this.props.error && this.props.eventsByDate;
 
         return (
             <ReactCSSTransitionGroup
@@ -80,7 +92,7 @@ export default class Sidebar extends React.Component {
                     className="sidebar__content"
                 >
                     {this.props.error && <div className="sidebar__message">Sorry, an error has occurred.</div>}
-                    {readyToRender && <EventList events={eventsForDate} {...this.props} />}
+                    {readyToRender && <EventList events={this.props.eventsByDate[`day_${this.props.date}`]} {...this.props} />}
                 </div>
             </ReactCSSTransitionGroup>
         );
@@ -90,9 +102,7 @@ export default class Sidebar extends React.Component {
         return (
             <div className="sidebar">
                 {this.renderHeader()}
-                <div role="main">
-                    {this.props.date && this.renderContent()}
-                </div>
+                {this.props.date && this.renderContent()}
             </div>
         );
     }

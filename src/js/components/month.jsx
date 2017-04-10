@@ -17,13 +17,13 @@ export default class Month extends React.Component {
         month: React.PropTypes.number.isRequired,
         date: React.PropTypes.number,
         loading: React.PropTypes.bool.isRequired,
-        eventsByDate: React.PropTypes.object.isRequired,
-        onUpdate: React.PropTypes.func.isRequired,
+        eventsByDate: React.PropTypes.object,
         SELECT_DATE: React.PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        date: null
+        date: null,
+        eventsByDate: null
     };
 
 
@@ -34,10 +34,6 @@ export default class Month extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState(this.getStateValues(nextProps));
-    }
-
-    componentDidUpdate() {
-        this.props.onUpdate();
     }
 
     getStateValues(props) {
@@ -125,10 +121,14 @@ export default class Month extends React.Component {
     }
 
     render() {
-        // Wait for API call to complete before we render calendar
-        if (!this.props.loading) {
+        // Wait for event data before we render calendar
+        if (!this.props.loading && this.props.eventsByDate) {
             return (
-                <div className="month">
+                <div
+                    className="month"
+                    role="grid"
+                    aria-labelledby="calendar__heading"
+                >
                     {this.renderHeader()}
                     {this.state.weeks && this.renderWeeks()}
                 </div>
