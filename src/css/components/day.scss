@@ -37,6 +37,7 @@
     &__button {
         transition: all 150ms ease;
         border-radius: 50%;
+        padding: 0;
         width: $sm--calendar-day-btn-width;
         height: $sm--calendar-day-btn-height;
         overflow: visible;
