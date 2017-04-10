@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Event } from './';
 import MONTH_NAMES from '../../config/month-names';
 
@@ -12,10 +13,10 @@ import MONTH_NAMES from '../../config/month-names';
 export default class EventList extends React.Component {
 
     static propTypes = {
-        year: React.PropTypes.number.isRequired,
-        month: React.PropTypes.number.isRequired,
-        date: React.PropTypes.number.isRequired,
-        events: React.PropTypes.array
+        year: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+        date: PropTypes.number.isRequired,
+        events: PropTypes.array
     };
 
     static defaultProps = {

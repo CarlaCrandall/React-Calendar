@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Day } from './';
 
 /**
@@ -11,14 +12,14 @@ import { Day } from './';
 export default class Week extends React.Component {
 
     static propTypes = {
-        identifier: React.PropTypes.string,
-        days: React.PropTypes.array.isRequired,
-        year: React.PropTypes.number,
-        month: React.PropTypes.number,
-        date: React.PropTypes.number,
-        eventsByDate: React.PropTypes.object,
-        isHeading: React.PropTypes.bool,
-        SELECT_DATE: React.PropTypes.func
+        identifier: PropTypes.string,
+        days: PropTypes.array.isRequired,
+        year: PropTypes.number,
+        month: PropTypes.number,
+        date: PropTypes.number,
+        eventsByDate: PropTypes.object,
+        isHeading: PropTypes.bool,
+        SELECT_DATE: PropTypes.func
     };
 
     static defaultProps = {

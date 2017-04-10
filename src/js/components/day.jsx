@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import moment from 'moment';
 
@@ -12,16 +13,16 @@ import moment from 'moment';
 export default class Day extends React.Component {
 
     static propTypes = {
-        year: React.PropTypes.number,
-        month: React.PropTypes.number,
-        date: React.PropTypes.oneOfType([
-            React.PropTypes.number,
-            React.PropTypes.string
+        year: PropTypes.number,
+        month: PropTypes.number,
+        date: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
         ]).isRequired,
-        events: React.PropTypes.array,
-        isHeading: React.PropTypes.bool,
-        isSelected: React.PropTypes.bool,
-        SELECT_DATE: React.PropTypes.func.isRequired
+        events: PropTypes.array,
+        isHeading: PropTypes.bool,
+        isSelected: PropTypes.bool,
+        SELECT_DATE: PropTypes.func.isRequired
     };
 
     static defaultProps = {

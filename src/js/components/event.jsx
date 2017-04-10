@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 /**
@@ -11,7 +12,7 @@ import moment from 'moment';
 export default class Event extends React.Component {
 
     static propTypes = {
-        data: React.PropTypes.object.isRequired
+        data: PropTypes.object.isRequired
     };
 
     constructor(props) {

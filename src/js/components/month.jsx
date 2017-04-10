@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Week } from './';
 
@@ -13,12 +14,12 @@ import { Week } from './';
 export default class Month extends React.Component {
 
     static propTypes = {
-        year: React.PropTypes.number.isRequired,
-        month: React.PropTypes.number.isRequired,
-        date: React.PropTypes.number,
-        loading: React.PropTypes.bool.isRequired,
-        eventsByDate: React.PropTypes.object,
-        SELECT_DATE: React.PropTypes.func.isRequired
+        year: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+        date: PropTypes.number,
+        loading: PropTypes.bool.isRequired,
+        eventsByDate: PropTypes.object,
+        SELECT_DATE: PropTypes.func.isRequired
     };
 
     static defaultProps = {

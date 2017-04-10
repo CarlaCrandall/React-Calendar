@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import moment from 'moment';
 import KEYBOARD_CODES from '../../config/keyboard-codes';
@@ -15,14 +16,14 @@ import { Month } from './';
 export default class Calendar extends React.Component {
 
     static propTypes = {
-        year: React.PropTypes.number.isRequired,
-        month: React.PropTypes.number.isRequired,
-        date: React.PropTypes.number,
-        loading: React.PropTypes.bool.isRequired,
-        eventsByDate: React.PropTypes.object,
-        SELECT_DATE: React.PropTypes.func.isRequired,
-        NEXT_MONTH: React.PropTypes.func.isRequired,
-        PREV_MONTH: React.PropTypes.func.isRequired
+        year: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+        date: PropTypes.number,
+        loading: PropTypes.bool.isRequired,
+        eventsByDate: PropTypes.object,
+        SELECT_DATE: PropTypes.func.isRequired,
+        NEXT_MONTH: PropTypes.func.isRequired,
+        PREV_MONTH: PropTypes.func.isRequired
     };
 
     static defaultProps = {

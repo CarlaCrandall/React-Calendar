@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { EventList } from './';
 import MONTH_NAMES from '../../config/month-names';
@@ -14,14 +15,14 @@ import MONTH_NAMES from '../../config/month-names';
 export default class Sidebar extends React.Component {
 
     static propTypes = {
-        loading: React.PropTypes.bool.isRequired,
-        error: React.PropTypes.bool.isRequired,
-        year: React.PropTypes.number.isRequired,
-        month: React.PropTypes.number.isRequired,
-        date: React.PropTypes.number,
-        eventsByDate: React.PropTypes.object,
-        PREV_MONTH: React.PropTypes.func.isRequired,
-        NEXT_MONTH: React.PropTypes.func.isRequired
+        loading: PropTypes.bool.isRequired,
+        error: PropTypes.bool.isRequired,
+        year: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+        date: PropTypes.number,
+        eventsByDate: PropTypes.object,
+        PREV_MONTH: PropTypes.func.isRequired,
+        NEXT_MONTH: PropTypes.func.isRequired
     };
 
     static defaultProps = {

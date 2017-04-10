@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import * as actions from './actions';
@@ -12,9 +13,9 @@ import { Sidebar, Calendar } from './components';
 class App extends React.Component {
 
     static propTypes = {
-        calendar: React.PropTypes.object.isRequired,
-        events: React.PropTypes.object.isRequired,
-        FETCH_EVENTS: React.PropTypes.func.isRequired
+        calendar: PropTypes.object.isRequired,
+        events: PropTypes.object.isRequired,
+        FETCH_EVENTS: PropTypes.func.isRequired
     };
 
     componentWillMount() {
