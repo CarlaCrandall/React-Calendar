@@ -22,7 +22,8 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            supportsDateInput: this.checkForDateInput()
+            supportsDateInput: this.checkForDateInput(),
+            displayDatePicker: false
         };
     }
 
@@ -48,20 +49,38 @@ class App extends React.Component {
         }
     }
 
+    onClick(event) {
+        event.preventDefault();
+
+        this.setState({
+            displayDatePicker: !this.state.displayDatePicker
+        });
+    }
+
+    renderDatePickerButton() {
+        let linkText = 'Click here to enable the native date picker (recommended for screenreaders).';
+
+        if (this.state.displayDatePicker) {
+            linkText = 'Click here to disable the native date picker (not recommended for screenreaders).';
+        }
+
+        return (
+            <a href="#" className="sr-only" onClick={event => this.onClick(event)}>{linkText}</a>
+        );
+    }
+
     render() {
         const { calendar, events, ...actionProps } = this.props;
 
         return (
             <div className="react-calendar">
-                <Calendar
-                    supportsDateInput={this.state.supportsDateInput}
-                    {...calendar}
-                    {...events}
-                    {...actionProps}
-                />
-                {this.state.supportsDateInput && <DatePicker {...calendar} {...events} {...actionProps} />}
+                {this.state.supportsDateInput && this.renderDatePickerButton()}
+                {this.state.displayDatePicker
+                    ? <DatePicker {...calendar} {...events} {...actionProps} />
+                    : <Calendar {...calendar} {...events} {...actionProps} />
+                }
                 <Sidebar
-                    supportsDateInput={this.state.supportsDateInput}
+                    displayDatePicker={this.state.displayDatePicker}
                     {...calendar}
                     {...events}
                     {...actionProps}

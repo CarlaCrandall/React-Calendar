@@ -16,11 +16,14 @@ export default class DatePicker extends React.PureComponent {
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         date: PropTypes.number,
+        loading: PropTypes.bool.isRequired,
+        eventsByDate: PropTypes.object,
         SELECT_FULL_DATE: PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        date: null
+        date: null,
+        eventsByDate: null
     };
 
 
@@ -69,19 +72,30 @@ export default class DatePicker extends React.PureComponent {
     // RENDER FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
+    renderNumEvents() {
+        const events = this.props.eventsByDate[`day_${this.props.date}`] || [];
+
+        return (
+            <p id="datepicker__events" aria-hidden="true">
+                {events.length === 1 ? '1 event' : `${events.length} events`}
+            </p>
+        );
+    }
+
     render() {
-        // TODO: Implement aria-describedby for number of events?
         return (
             <div className="datepicker">
                 <h1>Calendar Application</h1>
                 <p>Activate input to select a date.</p>
-                <label htmlFor="datepicker__input" tabIndex="-1">Selected date {this.state.formattedDate}</label>
                 <input
                     type="date"
                     id="datepicker__input"
                     defaultValue={this.state.defaultValue}
+                    aria-label={`Selected date ${this.state.formattedDate}`}
+                    aria-describedby="datepicker__events"
                     onBlur={event => this.onBlur(event)}
                 />
+                {!this.props.loading && this.props.eventsByDate && this.renderNumEvents()}
             </div>
         );
     }

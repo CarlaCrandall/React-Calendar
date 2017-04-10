@@ -15,7 +15,7 @@ import MONTH_NAMES from '../../config/month-names';
 export default class Sidebar extends React.Component {
 
     static propTypes = {
-        supportsDateInput: PropTypes.bool.isRequired,
+        displayDatePicker: PropTypes.bool.isRequired,
         loading: PropTypes.bool.isRequired,
         error: PropTypes.bool.isRequired,
         year: PropTypes.number.isRequired,
@@ -53,9 +53,9 @@ export default class Sidebar extends React.Component {
         const headingText = `${MONTH_NAMES[this.props.month]} ${this.props.year}`;
 
         // id is required for aria-labedledby in Calendar component
-        // If date input is supported, hide the heading and buttons from screen readers
+        // If date input is diplayed, hide the heading and buttons from screen readers
         return (
-            <header className="sidebar__heading-container" aria-hidden={this.props.supportsDateInput}>
+            <header className="sidebar__heading-container" aria-hidden={this.props.displayDatePicker}>
                 <h1
                     id="calendar__heading"
                     className="sidebar__heading"

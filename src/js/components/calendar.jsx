@@ -19,7 +19,6 @@ export default class Calendar extends React.PureComponent {
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         date: PropTypes.number,
-        supportsDateInput: PropTypes.bool.isRequired,
         loading: PropTypes.bool.isRequired,
         eventsByDate: PropTypes.object,
         SELECT_DATE: PropTypes.func.isRequired,
@@ -168,7 +167,7 @@ export default class Calendar extends React.PureComponent {
         // Negative tabIndex needed to fix Firefox bug
         // If date input is supported, hide the calendar from screen readers
         return (
-            <div className="calendar" tabIndex="-1" aria-hidden={this.props.supportsDateInput}>
+            <div className="calendar" tabIndex="-1">
                 <div
                     className={className}
                     onFocus={event => this.toggleFocus(event)}
