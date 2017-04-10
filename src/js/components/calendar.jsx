@@ -13,7 +13,7 @@ import { Month } from './';
  * Example: <Calendar />
  */
 
-export default class Calendar extends React.Component {
+export default class Calendar extends React.PureComponent {
 
     static propTypes = {
         year: PropTypes.number.isRequired,
