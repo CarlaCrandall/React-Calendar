@@ -89,7 +89,7 @@ export default class Day extends React.Component {
 
     render() {
         const
-            isHidden = this.props.date === 0,
+            isVisible = this.props.date !== 0,
             className = classnames({
                 day: true,
                 'day--heading': this.props.isHeading,
@@ -98,10 +98,14 @@ export default class Day extends React.Component {
             });
 
         return (
-            <div className={className} role="gridcell" aria-label="Selected date">
+            <div
+                className={className}
+                role="gridcell"
+                aria-label="Selected date"
+            >
                 <div className="day__text">
-                    {!isHidden && this.props.isHeading && this.renderHeadingText()}
-                    {!isHidden && !this.props.isHeading && this.renderButton()}
+                    {isVisible && this.props.isHeading && this.renderHeadingText()}
+                    {isVisible && !this.props.isHeading && this.renderButton()}
                 </div>
             </div>
         );
