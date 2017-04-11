@@ -51,8 +51,8 @@ export default class Sidebar extends React.Component {
 
     renderHeader() {
         const
-            dateObj = moment(`${this.props.year}-${this.props.month}`, 'YYYY-M'),
-            headingText = dateObj.format('MMMM, YYYY');
+            dateObj = moment(`${this.props.year}-${this.props.month + 1}`, 'YYYY-M'),
+            headingText = dateObj.format('MMMM YYYY');
 
         // id is required for aria-labedledby in Calendar component
         // If date input is diplayed, hide the heading and buttons from screen readers
