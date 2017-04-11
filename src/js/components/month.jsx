@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import * as DateUtils from '../utils/date-utils';
 import { Week } from './';
 
 
@@ -38,10 +38,10 @@ export default class Month extends React.Component {
     }
 
     getStateValues(props) {
-        // Get which day of the week the first falls on
+        // Get day of the week for the first of the month
         // Get total number of days in the month
         const
-            date = moment(`${props.year}-${props.month + 1}-01`, 'YYYY-M-DD'),
+            date = DateUtils.getMonthAndYear(props.year, props.month),
             startDayOfMonth = date.day(),
             daysInMonth = date.daysInMonth();
 
@@ -65,9 +65,10 @@ export default class Month extends React.Component {
         let numWeeks = 6,
             i = startDayOfMonth;
 
-        // Add each day of the month and add it to the correct week array
+        // Loop through each day of the month and add it to the correct week array
         for (i; i < daysInMonth + startDayOfMonth; i++) {
-            const weekIndex = Math.floor(i / 7),
+            const
+                weekIndex = Math.floor(i / 7),
                 weekDay = i % 7,
                 currentDate = (i - startDayOfMonth) + 1;
 

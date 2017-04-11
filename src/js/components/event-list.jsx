@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import * as DateUtils from '../utils/date-utils';
 import { Event } from './';
+
 
 /**
  * EventList
@@ -28,7 +29,7 @@ export default class EventList extends React.Component {
         super(props);
 
         const
-            dateObj = moment(`${props.year}-${props.month + 1}-${props.date}`, 'YYYY-M-D'),
+            dateObj = DateUtils.getFullDate(props.year, props.month, props.date),
             dateString = dateObj.format('MMMM D, YYYY'),
             fullDateString = dateObj.format('dddd, MMMM D, YYYY'),
             events = props.events || [];

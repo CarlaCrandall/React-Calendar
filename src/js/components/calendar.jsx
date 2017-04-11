@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import moment from 'moment';
 import KEYBOARD_CODES from '../../config/keyboard-codes';
+import * as DateUtils from '../utils/date-utils';
 import { Month } from './';
 
 
@@ -85,7 +85,7 @@ export default class Calendar extends React.PureComponent {
     // ///////////////////////////////////////////////////////////////////
 
     handleArrowKey(key) {
-        const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
+        const dateObj = DateUtils.getFullDate(this.props.year, this.props.month, this.props.date);
 
         switch (key) {
             // left arrow, previous day
@@ -149,7 +149,7 @@ export default class Calendar extends React.PureComponent {
     toggleFocus(event) {
         // Toggle focus styles when children of the Calendar have keyboard focus
         this.setState({
-            hasFocus: (event.type === 'focus') ? true : false
+            hasFocus: event.type === 'focus'
         });
     }
 

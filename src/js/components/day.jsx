@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import moment from 'moment';
+import * as DateUtils from '../utils/date-utils';
+
 
 /**
  * Day
@@ -41,13 +42,14 @@ export default class Day extends React.Component {
     }
 
     componentDidMount() {
+        // When Calendar loads, focus on selected date button
         if (this.props.isSelected) {
             this.dayButton.focus();
         }
     }
 
     componentDidUpdate(prevProps) {
-        // When new date is selected, focus on button
+        // When new date is selected, focus on selected date button
         // To make sure screen readers announce updated content
         if (this.props.isSelected && this.props.isSelected !== prevProps.isSelected) {
             // Timeout needed to fix Safari Voiceover bug
@@ -62,7 +64,7 @@ export default class Day extends React.Component {
     }
 
     renderButton() {
-        const dateObj = moment(`${this.props.year}-${this.props.month + 1}-${this.props.date}`, 'YYYY-M-D');
+        const dateObj = DateUtils.getFullDate(this.props.year, this.props.month, this.props.date);
 
         // Build date text for screen reader
         let screenReaderText = `${dateObj.format('dddd, MMMM D, YYYY')},`;

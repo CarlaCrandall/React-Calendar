@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import * as DateUtils from '../utils/date-utils';
 
 
 /**
@@ -64,7 +65,7 @@ export default class DatePicker extends React.PureComponent {
     // ///////////////////////////////////////////////////////////////////
 
     getStateValues(props) {
-        const dateObj = moment(`${props.year}-${props.month + 1}-${props.date}`, 'YYYY-M-D');
+        const dateObj = DateUtils.getFullDate(props.year, props.month, props.date);
 
         return {
             defaultValue: dateObj.format('YYYY-MM-DD'),

@@ -19,7 +19,6 @@ export default class Event extends React.Component {
         super(props);
 
         this.state = {
-            eventDate: moment(props.data.start.date || props.data.start.dateTime).format('dddd, MMMM D, YYYY'),
             isScheduledEvent: this.isScheduledEvent(props.data.start, props.data.end),
             timeRange: this.getTimeRange(props.data.start, props.data.end)
         };
@@ -42,6 +41,7 @@ export default class Event extends React.Component {
         return screenReaderText;
     }
 
+    // Determine if event is an all day event or scheduled for a specific time
     isScheduledEvent(start, end) {
         return start.dateTime !== undefined && end.dateTime !== undefined;
     }

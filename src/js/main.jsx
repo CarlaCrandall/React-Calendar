@@ -54,7 +54,7 @@ class App extends React.Component {
     // EVENT HANDLERS
     // ///////////////////////////////////////////////////////////////////
 
-    onClick(event) {
+    onDatePickerToggle(event) {
         event.preventDefault();
 
         this.setState({
@@ -67,21 +67,25 @@ class App extends React.Component {
     // CUSTOM FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
+    // Feature detection check for HTML5 date input
     checkForDateInput() {
         const input = document.createElement('input');
         input.setAttribute('type', 'date');
         return input.type !== 'text';
     }
 
+    // For browsers that support HTML5 date input
+    // Allow screen reader to users to switch from custom calendar to the native date picker
     renderDatePickerButton() {
         let linkText = 'Click here to enable the native date picker (recommended for screenreaders).';
 
         if (this.state.displayDatePicker) {
-            linkText = 'Click here to disable the native date picker (not recommended for screenreaders).';
+            linkText = 'Click here to disable the native date picker.';
         }
 
+        // Link required because button onClick doesn't fire when button is not visible
         return (
-            <a href="#" className="sr-only" onClick={event => this.onClick(event)}>{linkText}</a>
+            <a href="#" className="sr-only" onClick={event => this.onDatePickerToggle(event)}>{linkText}</a>
         );
     }
 
