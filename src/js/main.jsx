@@ -19,6 +19,11 @@ class App extends React.Component {
         FETCH_EVENTS: PropTypes.func.isRequired
     };
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
 
@@ -26,12 +31,6 @@ class App extends React.Component {
             supportsDateInput: this.checkForDateInput(),
             displayDatePicker: false
         };
-    }
-
-    checkForDateInput() {
-        const input = document.createElement('input');
-        input.setAttribute('type', 'date');
-        return input.type !== 'text';
     }
 
     componentWillMount() {
@@ -50,12 +49,28 @@ class App extends React.Component {
         }
     }
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // EVENT HANDLERS
+    // ///////////////////////////////////////////////////////////////////
+
     onClick(event) {
         event.preventDefault();
 
         this.setState({
             displayDatePicker: !this.state.displayDatePicker
         });
+    }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
+    checkForDateInput() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'date');
+        return input.type !== 'text';
     }
 
     renderDatePickerButton() {
@@ -69,6 +84,11 @@ class App extends React.Component {
             <a href="#" className="sr-only" onClick={event => this.onClick(event)}>{linkText}</a>
         );
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     render() {
         const
