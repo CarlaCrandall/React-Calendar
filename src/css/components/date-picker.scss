@@ -1,4 +1,65 @@
 .datepicker {
-	// Enable when date picker dev / testing is complete
-	// @extend .sr-only;
+    background: $sidebar-background-color;
+    width: 100%;
+
+    // Styles for SM+ breakpoints
+    @include breakpoint(sm) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: $white;
+        width: 60%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+	// Styles for LG breakpoint
+    @include breakpoint(lg) { width: 66%; }
+
+    &__container {
+        margin: 0 auto;
+        padding: $pad-xlarge $pad-large $pad-small;
+    }
+
+    &__heading {
+        color: $white;
+        font-size: $font-size-large;
+        font-weight: $font-weight-light;
+
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            color: $primary-accent-color;
+            font-size: $font-size-xlarge;
+        }
+    }
+
+    &__instructions {
+        margin: $pad-large 0;
+        color: $white;
+        font-weight: $font-weight-light;
+
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            color: $default-text-color;
+            font-weight: $font-weight-normal;
+        }
+    }
+
+    &__input {
+        display: block;
+        padding: ($pad-small / 2);
+        width: 100%;
+        max-width: 330px;
+        font-size: $font-size-medium;
+        -webkit-appearance: none;
+
+        &:focus {
+            outline: 1px dotted $primary-accent-color;
+
+            // Styles for SM+ breakpoints
+            @include breakpoint(sm) {
+                outline: 1px dotted $sidebar-background-color;
+            }
+        }
+    }
 }

@@ -33,3 +33,9 @@
 
     .sidebar__screenreader:focus + &__heading { outline: 1px dotted $primary-accent-color; }
 }
+
+.react-calendar--datepicker-active .event-list {
+    &__heading {
+        margin: 0;
+    }
+}

@@ -72,29 +72,21 @@ export default class DatePicker extends React.PureComponent {
     // RENDER FUNCTIONS
     // ///////////////////////////////////////////////////////////////////
 
-    renderNumEvents() {
-        const events = this.props.eventsByDate[`day_${this.props.date}`] || [];
-
-        return (
-            <p id="datepicker__events" aria-hidden="true">
-                {events.length === 1 ? '1 event' : `${events.length} events`}
-            </p>
-        );
-    }
-
     render() {
         return (
             <div className="datepicker">
-                <h1>Calendar Application</h1>
-                <p>Activate input to select a date.</p>
-                <input
-                    type="date"
-                    defaultValue={this.state.defaultValue}
-                    aria-label={`Selected date ${this.state.formattedDate}`}
-                    aria-describedby="datepicker__events"
-                    onBlur={event => this.onBlur(event)}
-                />
-                {!this.props.loading && this.props.eventsByDate && this.renderNumEvents()}
+                <div className="datepicker__container">
+                    <h1 className="datepicker__heading">Calendar Application</h1>
+                    <p className="datepicker__instructions">Activate input to select a date.</p>
+                    <input
+                        type="date"
+                        className="datepicker__input"
+                        defaultValue={this.state.defaultValue}
+                        aria-label={`Selected date ${this.state.formattedDate}`}
+                        aria-describedby="datepicker__events"
+                        onBlur={event => this.onBlur(event)}
+                    />
+                </div>
             </div>
         );
     }

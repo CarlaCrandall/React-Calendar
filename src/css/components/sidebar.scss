@@ -110,3 +110,9 @@
         opacity: 0;
     }
 }
+
+.react-calendar--datepicker-active .sidebar {
+    &__content {
+        margin: 0;
+    }
+}

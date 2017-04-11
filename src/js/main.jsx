@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import * as actions from './actions';
@@ -70,10 +71,15 @@ class App extends React.Component {
     }
 
     render() {
-        const { calendar, events, ...actionProps } = this.props;
+        const
+            { calendar, events, ...actionProps } = this.props,
+            className = classnames({
+                'react-calendar': true,
+                'react-calendar--datepicker-active': this.state.displayDatePicker
+            });
 
         return (
-            <div className="react-calendar">
+            <div className={className}>
                 {this.state.supportsDateInput && this.renderDatePickerButton()}
                 {this.state.displayDatePicker
                     ? <DatePicker {...calendar} {...events} {...actionProps} />
