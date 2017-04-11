@@ -1,9 +1,9 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import classnames from 'classnames';
 import { EventList } from './';
-import MONTH_NAMES from '../../config/month-names';
 
 /**
  * Sidebar
@@ -50,7 +50,9 @@ export default class Sidebar extends React.Component {
     }
 
     renderHeader() {
-        const headingText = `${MONTH_NAMES[this.props.month]} ${this.props.year}`;
+        const
+            dateObj = moment(`${this.props.year}-${this.props.month}`, 'YYYY-M'),
+            headingText = dateObj.format('MMMM, YYYY');
 
         // id is required for aria-labedledby in Calendar component
         // If date input is diplayed, hide the heading and buttons from screen readers

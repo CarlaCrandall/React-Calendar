@@ -83,7 +83,7 @@ export default class DatePicker extends React.PureComponent {
                         className="datepicker__input"
                         defaultValue={this.state.defaultValue}
                         aria-label={`Selected date ${this.state.formattedDate}`}
-                        aria-describedby="datepicker__events"
+                        aria-describedby="event-list__screen-reader-text"
                         onBlur={event => this.onBlur(event)}
                     />
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Event } from './';
-import MONTH_NAMES from '../../config/month-names';
 
 /**
  * EventList
@@ -27,10 +27,15 @@ export default class EventList extends React.Component {
     constructor(props) {
         super(props);
 
-        const dateString = `${MONTH_NAMES[this.props.month]} ${this.props.date}, ${this.props.year}`;
+        const
+            dateObj = moment(`${props.year}-${props.month + 1}-${props.date}`, 'YYYY-M-D'),
+            dateString = dateObj.format('MMMM D, YYYY'),
+            fullDateString = dateObj.format('dddd, MMMM D, YYYY'),
+            events = props.events || [];
 
         this.state = {
-            headingText: (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`
+            screenReaderText: (events.length === 1) ? `There is 1 event for ${fullDateString}` : `There are ${events.length} events for ${fullDateString}`,
+            headingText: (events.length > 0) ? `Events for ${dateString}` : `There are no events for ${dateString}`
         };
 
         this.refHandler = this.refHandler.bind(this);
@@ -70,12 +75,13 @@ export default class EventList extends React.Component {
         // aria-label is needed to fix Firefox NVDA bug
         return (
             <div
+                id="event-list__screen-reader-text"
                 className="sidebar__screenreader"
                 tabIndex="0"
-                aria-label={this.state.headingText}
+                aria-label={this.state.screenReaderText}
                 ref={this.refHandler}
             >
-                {this.state.headingText}
+                {this.state.screenReaderText}
             </div>
         );
     }
