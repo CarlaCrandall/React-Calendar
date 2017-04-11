@@ -32,6 +32,14 @@ export default class DatePicker extends React.PureComponent {
         super(props);
 
         this.state = this.getStateValues(props);
+
+        this.refHandler = this.refHandler.bind(this);
+        this.heading = null;
+    }
+
+    componentDidMount() {
+        // Focus on heading when date picker is displayed
+        this.heading.focus();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,6 +72,12 @@ export default class DatePicker extends React.PureComponent {
         };
     }
 
+    // Use bound ref callback to prevent heading from being set to null
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
+    refHandler(domElement) {
+        this.heading = domElement;
+    }
+
 
     // ///////////////////////////////////////////////////////////////////
     // RENDER FUNCTIONS
@@ -73,7 +87,13 @@ export default class DatePicker extends React.PureComponent {
         return (
             <div className="datepicker">
                 <div className="datepicker__container">
-                    <h1 className="datepicker__heading">Calendar Application</h1>
+                    <h1
+                        className="datepicker__heading"
+                        tabIndex="-1"
+                        ref={this.refHandler}
+                    >
+                        Calendar Application
+                    </h1>
                     <p className="datepicker__instructions">Activate input to select a date.</p>
                     <input
                         type="date"
