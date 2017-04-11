@@ -55,7 +55,7 @@ export default class Sidebar extends React.Component {
         // id is required for aria-labedledby in Calendar component
         // If date input is diplayed, hide the heading and buttons from screen readers
         return (
-            <header className="sidebar__heading-container" aria-hidden={this.props.displayDatePicker}>
+            <header className="sidebar__heading-container">
                 <h1
                     id="calendar__heading"
                     className="sidebar__heading"
@@ -104,7 +104,7 @@ export default class Sidebar extends React.Component {
     render() {
         return (
             <div className="sidebar">
-                {this.renderHeader()}
+                {!this.props.displayDatePicker && this.renderHeader()}
                 {this.props.date && this.renderContent()}
             </div>
         );

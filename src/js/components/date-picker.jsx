@@ -89,7 +89,6 @@ export default class DatePicker extends React.PureComponent {
                 <p>Activate input to select a date.</p>
                 <input
                     type="date"
-                    id="datepicker__input"
                     defaultValue={this.state.defaultValue}
                     aria-label={`Selected date ${this.state.formattedDate}`}
                     aria-describedby="datepicker__events"

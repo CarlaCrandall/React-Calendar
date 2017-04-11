@@ -13,6 +13,7 @@ import MONTH_NAMES from '../../config/month-names';
 export default class EventList extends React.Component {
 
     static propTypes = {
+        displayDatePicker: PropTypes.bool.isRequired,
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         date: PropTypes.number.isRequired,
@@ -31,6 +32,22 @@ export default class EventList extends React.Component {
         this.state = {
             headingText: (this.props.events) ? `Events for ${dateString}` : `There are no events for ${dateString}`
         };
+
+        this.refHandler = this.refHandler.bind(this);
+        this.heading = null;
+    }
+
+    componentDidMount() {
+        // When date picker is active, focus on the heading when a new date is selected
+        if (this.props.displayDatePicker) {
+            this.heading.focus();
+        }
+    }
+
+    // Use bound ref callback to prevent heading from being set to null
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
+    refHandler(domElement) {
+        this.heading = domElement;
     }
 
     renderListItem(event, index) {
@@ -56,6 +73,7 @@ export default class EventList extends React.Component {
                 className="sidebar__screenreader"
                 tabIndex="0"
                 aria-label={this.state.headingText}
+                ref={this.refHandler}
             >
                 {this.state.headingText}
             </div>
