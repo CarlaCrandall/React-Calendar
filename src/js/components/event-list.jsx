@@ -25,6 +25,11 @@ export default class EventList extends React.Component {
         events: null
     };
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
 
@@ -50,11 +55,21 @@ export default class EventList extends React.Component {
         }
     }
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     // Use bound ref callback to prevent heading from being set to null
     // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
     refHandler(domElement) {
         this.heading = domElement;
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     renderListItem(event, index) {
         return (

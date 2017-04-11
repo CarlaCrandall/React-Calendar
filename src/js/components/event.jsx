@@ -15,6 +15,11 @@ export default class Event extends React.Component {
         data: PropTypes.object.isRequired
     };
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
 
@@ -23,6 +28,11 @@ export default class Event extends React.Component {
             timeRange: this.getTimeRange(props.data.start, props.data.end)
         };
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     getTimeRange(start, end) {
         const
@@ -45,6 +55,11 @@ export default class Event extends React.Component {
     isScheduledEvent(start, end) {
         return start.dateTime !== undefined && end.dateTime !== undefined;
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     renderLocation() {
         return (

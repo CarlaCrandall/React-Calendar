@@ -34,6 +34,11 @@ export default class Day extends React.Component {
         isSelected: false
     };
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
 
@@ -57,11 +62,21 @@ export default class Day extends React.Component {
         }
     }
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     // Use bound ref callback to prevent dayButton from being set to null
     // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
     refHandler(domElement) {
         this.dayButton = domElement;
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     renderButton() {
         const dateObj = DateUtils.getFullDate(this.props.year, this.props.month, this.props.date);

@@ -28,6 +28,10 @@ export default class Month extends React.Component {
     };
 
 
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
         this.state = this.getStateValues(props);
@@ -36,6 +40,11 @@ export default class Month extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState(this.getStateValues(nextProps));
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     getStateValues(props) {
         // Get day of the week for the first of the month
@@ -85,6 +94,11 @@ export default class Month extends React.Component {
 
         return { weeks, numWeeks };
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     renderHeader() {
         const dayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

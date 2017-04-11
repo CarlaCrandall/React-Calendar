@@ -32,6 +32,10 @@ export default class Sidebar extends React.Component {
     };
 
 
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     renderButton(onClick, btnClass, label) {
         const className = classnames({
             sidebar__button: true,

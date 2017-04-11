@@ -32,6 +32,11 @@ export default class Week extends React.Component {
         SELECT_DATE: () => false
     };
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     renderDay(day, index) {
         return (
             <Day

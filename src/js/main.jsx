@@ -74,6 +74,11 @@ class App extends React.Component {
         return input.type !== 'text';
     }
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     // For browsers that support HTML5 date input
     // Allow screen reader to users to switch from custom calendar to the native date picker
     renderDatePickerButton() {
@@ -88,11 +93,6 @@ class App extends React.Component {
             <a href="#" className="sr-only" onClick={event => this.onDatePickerToggle(event)}>{linkText}</a>
         );
     }
-
-
-    // ///////////////////////////////////////////////////////////////////
-    // RENDER FUNCTIONS
-    // ///////////////////////////////////////////////////////////////////
 
     render() {
         const
