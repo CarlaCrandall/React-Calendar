@@ -16,14 +16,11 @@ export default class DatePicker extends React.PureComponent {
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         date: PropTypes.number,
-        loading: PropTypes.bool.isRequired,
-        eventsByDate: PropTypes.object,
         SELECT_FULL_DATE: PropTypes.func.isRequired
     };
 
     static defaultProps = {
-        date: null,
-        eventsByDate: null
+        date: null
     };
 
 
