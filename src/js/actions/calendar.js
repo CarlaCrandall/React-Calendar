@@ -1,5 +1,8 @@
+import * as DateUtils from '../utils/date-utils.js';
+
 export const NEXT_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
-    let month,
+    let date = selectedDate,
+        month,
         year;
 
     if (currentMonth === 11) {
@@ -11,16 +14,26 @@ export const NEXT_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
         year = currentYear;
     }
 
+    const dateObj = DateUtils.getFullDate(year, month, date);
+
+    // If date doesn't exist, set date to last day of month
+    // Ex. Handles moving from Aug 31 to Sep 30
+    if (!dateObj.isValid()) {
+        const monthObj = DateUtils.getMonthAndYear(year, month).endOf('month');
+        date = monthObj.date();
+    }
+
     return {
         type: 'NEXT_MONTH',
-        date: selectedDate,
+        date,
         month,
         year
     };
 };
 
 export const PREV_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
-    let month,
+    let date = selectedDate,
+        month,
         year;
 
     if (currentMonth === 0) {
@@ -32,9 +45,18 @@ export const PREV_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
         year = currentYear;
     }
 
+    const dateObj = DateUtils.getFullDate(year, month, date);
+
+    // If date doesn't exist, set date to last day of month
+    // Ex. Handles moving from July 31 to June 30
+    if (!dateObj.isValid()) {
+        const monthObj = DateUtils.getMonthAndYear(year, month).endOf('month');
+        date = monthObj.date();
+    }
+
     return {
         type: 'PREV_MONTH',
-        date: selectedDate,
+        date,
         month,
         year
     };
