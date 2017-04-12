@@ -1,8 +1,8 @@
 .spinner {
     @include horizontal-center;
     top: $pad-xxlarge;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 
     // Set correct starting position
     transform: rotate(-45deg) translateX(-50%);
@@ -13,7 +13,7 @@
 
     &__container {
         position: relative;
-        animation: rotateSpinner 1s linear infinite;
+        animation: rotateSpinner 750ms linear infinite;
         width: 100%;
         height: 100%;
 	}
@@ -31,21 +31,21 @@
 	}
 
     &__static {
-        border: 4px solid $gray;
+        border: ($pad-small / 2) solid $gray;
 	}
 
     &__q1,
     &__q2,
     &__q3,
     &__q4 {
-        border: 4px solid transparent;
+        border: ($pad-small / 2) solid transparent;
         border-right-color: $primary-accent-color;
 	}
 
-    &__q1 { animation: rotateQ1 1s linear infinite; }
-    &__q2 { animation: rotateQ2 1s linear infinite; }
-    &__q3 { animation: rotateQ3 1s linear infinite; }
-    &__q4 { animation: rotateQ4 1s linear infinite; }
+    &__q1 { animation: rotateQ1 750ms ease infinite; }
+    &__q2 { animation: rotateQ2 750ms ease infinite; }
+    &__q3 { animation: rotateQ3 750ms ease infinite; }
+    &__q4 { animation: rotateQ4 750ms ease infinite; }
 
 	// Rotate entire spinner
     @keyframes rotateSpinner {
