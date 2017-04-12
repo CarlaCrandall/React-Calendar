@@ -3,6 +3,7 @@ export DatePicker from './date-picker.jsx';
 export Day from './day.jsx';
 export Event from './event.jsx';
 export EventList from './event-list.jsx';
+export KeyboardInstructions from './keyboard-instructions.jsx';
 export Month from './month.jsx';
 export Sidebar from './sidebar.jsx';
 export Spinner from './spinner.jsx';

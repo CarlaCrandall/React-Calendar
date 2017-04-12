@@ -1,0 +1,48 @@
+.keyboard-instructions {
+    margin: 0 auto;
+    width: 85%;
+
+    &__button {
+        @include horizontal-center;
+        margin: $pad-small auto $pad-large;
+        border-radius: ($pad-medium / 2);
+        background: $gray;
+        padding: $pad-small;
+        color: $sidebar-background-color;
+    }
+
+    &__table {
+        margin-bottom: $pad-small;
+        width: 100%;
+        text-align: left;
+
+        // Styles for SM+ breakpoints
+        @include breakpoint(sm) {
+            margin-bottom: $pad-xxlarge;
+        }
+
+        &:focus {
+            outline: 1px dotted $sidebar-background-color;
+        }
+    }
+
+    &__th,
+    &__td {
+        padding: $pad-medium;
+        line-height: $line-height-medium;
+        font-size: $font-size-medium;
+    }
+
+    &__th {
+        background: $primary-accent-color;
+        color: $white;
+        font-weight: $font-weight-bold;
+    }
+
+    &__tr {
+        border-bottom: 1px solid $sidebar-background-color;
+    }
+
+    &__tbody &__tr:nth-child(odd) { background: $white; }
+    &__tbody &__tr:nth-child(even) { background: $gray; }
+}
