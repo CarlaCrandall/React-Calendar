@@ -1,4 +1,4 @@
-import * as DateUtils from '../utils/date-utils.js';
+import * as DateUtils from '../utils/date-utils';
 
 export const NEXT_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
     let date = selectedDate,
