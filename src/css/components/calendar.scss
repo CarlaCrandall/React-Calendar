@@ -18,7 +18,7 @@
 
     &__grid,
     &__spinner {
-        margin: 0 auto;
+        margin: 0 auto $pad-small;
         padding: 100px $pad-large 0;
         width: $sm--calendar-week-width;
 
@@ -30,7 +30,7 @@
 
         // Styles for MD+ breakpoints
         @include breakpoint(md) {
-            margin: 100px auto;
+            margin: 100px auto $pad-large;
             padding: 0;
             width: $lg--calendar-week-width;
         }

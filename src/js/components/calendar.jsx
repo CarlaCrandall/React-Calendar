@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import KEYBOARD_CODES from '../../config/keyboard-codes';
 import * as DateUtils from '../utils/date-utils';
-import { Month, Spinner } from './';
+import { KeyboardInstructions, Month, Spinner } from './';
 
 
 /**
@@ -81,6 +81,13 @@ export default class Calendar extends React.PureComponent {
             event.preventDefault();
             this.handleHomeKey(event.keyCode, event.ctrlKey);
         }
+    }
+
+    toggleFocus(event) {
+        // Toggle focus styles when children of the Calendar have keyboard focus
+        this.setState({
+            hasFocus: event.type === 'focus'
+        });
     }
 
 
@@ -184,13 +191,6 @@ export default class Calendar extends React.PureComponent {
         }
     }
 
-    toggleFocus(event) {
-        // Toggle focus styles when children of the Calendar have keyboard focus
-        this.setState({
-            hasFocus: event.type === 'focus'
-        });
-    }
-
 
     // ///////////////////////////////////////////////////////////////////
     // RENDER FUNCTIONS
@@ -222,6 +222,7 @@ export default class Calendar extends React.PureComponent {
                             SELECT_DATE={this.props.SELECT_DATE}
                         />
                     </div>
+                    <KeyboardInstructions />
                 </div>
             );
         }
