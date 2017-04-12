@@ -25,13 +25,12 @@
         }
     }
 
-    .sidebar__screenreader {
-        @extend .sr-only;
+    & > .sidebar__screenreader {
         top: 24px;
         width: 100%;
     }
 
-    .sidebar__screenreader:focus + &__heading { outline: 1px dotted $primary-accent-color; }
+    & > .sidebar__screenreader:focus + &__heading { outline: 1px dotted $primary-accent-color; }
 }
 
 .react-calendar--datepicker-active .event-list {

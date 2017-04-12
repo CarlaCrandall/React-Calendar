@@ -39,11 +39,5 @@
         }
     }
 
-    .sidebar__screenreader {
-        @extend .sr-only;
-        width: 100%;
-        height: 100%;
-    }
-
-    .sidebar__screenreader:focus + &__content { outline: 1px dotted $primary-accent-color; }
+    &__content:focus { outline: 1px dotted $primary-accent-color; }
 }
