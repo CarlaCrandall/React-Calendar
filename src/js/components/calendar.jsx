@@ -77,6 +77,10 @@ export default class Calendar extends React.PureComponent {
             event.preventDefault();
             this.handlePageKey(event.keyCode);
         }
+        else if (KEYBOARD_CODES.HOME_KEYS.indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+            this.handleHomeKey(event.keyCode, event.ctrlKey);
+        }
     }
 
 
@@ -129,6 +133,40 @@ export default class Calendar extends React.PureComponent {
         else {
             this.props.PREV_MONTH(this.props.month, this.props.year, this.props.date);
         }
+    }
+
+    handleHomeKey(key, ctrlKey) {
+        const
+            isEndKey = key === KEYBOARD_CODES.HOME_KEYS[0],
+            isHomeKey = key === KEYBOARD_CODES.HOME_KEYS[1],
+            monthObj = DateUtils.getMonthAndYear(this.props.year, this.props.month);
+
+        let dateObj = DateUtils.getFullDate(this.props.year, this.props.month, this.props.date);
+
+
+        // If end key, go to last day of week
+        if (isEndKey && !ctrlKey) {
+            dateObj.endOf('week');
+        }
+        // If home key, go to first day of week
+        else if (isHomeKey && !ctrlKey) {
+            dateObj.startOf('week');
+        }
+
+        // If ctrl + end key, go to last day of month
+        // OR if last day of week is not in this month, go to last day of month
+        if ((isEndKey && ctrlKey) ||
+            (isEndKey && dateObj.month() !== this.props.month)) {
+            dateObj = monthObj.endOf('month');
+        }
+        // If ctrl + home key, go to first day of month
+        // OR if first day of week is not in this month, go to first day of month
+        else if ((isHomeKey && ctrlKey) ||
+            (isHomeKey && dateObj.month() !== this.props.month)) {
+            dateObj = monthObj.startOf('month');
+        }
+
+        this.props.SELECT_DATE(dateObj.date());
     }
 
 
