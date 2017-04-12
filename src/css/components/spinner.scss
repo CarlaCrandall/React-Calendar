@@ -1,0 +1,92 @@
+.spinner {
+    @include horizontal-center;
+    top: $pad-xxlarge;
+    width: 100px;
+    height: 100px;
+
+    // Set correct starting position
+    transform: rotate(-45deg) translateX(-50%);
+
+    &:focus {
+        outline: none;
+    }
+
+    &__container {
+        position: relative;
+        animation: rotateSpinner 1s linear infinite;
+        width: 100%;
+        height: 100%;
+	}
+
+    &__static,
+    &__q1,
+    &__q2,
+    &__q3,
+    &__q4 {
+        position: absolute;
+        top: 0;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+	}
+
+    &__static {
+        border: 4px solid $gray;
+	}
+
+    &__q1,
+    &__q2,
+    &__q3,
+    &__q4 {
+        border: 4px solid transparent;
+        border-right-color: $primary-accent-color;
+	}
+
+    &__q1 { animation: rotateQ1 1s linear infinite; }
+    &__q2 { animation: rotateQ2 1s linear infinite; }
+    &__q3 { animation: rotateQ3 1s linear infinite; }
+    &__q4 { animation: rotateQ4 1s linear infinite; }
+
+	// Rotate entire spinner
+    @keyframes rotateSpinner {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(150deg); }
+    }
+
+    // Rotate first quarter of spinner
+    @keyframes rotateQ1 {
+        0%,
+        30% { transform: rotate(0deg); }
+
+        66%,
+        100% { transform: rotate(210deg); }
+    }
+
+    // Rotate second quarter of spinner
+    @keyframes rotateQ2 {
+        0% { transform: rotate(0deg); }
+
+        30% { transform: rotate(90deg); }
+
+        66%,
+        100% { transform: rotate(210deg); }
+    }
+
+	// Rotate third quarter of spinner
+    @keyframes rotateQ3 {
+        0% { transform: rotate(0deg); }
+
+        30% { transform: rotate(180deg); }
+
+        66%,
+        100% { transform: rotate(210deg); }
+    }
+
+	// Rotate fourth quarter of spinner
+    @keyframes rotateQ4 {
+        0% { transform: rotate(0deg); }
+
+        30%,
+        100% { transform: rotate(210deg); }
+    }
+}

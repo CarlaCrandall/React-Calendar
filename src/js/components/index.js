@@ -5,4 +5,5 @@ export EventList from './event-list.jsx';
 export Event from './event.jsx';
 export Month from './month.jsx';
 export Sidebar from './sidebar.jsx';
+export Spinner from './spinner.jsx';
 export Week from './week.jsx';
