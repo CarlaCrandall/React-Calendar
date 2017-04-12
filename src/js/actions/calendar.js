@@ -2,16 +2,13 @@ import * as DateUtils from '../utils/date-utils';
 
 export const NEXT_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
     let date = selectedDate,
-        month,
-        year;
+        month = currentMonth + 1,
+        year = currentYear;
 
+    // If moving from December to January, update year
     if (currentMonth === 11) {
         month = 0;
         year = currentYear + 1;
-    }
-    else {
-        month = currentMonth + 1;
-        year = currentYear;
     }
 
     const dateObj = DateUtils.getFullDate(year, month, date);
@@ -33,16 +30,13 @@ export const NEXT_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
 
 export const PREV_MONTH = (currentMonth, currentYear, selectedDate = 1) => {
     let date = selectedDate,
-        month,
-        year;
+        month = currentMonth - 1,
+        year = currentYear;
 
+    // If moving from January to December, update year
     if (currentMonth === 0) {
         month = 11;
         year = currentYear - 1;
-    }
-    else {
-        month = currentMonth - 1;
-        year = currentYear;
     }
 
     const dateObj = DateUtils.getFullDate(year, month, date);
