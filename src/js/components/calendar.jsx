@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import KEYBOARD_CODES from '../../config/keyboard-codes';
 import * as DateUtils from '../utils/date-utils';
-import { Month } from './';
+import { Month, Spinner } from './';
 
 
 /**
@@ -202,24 +202,35 @@ export default class Calendar extends React.PureComponent {
             'calendar__grid--focused': this.state.hasFocus
         });
 
-        // Negative tabIndex needed to fix Firefox bug
-        // If date input is supported, hide the calendar from screen readers
+        // Wait for event data before we render calendar
+        if (!this.props.loading && this.props.eventsByDate) {
+            // Negative tabIndex needed to fix Firefox bug
+            // If date input is supported, hide the calendar from screen readers
+            return (
+                <div className="calendar" tabIndex="-1">
+                    <div
+                        className={className}
+                        onFocus={event => this.toggleFocus(event)}
+                        onBlur={event => this.toggleFocus(event)}
+                        onKeyDown={event => this.onKeyDown(event)}
+                    >
+                        <Month
+                            year={this.props.year}
+                            month={this.props.month}
+                            date={this.props.date}
+                            eventsByDate={this.props.eventsByDate}
+                            SELECT_DATE={this.props.SELECT_DATE}
+                        />
+                    </div>
+                </div>
+            );
+        }
+
+        // Render spinner while waiting for event API call to complete
         return (
-            <div className="calendar" tabIndex="-1">
-                <div
-                    className={className}
-                    onFocus={event => this.toggleFocus(event)}
-                    onBlur={event => this.toggleFocus(event)}
-                    onKeyDown={event => this.onKeyDown(event)}
-                >
-                    <Month
-                        year={this.props.year}
-                        month={this.props.month}
-                        date={this.props.date}
-                        loading={this.props.loading}
-                        eventsByDate={this.props.eventsByDate}
-                        SELECT_DATE={this.props.SELECT_DATE}
-                    />
+            <div className="calendar">
+                <div className="calendar__spinner">
+                    <Spinner />
                 </div>
             </div>
         );

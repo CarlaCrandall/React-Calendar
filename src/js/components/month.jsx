@@ -17,7 +17,6 @@ export default class Month extends React.Component {
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         date: PropTypes.number,
-        loading: PropTypes.bool.isRequired,
         eventsByDate: PropTypes.object,
         SELECT_DATE: PropTypes.func.isRequired
     };
@@ -137,22 +136,15 @@ export default class Month extends React.Component {
     }
 
     render() {
-        // Wait for event data before we render calendar
-        if (!this.props.loading && this.props.eventsByDate) {
-            return (
-                <div
-                    className="month"
-                    role="grid"
-                    aria-labelledby="calendar__heading"
-                >
-                    {this.renderHeader()}
-                    {this.state.weeks && this.renderWeeks()}
-                </div>
-            );
-        }
-
         return (
-            <div id="loading__message" className="sr-only">Loading</div>
+            <div
+                className="month"
+                role="grid"
+                aria-labelledby="calendar__heading"
+            >
+                {this.renderHeader()}
+                {this.state.weeks && this.renderWeeks()}
+            </div>
         );
     }
 }

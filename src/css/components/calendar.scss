@@ -16,7 +16,8 @@
 	// Styles for LG breakpoint
     @include breakpoint(lg) { width: 66%; }
 
-    &__grid {
+    &__grid,
+    &__spinner {
         margin: 0 auto;
         padding: 100px $pad-large 0;
         width: $sm--calendar-week-width;
@@ -36,6 +37,15 @@
 
         &--focused {
             outline: 1px dotted $sidebar-background-color;
+        }
+    }
+
+    &__spinner {
+        height: calc(#{$sm--calendar-day-height} * 7);
+
+        // Styles for MD+ breakpoints
+        @include breakpoint(md) {
+            height: calc(#{$lg--calendar-day-height} * 7);
         }
     }
 }
