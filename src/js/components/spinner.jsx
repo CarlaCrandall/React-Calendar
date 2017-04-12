@@ -10,6 +10,10 @@ import React from 'react';
 
 export default class Spinner extends React.PureComponent {
 
+    // ///////////////////////////////////////////////////////////////////
+    // COMPONENT LIFECYCLE
+    // ///////////////////////////////////////////////////////////////////
+
     constructor(props) {
         super(props);
 
@@ -21,11 +25,21 @@ export default class Spinner extends React.PureComponent {
         this.spinner.focus();
     }
 
+
+    // ///////////////////////////////////////////////////////////////////
+    // CUSTOM FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
+
     // Use bound ref callback to prevent spinner from being set to null
     // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
     refHandler(domElement) {
         this.spinner = domElement;
     }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // RENDER FUNCTIONS
+    // ///////////////////////////////////////////////////////////////////
 
     render() {
         return (
