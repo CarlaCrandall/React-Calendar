@@ -14,12 +14,12 @@ describe('Spinner', () => {
         const
             component = shallowRender(),
             instance = component.instance(),
-            focusMock = jest.fn();
+            focus = jest.fn();
 
-        instance.spinner = { focus: focusMock };
+        instance.spinner = { focus };
         instance.componentDidMount();
 
-        expect(focusMock).toHaveBeenCalled();
+        expect(focus).toHaveBeenCalled();
     });
 
     it('should set spinner to null', () => {
