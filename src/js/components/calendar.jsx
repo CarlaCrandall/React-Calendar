@@ -191,6 +191,8 @@ export default class Calendar extends React.PureComponent {
                 <div className="calendar">
                     <div
                         className={className}
+                        role="application"
+                        aria-label="Calendar Grid, Use keyboard to navigate"
                         onFocus={event => this.toggleFocus(event)}
                         onBlur={event => this.toggleFocus(event)}
                         onKeyDown={event => this.onKeyDown(event)}
