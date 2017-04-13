@@ -1,5 +1,13 @@
 const SHORTCUTS = [
     {
+        action: 'Switch to calendar',
+        key: 'C key'
+    },
+    {
+        action: 'Switch to event list',
+        key: 'E key'
+    },
+    {
         action: 'Navigate to the previous or next day',
         key: 'LEFT and RIGHT arrow keys'
     },

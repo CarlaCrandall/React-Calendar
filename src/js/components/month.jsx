@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import KEYBOARD_CODES from '../../config/keyboard-codes';
 import * as DateUtils from '../utils/date-utils';
 import { Week } from './';
 
@@ -34,10 +35,33 @@ export default class Month extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.getStateValues(props);
+
+        this.refHandler = this.refHandler.bind(this);
+        this.grid = null;
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', event => this.onWindowKeydown(event));
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState(this.getStateValues(nextProps));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', event => this.onWindowKeydown(event));
+    }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // EVENT HANDLERS
+    // ///////////////////////////////////////////////////////////////////
+
+    onWindowKeydown(event) {
+        // If key is "C" move focus to event list
+        if (event.keyCode === KEYBOARD_CODES.APP_SWITCH_KEYS[0]) {
+            this.grid.focus();
+        }
     }
 
 
@@ -54,6 +78,12 @@ export default class Month extends React.Component {
             daysInMonth = date.daysInMonth();
 
         return this.calculateWeeksOfMonth(startDayOfMonth, daysInMonth);
+    }
+
+    // Use bound ref callback to prevent grid from being set to null
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html#caveats
+    refHandler(domElement) {
+        this.grid = domElement;
     }
 
     calculateWeeksOfMonth(startDayOfMonth, daysInMonth) {
@@ -139,8 +169,10 @@ export default class Month extends React.Component {
         return (
             <div
                 className="month"
+                tabIndex="-1"
                 role="grid"
                 aria-labelledby="calendar__heading"
+                ref={this.refHandler}
             >
                 {this.renderHeader()}
                 {this.state.weeks && this.renderWeeks()}

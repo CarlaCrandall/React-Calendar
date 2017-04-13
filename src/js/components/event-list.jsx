@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import KEYBOARD_CODES from '../../config/keyboard-codes';
 import * as DateUtils from '../utils/date-utils';
 import { Event } from './';
 
@@ -49,8 +50,26 @@ export default class EventList extends React.Component {
     }
 
     componentDidMount() {
+        window.addEventListener('keydown', event => this.onWindowKeydown(event));
+
         // When date picker is active, focus on the heading when a new date is selected
         if (this.props.displayDatePicker) {
+            this.heading.focus();
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', event => this.onWindowKeydown(event));
+    }
+
+
+    // ///////////////////////////////////////////////////////////////////
+    // EVENT HANDLERS
+    // ///////////////////////////////////////////////////////////////////
+
+    onWindowKeydown(event) {
+        // If key is "E" move focus to event list
+        if (event.keyCode === KEYBOARD_CODES.APP_SWITCH_KEYS[1]) {
             this.heading.focus();
         }
     }
