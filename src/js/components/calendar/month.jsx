@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import KEYBOARD_CODES from '../../config/keyboard-codes';
-import * as DateUtils from '../utils/date-utils';
-import { Week } from './';
+import KEYBOARD_CODES from '../../../config/keyboard-codes';
+import * as DateUtils from '../../utils/date-utils';
+import { Week } from '../';
 
 
 /**

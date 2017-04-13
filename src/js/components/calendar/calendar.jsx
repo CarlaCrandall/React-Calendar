@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import KEYBOARD_CODES from '../../config/keyboard-codes';
-import * as DateUtils from '../utils/date-utils';
-import { KeyboardInstructions, Month, Spinner } from './';
+import KEYBOARD_CODES from '../../../config/keyboard-codes';
+import * as DateUtils from '../../utils/date-utils';
+import { KeyboardInstructions, Month, Spinner } from '../';
 
 
 /**

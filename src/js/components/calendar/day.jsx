@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import * as DateUtils from '../utils/date-utils';
+import * as DateUtils from '../../utils/date-utils';
 
 
 /**
