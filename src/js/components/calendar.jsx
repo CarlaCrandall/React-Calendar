@@ -187,10 +187,8 @@ export default class Calendar extends React.PureComponent {
 
         // Wait for event data before we render calendar
         if (!this.props.loading && this.props.eventsByDate) {
-            // Negative tabIndex needed to fix Firefox bug
-            // If date input is supported, hide the calendar from screen readers
             return (
-                <div className="calendar" tabIndex="-1">
+                <div className="calendar">
                     <div
                         className={className}
                         onFocus={event => this.toggleFocus(event)}
