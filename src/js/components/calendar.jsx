@@ -44,27 +44,10 @@ export default class Calendar extends React.PureComponent {
         };
     }
 
-    componentDidMount() {
-        window.addEventListener('keydown', event => this.onWindowKeyDown(event));
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('keydown', event => this.onWindowKeyDown(event));
-    }
-
 
     // ///////////////////////////////////////////////////////////////////
     // EVENT HANDLERS
     // ///////////////////////////////////////////////////////////////////
-
-    onWindowKeyDown(event) {
-        const isSidebar = event.target.classList.contains('sidebar__screenreader');
-
-        // Allow keyboard shortcuts to function when focused on sidebar
-        if (isSidebar && KEYBOARD_CODES.ALL_KEYS.indexOf(event.keyCode) > -1) {
-            this.onKeyDown(event);
-        }
-    }
 
     onKeyDown(event) {
         // On arrow keys, update the selected date

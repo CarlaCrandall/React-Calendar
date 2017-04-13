@@ -75,7 +75,7 @@ export default class Event extends React.Component {
         return (
             <div className="event">
                 <div
-                    className="event__content sidebar__screenreader"
+                    className="event__content"
                     tabIndex="0"
                     aria-label={screenReaderText}
                 >

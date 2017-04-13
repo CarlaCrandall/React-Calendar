@@ -88,19 +88,19 @@ export default class EventList extends React.Component {
     }
 
     renderScreenReaderContent() {
-        // Screen reader content needs to be in its own div to fix Voiceover bug
+        // Screen reader content needs to be in its own h2 to fix Voiceover bug
         // Visible content will be hidden from screen readers to prevent content from being read twice
         // aria-label is needed to fix Firefox NVDA bug
         return (
-            <div
+            <h2
                 id="event-list__screen-reader-text"
-                className="sr-only sidebar__screenreader"
+                className="event-list__screen-reader-text"
                 tabIndex="0"
                 aria-label={this.state.screenReaderText}
                 ref={this.refHandler}
             >
                 {this.state.screenReaderText}
-            </div>
+            </h2>
         );
     }
 
