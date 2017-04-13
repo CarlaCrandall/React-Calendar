@@ -3,4 +3,5 @@
 /.sass-cache
 /build
 /node_modules
+/coverage
 /keys.json
