@@ -71,8 +71,9 @@ export default class KeyboardInstructions extends React.PureComponent {
         return (
             <table
                 className="keyboard-instructions__table"
-                role="table"
                 tabIndex="0"
+                role="table"
+                aria-label="List of keyboard shortcuts"
                 ref={this.refHandler}
             >
                 <thead role="rowgroup">

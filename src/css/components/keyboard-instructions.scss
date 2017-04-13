@@ -14,7 +14,6 @@
     &__table {
         margin-bottom: $pad-small;
         width: 100%;
-        text-align: left;
 
         // Styles for SM+ breakpoints
         @include breakpoint(sm) {
@@ -29,6 +28,7 @@
     &__th,
     &__td {
         padding: $pad-medium;
+        text-align: left;
         line-height: $line-height-medium;
         font-size: $font-size-medium;
     }
