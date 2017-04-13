@@ -67,18 +67,30 @@ export default class Event extends React.Component {
         );
     }
 
+    renderScreenReaderContent() {
+        const screenReaderText = this.getScreenReaderText(this.props.data, this.state.timeRange);
+
+        // Screen reader content needs to be in its own div to fix Voiceover bug on iOS
+        // Visible content will be hidden from screen readers to prevent content from being read twice
+        // aria-label is needed to fix Firefox NVDA bug
+        return (
+            <div
+                className="event__screen-reader-text"
+                tabIndex="0"
+                aria-label={screenReaderText}
+            >
+                {screenReaderText}
+            </div>
+        );
+    }
+
     render() {
-        const
-            screenReaderText = this.getScreenReaderText(this.props.data, this.state.timeRange),
-            timeRangeText = (this.state.isScheduledEvent) ? `${this.state.timeRange.startTime} - ${this.state.timeRange.endTime}` : 'All Day';
+        const timeRangeText = (this.state.isScheduledEvent) ? `${this.state.timeRange.startTime} - ${this.state.timeRange.endTime}` : 'All Day';
 
         return (
             <div className="event">
-                <div
-                    className="event__content"
-                    tabIndex="0"
-                    aria-label={screenReaderText}
-                >
+                {this.renderScreenReaderContent()}
+                <div className="event__content" role="presentation" aria-hidden="true">
                     <div className="event__time">{timeRangeText}</div>
                     <h3 className="event__name">{this.props.data.summary}</h3>
                     {this.props.data.location && this.renderLocation()}

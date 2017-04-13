@@ -27,8 +27,9 @@
 
     &__screen-reader-text {
         @extend .sr-only;
-        top: 24px;
+        top: $pad-large;
         width: 100%;
+        height: 100%;
     }
 
     &__screen-reader-text:focus + &__heading { outline: 1px dotted $primary-accent-color; }

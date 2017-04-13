@@ -39,5 +39,12 @@
         }
     }
 
-    &__content:focus { outline: 1px dotted $primary-accent-color; }
+    &__screen-reader-text {
+        @extend .sr-only;
+        top: $pad-large;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__screen-reader-text:focus + &__content { outline: 1px dotted $primary-accent-color; }
 }
