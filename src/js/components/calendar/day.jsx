@@ -100,7 +100,7 @@ export default class Day extends React.Component {
 
     renderHeadingText() {
         return (
-            <span>{this.props.date}</span>
+            <span className="day__heading">{this.props.date}</span>
         );
     }
 
