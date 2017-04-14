@@ -1,11 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Day } from '../../';
 
 describe('Day', () => {
-    const
-        shallowRender = props => shallow(<Day {...props} />),
-        fullRender = props => mount(<Day {...props} />);
+    const shallowRender = props => shallow(<Day {...props} />);
 
     let globalProps,
         SELECT_DATE;
