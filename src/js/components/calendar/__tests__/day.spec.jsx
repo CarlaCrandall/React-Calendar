@@ -56,7 +56,7 @@ describe('Day', () => {
             expect(focus).toHaveBeenCalled();
         });
 
-        it('should nit call focus when componentDidUpdate is called and isSelected is false', () => {
+        it('should not call focus when componentDidUpdate is called and isSelected is false', () => {
             const
                 component = shallowRender(globalProps),
                 instance = component.instance(),
