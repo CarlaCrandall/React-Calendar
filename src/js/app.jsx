@@ -1,17 +1,10 @@
-import 'babel-polyfill';
-import 'whatwg-fetch';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { bindActionCreators } from 'redux';
-import { Provider, connect } from 'react-redux';
-import * as actions from './actions';
-import store from './stores';
 import { Sidebar, Calendar, DatePicker } from './components';
 
 
-class App extends React.Component {
+export default class App extends React.Component {
 
     static propTypes = {
         calendar: PropTypes.object.isRequired,
@@ -119,19 +112,3 @@ class App extends React.Component {
         );
     }
 }
-
-const mapStateToProps = state => ({
-    calendar: state.calendar,
-    events: state.events
-});
-
-const
-    mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch),
-    ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
-
-ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedApp />
-    </Provider>,
-    document.querySelector('#app')
-);

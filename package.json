@@ -11,7 +11,7 @@
   "jest": {
     "clearMocks": true,
     "resetMocks": true,
-    "collectCoverageFrom" : ["src/**/*.{js,jsx}", "!**/node_modules/**"],
+    "collectCoverageFrom" : ["src/**/*.{js,jsx}", "!**/node_modules/**", "!src/js/app.mount.jsx"],
     "setupTestFrameworkScriptFile": "./tests/setup.js"
   },
   "devDependencies": {

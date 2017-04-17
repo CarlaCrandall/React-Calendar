@@ -38,7 +38,7 @@ var config = {
     buildPath: './build/'
   },
   js: {
-    srcFile: './src/js/main.jsx',
+    srcFile: './src/js/app.mount.jsx',
     watchPath: './src/js/**/*',
     buildFile: 'main.min.js',
     buildPath: './build/'
