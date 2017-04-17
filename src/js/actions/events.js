@@ -9,7 +9,7 @@ export const FETCH_EVENTS = (calendar) => {
 
     // Setup url for API call
     const
-        calendarId = '85bekdqob37um8m0mdm6l1t1tg@group.calendar.google.com',
+        calendarId = process.env.CALENDAR_ID_KEY,
         apiKey = process.env.GOOGLE_API_KEY,
         baseUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
         queryString = `?key=${apiKey}&timeMin=${startDate.format()}&timeMax=${endDate.format()}&singleEvents=true&orderBy=startTime`;
