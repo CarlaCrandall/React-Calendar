@@ -3,9 +3,7 @@ import React from 'react';
 
 /**
  * Spinner
- * Description:
- * @prop {string} propName - description
- * Example: <Spinner />
+ * Description: Presentational component. Displays a loading animation.
  */
 
 export default class Spinner extends React.PureComponent {

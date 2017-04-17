@@ -3,9 +3,7 @@ import SHORTCUTS from '../../config/keyboard-shortcuts';
 
 /**
  * KeyboardInstructions
- * Description:
- * @prop {string} propName - description
- * Example: <KeyboardInstructions />
+ * Description: Displays a table of all keyboard shortcuts, as well as a button that will show/hide the table when clicked.
  */
 
 export default class KeyboardInstructions extends React.PureComponent {

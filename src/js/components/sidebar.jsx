@@ -7,9 +7,16 @@ import { EventList } from './';
 
 /**
  * Sidebar
- * Description:
- * @prop {string} propName - description
- * Example: <Sidebar />
+ * Description: Displays a heading that contains the currently selected Month/Year, as well as a list of all events for the currently selected date.
+ * @prop {boolean} displayDatePicker - Indicates whether the user has chosen to use the custom calendar grid or the native HTML5 date input
+ * @prop {boolean} loading - Indicates whether the API call is in progress
+ * @prop {boolean} error - Indicates whether the API call has failed
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {object} eventsByDate - An object of all events for the month, filtered into arrays for each day
+ * @prop {function} PREV_MONTH - Function that updates the month prop to the previous month
+ * @prop {function} NEXT_MONTH - Function that updates the month prop to the next month
  */
 
 export default class Sidebar extends React.Component {

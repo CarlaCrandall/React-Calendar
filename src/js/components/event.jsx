@@ -4,9 +4,8 @@ import moment from 'moment';
 
 /**
  * Event
- * Description:
- * @prop {string} propName - description
- * Example: <Event />
+ * Description: Displays the information for a single event.
+ * @prop {object} data - Contains the required information for the event, including the start time, end time, name, and location
  */
 
 export default class Event extends React.Component {

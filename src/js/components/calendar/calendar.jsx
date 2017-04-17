@@ -8,9 +8,15 @@ import { KeyboardInstructions, Month, Spinner } from '../';
 
 /**
  * Calendar
- * Description:
- * @prop {string} propName - description
- * Example: <Calendar />
+ * Description: Displays the calendar for the currently selected month and handles keyboard navigation shortcuts.
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {boolean} loading - Indicates whether the API call is in progress
+ * @prop {object} eventsByDate - An object of all events for the month, filtered into arrays for each day
+ * @prop {function} SELECT_DATE - Function that updates the date prop,
+ * @prop {function} NEXT_MONTH - Function that updates the month prop to the next month
+ * @prop {function} PREV_MONTH - Function that updates the month prop to the previous month
  */
 
 export default class Calendar extends React.PureComponent {

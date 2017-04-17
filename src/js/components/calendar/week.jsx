@@ -4,9 +4,15 @@ import { Day } from '../';
 
 /**
  * Week
- * Description:
- * @prop {string} propName - description
- * Example: <Week />
+ * Description: Displays a week. Used for each row of the calendar.
+ * @prop {string} identifier - A unique string for each week of the month
+ * @prop {array} days - An array containing all the days for the week
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {object} eventsByDate - An object of all events for the month, filtered into arrays for each day
+ * prop {boolean} isHeading - Indicates whether the week should use heading styles
+ * @prop {function} SELECT_DATE - Function that updates the date prop
  */
 
 export default class Week extends React.Component {

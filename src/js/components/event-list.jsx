@@ -7,9 +7,12 @@ import { Event } from './';
 
 /**
  * EventList
- * Description:
- * @prop {string} propName - description
- * Example: <EventList />
+ * Description: Displays a list of all events for the currently selected date.
+ * @prop {boolean} displayDatePicker - Indicates whether the user has chosen to use the custom calendar grid or the native HTML5 date input
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {array} events - An array that contains an object for each event that occurs on the currently selected date
  */
 
 export default class EventList extends React.Component {

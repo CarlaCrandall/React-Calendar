@@ -7,9 +7,12 @@ import { Week } from '../';
 
 /**
  * Month
- * Description:
- * @prop {string} propName - description
- * Example: <Month />
+ * Description: Determines how many weeks/days are in the month and creates the grid required for the calendar.
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {object} eventsByDate - An object of all events for the month, filtered into arrays for each day
+ * @prop {function} SELECT_DATE - Function that updates the date prop
  */
 
 export default class Month extends React.Component {

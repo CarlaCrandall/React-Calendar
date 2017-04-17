@@ -6,9 +6,11 @@ import * as DateUtils from '../utils/date-utils';
 
 /**
  * DatePicker
- * Description:
- * @prop {string} propName - description
- * Example: <DatePicker />
+ * Description: Uses the native HTML5 date input to update the currently selected date. Recommended for screen readers.
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {function} SELECT_FULL_DATE - Function that updates the year, month, and date props
  */
 
 export default class DatePicker extends React.PureComponent {

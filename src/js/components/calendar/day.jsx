@@ -6,9 +6,14 @@ import * as DateUtils from '../../utils/date-utils';
 
 /**
  * Day
- * Description:
- * @prop {string} propName - description
- * Example: <Day />
+ * Description: Displays a day. Used for each column of the calendar grid.
+ * @prop {int} year - The year that is currently selected
+ * @prop {int} month - The month that is currently selected
+ * @prop {int} date - The date that is currently selected
+ * @prop {array} events - An array that contains an object for each event that occurs on the currently selected date
+ * prop {boolean} isHeading - Indicates whether the week should use heading styles
+ * prop {boolean} isSelected - Indicates whether the day is the currently selected date
+ * @prop {function} SELECT_DATE - Function that updates the date prop
  */
 
 export default class Day extends React.Component {
